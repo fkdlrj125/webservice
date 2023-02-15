@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TableEx01</title>
+  </head>
+  <body>
+    <!-- 
+      [table]
+
+      - 행(row)과 열(column)로 이루어진 표
+      - 테이블의 행 : tr(table row)
+      - 테이블의 열 : th(table head),td(table data)
+        -> 테이블의 열은 한 칸씩 나눠서 표현(cell)
+      - colspan = 셀 병합
+      - rowspan = 열 병함
+      - scope   = th가 영향을 미치는 범위
+
+      - 테이블의 전체구조
+        - thead : 테이블의 제목
+        - tbody : 테이블의 데이터
+        - tfoot : 테이블 요약
+      
+      
+    -->
+    <h1>table 태그</h1>
+    <table border="1" width="30%">
+      <caption>과일 정보</caption> <!-- 웹 접근성 때문에 사용 보통 숨겨놓음 -->
+      <thead>
+        <tr>
+          <th scope="col">번호</th>
+          <th scope="col">과일명</th>
+          <th scope="col">수량</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td rowspan="2">사과</td>
+          <td>10</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>5</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2">총수량</td>
+          <td>15</td>
+        </tr>
+      </tfoot>
+    </table>
+  </body>
+</html>

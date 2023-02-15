@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>text</title>
+    <style>
+      h1 {
+        /* uppercase | lowercase | capitalize(단어의 첫 문자 대문자로) */
+        text-transform: capitalize;
+        background-color: #0f0;
+      }
+      small {
+        /* 세로 정렬 */
+        background-color: #006400;
+        font-size: .5em;
+        /* inline에서만 사용가능 */
+        /* middle : baseline에 맞춰줌 */
+        /* vertical-align: middle; */
+        line-height: 10px;
+        /* line-height는 inline에서 적용이 잘 안됨 */
+      }
+      #p1 {
+        /* left | right | center | justify */
+        text-align: justify;
+        /* underline | overline | line-through */
+        text-decoration: underline;
+        /* 들여쓰기 */
+        /* '-' 값은 사라지는 효과 */
+        text-indent: 0px;
+        /* 글자 사이 간격 */
+        letter-spacing: 0.23px;
+        /* 단어 사이 간격 */
+        word-spacing: 10px;
+        /* 자동 줄 바꿈 해제 */
+        white-space: nowrap;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <h1>Heading h1 <small>comment</small></h1>
+      <p id="p1">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam quos
+        veniam voluptatum illo magnam nihil ea? Quasi tempora magnam tempore.
+        Veniam voluptate, aliquam repudiandae atque laborum quos repellat nemo
+        rem?
+      </p>
+      <p id="p2">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus at
+        repellendus unde itaque provident nisi sed dolorem vero dignissimos nam,
+        nemo tempora delectus consequuntur deleniti impedit? Aliquid modi beatae
+        soluta!
+      </p>
+    </div>
+  </body>
+</html>

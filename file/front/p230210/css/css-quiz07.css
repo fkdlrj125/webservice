@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+ul,ol {
+  padding: 0;
+  list-style: none;
+}
+div.wrap ul::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+div.wrap ul li a:link {
+  text-decoration: none;
+}
+div.wrap ul li a:hover {
+  background-color: #fedcba;
+  color: #adcd0d;
+}
+a {
+  display: block;
+  float: left;
+  padding: 10px 20px;
+  background-color: #abcdef;
+  color: #5a01cd;
+  font: bold 14px sans-serif;
+}

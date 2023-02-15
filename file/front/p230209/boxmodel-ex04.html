@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>box model</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+    }
+    .box {
+      border: 1px solid #f5f;
+      /* inline은 width,height 사용 불가 */
+      /* padding, margin은 옆으로만 적용 */
+      width: 150px;
+      height: 50px;
+      padding: 10px;
+      margin: 30px;
+
+      /* inline element를 block level element 처럼 설정 */
+      /* display: block; */
+      display: inline-block;
+      text-align: center;
+      line-height: 50px;
+    }
+    .box2 {
+      background-color: #0ff;
+      border: 3px solid #0aa;
+      display: inline;
+    }
+  </style>
+  <body>
+    <div>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga tenetur
+      maxime cumque numquam adipisci ipsa! Blanditiis minus similique, quia
+      voluptatem ab placeat laudantium. Obcaecati laborum maxime, qui nostrum
+      aspernatur accusamus!
+    </div>
+    <span class="box">Iste, fugiat!</span>
+    <span class="box">Iste, fugiat!</span>
+    <span class="box">Iste, fugiat!</span>
+    <span class="box">Iste, fugiat!</span>
+    <div class="box2">Lorem, ipsum.</div>
+    <div class="box2">Lorem, ipsum.</div>
+    <div class="box2">Lorem, ipsum.</div>
+    <div class="box2">Lorem, ipsum.</div>
+  </body>
+</html>

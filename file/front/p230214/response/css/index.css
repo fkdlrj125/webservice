@@ -1,0 +1,229 @@
+@charset "UTF-8";
+
+/* 초기화(reset) */
+html,
+body,
+dl,
+dt,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li,
+address {
+  margin: 0;
+  padding: 0;
+}
+
+/* 폰트 지정 */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong,
+em,
+address {
+  font-family: sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 12px;
+}
+
+/* 블릿 제거 */
+ul,
+ol {
+  list-style: none;
+}
+
+/* 이미지 */
+img {
+  border: 0;
+  /* 수직정렬 */
+  vertical-align: top;
+}
+/* 수평선 감추기 */
+hr {  
+  display: none;
+}
+
+/* 본문 스타일 */
+.blind {
+  /* display: none; */
+  position: absolute;
+  left: 0;
+  top: -999em;
+}
+
+/* 바로가기 */
+/* 선택됐을 땐 화면에 보임 */
+
+dl.skip-nav dd a:focus {
+  top: 0;
+}
+
+dl.skip-nav dd a {
+  display: block;
+  position: absolute;
+  width: 100%;
+  background-color: #0aa;
+  color: #ffd;
+  line-height: 2.5em;
+  text-align: center;
+  /* 화면에서 숨김 */
+  left: 0;
+  top: -100px;
+  z-index: 1000;
+}
+#wrap {
+  width: 760px;
+  margin: 0 auto;
+}
+#header{
+  position: relative;
+  /* 패딩으로 이미지 영역 확보 */
+  padding-bottom: 150px;
+  background: no-repeat 0 100%;
+}
+#index #header{
+  background-image: url(../../..//img/b_about.png);
+}
+#service #header{
+  background-image: url(../../../img/b_services.png);
+}
+#portfolio #header{
+  background-image: url(../../../img/b_portfolio.png);
+}
+#contact #header{
+  background-image: url(../../../img/b_contact.png);
+}
+/* header 스타일 */
+
+#header::after {
+  content: "";
+  display: block;
+  clear: left;
+}
+#header .logo {
+  float: left;
+}
+#header .lnb_area {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#header .lnb::after {
+  content: "";
+  display: block;
+  clear: left;
+}
+#header .lnb li {
+  float: left;
+}
+#header .lnb li a {
+  display: block;
+  height: 50px;
+  background: no-repeat 0 0;
+  text-indent: -999em;
+}
+#header .lnb li.mm1 a {
+  width: 71px;
+  background-image: url(../../../img/m_about.gif);
+}
+#header .lnb li.mm2 a {
+  width: 84px;
+  background-image: url(../../../img/m_services.gif);
+}
+#header .lnb li.mm3 a {
+  width: 95px;
+  background-image: url(../../../img/m_portfolio.gif);
+}
+#header .lnb li.mm4 a {
+  width: 106px;
+  background-image: url(../../../img/m_contact.gif);
+}
+
+#header .lnb li a:hover {
+  background-position: 0 -50px;
+}
+#header .lnb li a.on {
+  background-position: 0 -100px;
+}
+
+/* container 스타일 */
+
+/* #container {
+  margin-bottom: 30px;
+} */
+
+#container::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+#container #content {
+  float: left;
+  width: 480px;
+}
+
+#container #content h2 {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+#container .inner {
+  padding: 25px 25px 0;
+}
+/* #container .inner h2:nth-of-type(2) {
+  margin-top: 10px;
+} */
+
+#container #aside {
+  float: right;
+  width: 280px;
+}
+
+#container .bottom-space{
+  margin-bottom: 20px;
+}
+
+/* footer 스타일 */
+#footer {
+  border-top: 2px solid #aaa;
+  padding: 25px 25px 35px;
+  font-size: 0.9em;
+  color: #bbb;
+}
+#footer::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#footer .btm_menu {
+  float: right;
+}
+#footer .btm_menu li {
+  display: inline;
+}
+#footer .btm_menu li a {
+  text-decoration: none;
+  color: #bbb;
+}
+#footer .btm_menu li a:hover {
+  text-decoration: none;
+  color: #777;
+}
+#footer .copy {
+  float: left;
+}

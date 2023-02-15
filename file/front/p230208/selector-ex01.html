@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SelectorEx01</title>
+    <style>
+      /* 
+      [선택자] selector
+      1. tag  (태그)   : 태그명
+      2. id   (아이디) : #아이디값
+      3. class(클래스) : .클래스값
+    */
+      span {
+        /* rgb에 해당하는 값이 서로 같다면 축약가능 */
+        color: #0ff;
+      }
+
+      div > span {
+        color: #999;
+      }
+
+      /* ex-css의 모든 span에 적용 */
+      #ex-css span {
+        color: #123456;
+      }
+
+      /* 
+      자식을 자손으로도 지정이 가능하다면 자손으로 지정
+      하는 것이 좋다
+       */
+      .second-tag span {
+        background-color: #abcdef;
+      }
+
+      /* ,로 같은 스타일을 여러 개 적용 가능 */
+      h1,h2 {
+        color: #f0f;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="ex-css">
+      <h1>첫번째 h1</h1>
+      <div class="first-tag">
+        <span>span tag1</span>
+        <p>
+          <span>span tag2</span>
+        </p>
+      </div>
+      <span>span tag3</span>
+    </div>
+    <!--  -->
+    <div class="second-tag">
+      <h1>두번째 h1</h1>
+      <span>span tag4</span>
+      <h2>Heading 2</h2>
+    </div>
+    <!--  -->
+    <span>span tag5</span>
+    <!--  -->
+  </body>
+</html>

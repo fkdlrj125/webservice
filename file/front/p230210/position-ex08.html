@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>absolute</title>
+    <style>
+      .content {
+        background-color: #ff0;
+        height: 1000px;
+      }
+
+      .a {
+        height: 500px;
+        position: absolute;
+        background-color: #abcdef;
+      }
+
+      .a .here::before {
+        content: "";
+        display: block;
+        clear: both;
+      }
+
+      .a .here {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        text-align: center;
+        background-color: #000;
+        color: #fff;
+      }
+
+
+      .b {
+        background-color: #fedcba;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <div class="a">
+        A Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid,
+        nobis dolore. Incidunt rerum, veniam earum doloremque voluptatum laborum
+        corrupti, iusto ipsam nemo recusandae quasi repudiandae totam autem odit
+        mollitia? Mollitia.
+        <div class="here">here</div>
+      </div>
+      <div class="b">
+        B Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ex, totam
+        dignissimos non illo natus iste sequi? Amet, officiis? Velit voluptates
+        rerum voluptate aperiam dolores commodi ipsam cum quae sed hic.
+      </div>
+    </div>
+  </body>
+</html>

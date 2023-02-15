@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>response</title>
+    <style>
+      #wrap {
+        width: 600px;
+        margin: 0 auto;
+      }
+      /* 세로가 길 때 */
+      @media screen and (orientation: portrait) {
+        body{
+          background-color: #eee;
+          width: 200px;       
+        }
+        h1::after{
+          content: '세로가 더 길다!';
+          font-size: 1.5em;
+          color:#f00;
+        }
+      }
+      /* 가로가 길 때 */
+      @media screen and (orientation: landscape) {
+        body{
+          background-color: #aaa;
+          width: 200px;
+        }
+        h1::after{
+          content: '가로가 더 길다!';
+          font-size: 1.5em;
+          color: #f00;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <h1>LOGO</h1>
+      <div>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque
+        suscipit, sed non distinctio enim minima sint autem ipsa rerum error
+        quos impedit quod dolorem maxime obcaecati nostrum veritatis sapiente
+        ea!
+      </div>
+    </div>
+  </body>
+</html>

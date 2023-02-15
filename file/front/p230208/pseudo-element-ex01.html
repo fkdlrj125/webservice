@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pseudo element ex01</title>
+    <style>
+      /* 
+        [가상 엘리먼트] : 부분 
+        플롯 해제(흐름 끊기) : before, after
+      */
+      h1::before {
+        /* content시작부분에 위치 */
+        content: "BEFORE ";
+        color: #f00;
+      }
+      h1::after {
+        /* content끝부분에 위치 */
+        content: " AFTER";
+        color: #abcdef;
+      }
+      p::first-line {
+        background-color: #fedcba;
+      }
+      p::first-letter {
+        font-size: 2em;
+        font-weight: bold;
+        background-color: #ff0;
+      }
+      p::selection{
+        background-color: #ccc;
+        color: #cdffff;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>pseudo element</h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fugit,
+      dolores velit perferendis iusto debitis praesentium adipisci nesciunt,
+      laboriosam possimus inventore harum similique alias explicabo esse
+      cupiditate corrupti? Animi, accusantium.
+    </p>
+  </body>
+</html>

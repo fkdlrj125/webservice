@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <!-- 
+      Hyper text : 주소가 연결된 텍스트
+      Markup : 구조
+
+      웹 브라우저가 html문서를 렌더링해 화면을 보여줌
+      웹 브라우저가 렌더링과정을 거쳐 DOM(계층구조,tree)을 형성
+        -> 내용(content) 안에 요소(element)가 있다면 자동으로 부모 자식 관계 형성
+        -> 없는 요소(element)가 있다면 자동을 추가(head,body)
+
+      [메타태그] 
+
+      - head element 내 작성
+      - 웹 페이지 정보
+      - 빈 태그라 자식X
+      - SEO : 검색엔진 최적화
+      - 검색엔진이 메타태그 정보를 수집해 감(SEO에 사용)
+      - description은 적어주는 것이 검색엔진 수집에 용의함 
+      - (no)index -> 현재 페이지 정보를 수집가능                          
+        (no)follow -> 현재 페이지에 연결된 다른 페이지의 정보도 수집가능
+        -> 강제성X 
+    -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="즐거운 HTML입니다.">
+    <meta name="robots" content="index,follow">
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>좋은 하루</h1> 
+    <br />
+    <h1>즐거운 하루</h1>
+  </body>
+</html>

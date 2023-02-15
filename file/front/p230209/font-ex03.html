@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>폰트 단위</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"); */
+      body {
+        font-variant: small-caps;
+        font-family: "Quicksand", sans-serif;
+        font-weight: 500;
+      }
+      div#size_px {
+        font-size: 32px;
+      }
+      div#size_em {
+        /* 기준이 없으므로 웹브라우저 기본값의 2배(32px) */
+        font-size: 2em;
+      }
+      /* 1vw = (웹 브라우저의 넓이)1% */
+      div#size_vw {
+        font-size: 3vw;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <h2>font size : px</h2>
+      <div id="size_px">Lorem ipsum dolor sit amet.</div>
+      <h2>font size : em</h2>
+      <div id="size_em">Lorem ipsum dolor sit amet.</div>
+      <!-- 반응형 웹에서 사용 -->
+      <h2>font size : vw(viewport width)</h2>
+      <div id="size_vw">Lorem ipsum dolor sit amet.</div>
+    </div>
+  </body>
+</html>

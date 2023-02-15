@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table</title>
+    <style>
+      .tbl {
+        /* border: 3px solid #000; */
+
+        /* 
+        [cell 사이 여백]
+        - separate | collapse
+        */
+        border-collapse: collapse;
+        width: 900px;
+        /* 텍스트 길이에 상관없이 넓이를 유지 */
+        table-layout: fixed;
+      }
+      .tbl caption {
+        /* 
+          caption 위치 
+          caption-side: bottom;
+        */
+        /* caption 숨기기 */
+        /* 
+          1. display
+          (영역까지 지움)
+          display: none;
+
+          2. indent
+          (내어쓰기로 안 보이는 영역으로 옮겨
+          영역이 남아 있음)
+          text-indent: -1000%;
+        */
+        display: none;
+      }
+      .tbl td,
+      .tbl th {
+        /* border는 td와 th에 설정 */
+        border: 1px solid #000;
+      }
+      /* .tbl th.col-first {
+        행 길이 설정
+        width: 250px;
+      } */
+      tbody tr:nth-of-type(2n+1){ 
+        background-color: #ff0;
+      }
+    </style>
+  </head>
+  <body>
+    <table class="tbl">
+      <caption>
+        table caption
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col" class="col-first">table header cell-1</th>
+          <th scope="col">table header cell-2</th>
+          <th scope="col">table header cell-3</th>
+          <th scope="col">table header cell-4</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-first">
+            table data cell-1 Lorem ipsum dolor sit amet consectetur,
+            adipisicing elit. Officia neque facilis, officiis quae repudiandae
+            consequuntur, voluptatum ratione, ducimus dolores nostrum animi.
+            Dolore laudantium eum corporis sequi sit quod nemo adipisci?
+          </td>
+          <td>table data cell-2</td>
+          <td>table data cell-3</td>
+          <td>table data cell-4</td>
+        </tr>
+        <tr>
+          <td>table data cell-1</td>
+          <td>table data cell-2</td>
+          <td>table data cell-3</td>
+          <td>table data cell-4</td>
+        </tr>
+        <tr>
+          <td>table data cell-1</td>
+          <td>table data cell-2</td>
+          <td>table data cell-3</td>
+          <td>table data cell-4</td>
+        </tr>
+        <tr>
+          <td>table data cell-1</td>
+          <td>table data cell-2</td>
+          <td>table data cell-3</td>
+          <td>table data cell-4</td>
+        </tr>
+        <tr>
+          <td>table data cell-1</td>
+          <td>table data cell-2</td>
+          <td>table data cell-3</td>
+          <td>table data cell-4</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

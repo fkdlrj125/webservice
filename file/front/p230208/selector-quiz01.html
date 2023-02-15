@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SelectorQuiz</title>
+    <style>
+      /* 스타일을 적용할 땐 계층 구조와 순서를
+      명확하게 해주는 것이 가독성이 좋다 */
+      #header h1 em {
+        background-color: orange;
+      }
+
+      #header p+p {
+        border: 3px solid black;
+      }
+
+      #container+p {
+        font-style: italic;
+      }
+
+      #container #lead {
+        background-color: lime;
+      }
+
+      /* 태그뒤에 클래스명를 적어 클래스명이 같지만 
+      태그가 다른 것을 구분 가능*/
+      #container p.lead {
+        color: red;
+      }
+
+      /* 태그+태그 앞태그 다음에 오는 뒷태그에만 적용 
+         (연속해서 오면 계속 적용,형제만 사용가능)*/
+      /* #container ol+p {
+        background-color: lightblue;
+      } */
+      /* 태그~태그 앞태그 다음에 오는 뒷태그 모두에 적용 */
+      #container ol~p {
+        background-color: lightblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="header">
+        <h1>css <em>selector</em></h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
+          obcaecati similique fugit atque quaerat dignissimos eaque velit id
+          vero aperiam quod soluta corporis rerum, facilis quae eligendi illum
+          mollitia ad.
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur
+          obcaecati similique fugit atque quaerat dignissimos eaque velit id
+          vero aperiam quod soluta corporis rerum, facilis quae eligendi illum
+          mollitia ad.
+        </p>
+      </div>
+      <div id="container">
+        <p id="lead">Lorem ipsum dolor sit amet.</p>
+        <p class="lead">Lorem ipsum dolor sit amet.</p>
+        <div class="lead">Lorem ipsum dolor sit amet.</div>
+        <ol class="list">
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Lorem ipsum dolor sit amet.</li>
+        </ol>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure modi
+          dolorum tempore explicabo rem animi nesciunt. Nemo itaque fugiat,
+          expedita magnam ipsum asperiores quia in quisquam consequuntur hic
+          eligendi perferendis.
+        </p>
+        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+      </div>
+      <p>container 형제 p</p>
+    </div>
+  </body>
+</html>

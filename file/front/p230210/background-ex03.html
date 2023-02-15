@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>background</title>
+    <style>
+      .box {
+        width: 400px;
+        height: 100px;
+        border: 3px solid #5af;
+        padding: 20px;
+        margin: 30px;
+        background: url(../img/vineyard-gbe7ddf395_1280.jpg) no-repeat 30% 30%;
+      }
+      .box2 {
+        /* 
+          [배경 이미지 크기]
+          - 가로, 세로 꽉 차게(비율 깨짐)
+          background-size: 100% 100%;
+          - 가로 꽉 차고 세로는 비율 유지
+          background-size: 100% auto;
+
+          background-size: auto 100%;
+          - 비율을 유지하면서 이미지 꽉 차게
+          background-size: contain;
+          - 비율을 유지하면서 영역안에 꽉 차게
+            (이미지가 짤리는 부분이 생길 수 있음)
+        */
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quis
+      quasi minima, maxime vel quia laborum. A sunt natus reprehenderit minima,
+      labore quam officiis architecto iste doloribus molestiae? Nobis, ab.
+    </div>
+    <div class="box box2">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quis
+      quasi minima, maxime vel quia laborum. A sunt natus reprehenderit minima,
+      labore quam officiis architecto iste doloribus molestiae? Nobis, ab.
+    </div>
+  </body>
+</html>

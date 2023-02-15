@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>formEx03</title>
+  </head>
+  <body>
+    <h1>폼 태그</h1>
+    <form action="index.html" autocomplete="off">
+      <!-- autocomplete 자동 완성 -->
+      <fieldset>
+        <legend>HTML5 FORM</legend>
+        <div>
+          <label for="user_name">이름</label>
+          <input
+            type="text"
+            name="user_name"
+            id="user_name"
+            placeholder="이름 입력"
+            autofocus
+            required
+          />
+          <!-- autofocus 자동으로 포인터지정 -->
+          <!-- placeholder 입력 힌트  -->
+          <!-- required 필수입력 사항 -->
+        </div>
+        <div>
+          <label for="user_email">이메일</label>
+          <!-- 검증, 유효성 검사 : @가 들어가야 통과 -->
+          <input
+            type="email"
+            name="user_email"
+            id="user_email"
+            placeholder="이메일 입력"
+          />
+        </div>
+        <div>
+          <label for="user_url">웹사이트주소</label>
+          <!-- 검증, 유효성 검사 : http(s)://가 들어가야 통과 -->
+          <input
+            type="url"
+            name="user_url"
+            id="user_url"
+            placeholder="url 입력"
+          />
+        </div>
+        <div>
+          <label for="order">주문수량</label>
+          <!-- 검증, 유효성 검사 : 숫자가 들어가야 통과 -->
+          <!-- min,max 범위 설정 -->
+          <!-- disable 보여지지만 사용금지 -->
+          <input
+            type="number"
+            name="order"
+            id="order"
+            value="0"
+            min="0"
+            max="100"
+            disabled
+          />
+        </div>
+        <div>
+          <label for="user_date">제출일</label>
+          <input type="date" name="user_date" id="user_date" />
+        </div>
+        <div>
+          <label for="user_color">색선택</label>
+          <input type="color" name="user_color" id="user_color" />
+        </div>
+      </fieldset>
+      <br />
+      <input type="submit" value="제출" />
+    </form>
+  </body>
+</html>

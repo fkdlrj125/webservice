@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>font style</title>
+    <style>
+      /* 스타일 상속 */
+      /* body에 폰트사이즈를 적어도 자식, 자손까지 영향 */
+
+      /* 초기화 작업 */
+      /* 헤더태그는 em으로 설정되서 원하는 사이즈로 나오지 않아 초기화*/
+      html {
+        font-size: 10ox;
+      }
+      
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-size: 12px;
+        /* sans-serif : 운영체제 기본 폰트 */
+        /* 마지막에 sans-serif를 넣어주는 게 좋음 */
+        font-family: serif,'궁서', sans-serif;
+      }
+      h1 {
+        font-size: 1.5em;
+        font-weight: normal;
+      }
+
+      h2 {
+        font-size: 1.2em; 
+      }
+      .lead { 
+        font-size: 1.2em;
+        font-weight: bold;
+        /* italic | oblique 기울임꼴 */
+        font-style: italic;
+        /* small-caps 문장의 첫 문자의 사이즈를 키우고 문자를 전부 대문자로 */
+        font-variant: small-caps;
+      }
+      div {
+        /* font-size: 2rem;
+        font-family: serif,sans-serif;
+        font-weight: bold;
+        font-style: italic;
+        font-variant: small-caps;
+        기본 단위는 em
+        line-height: 2; */
+
+        /* font shorthand : font스타일 적용 하는 것을 단축*/
+        /* font-size, font-family 필수 */
+        /* style - variant - weight - size/height - family 순 */
+        font: italic small-caps bold 2rem/2em serif, sans-serif;
+      }
+       
+    </style>
+  </head>
+  <body>
+    <h1>font style</h1>
+    <h2>font style</h2>
+    <p class="lead">    
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Id impedit eius
+      ducimus esse, reiciendis ipsam voluptatum? Esse dolor mollitia magnam,
+      aspernatur iusto doloribus quasi nulla nobis eveniet quis beatae
+      consectetur?
+    </p>
+    <div>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure a voluptatem
+      obcaecati minus asperiores tenetur similique quaerat sunt porro doloribus
+      praesentium repellat dolores, possimus labore. Placeat facilis delectus
+      autem quae.
+    </div>
+  </body>
+</html>

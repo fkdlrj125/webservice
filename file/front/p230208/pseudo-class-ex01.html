@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pseudo class ex01</title>
+    <style>
+      /* [가상 클래스] : 상태 */
+
+      /* unvisited link */
+      a:link{
+        color:#0f0;
+        /* 언더라인 없앨 때는 link에 추가 */
+        text-decoration: none;
+      }
+      
+      /* visited link */
+      a:visited{
+        color: #fedcba;
+      }
+
+      /* 마우스를 올려 놨을 때 */
+      /* 반드시 link, visited 후에 위치 */
+      a:hover{
+        background-color: #abcdef;
+      }
+
+      /* 클릭을 유지하고 있을 때 */
+      /* 반드시 hover 후에 위치 */
+      a:active{
+        color:#000000;
+      }
+
+      /* 사용자가 대상을 선택했을 때 */
+      a:focus{
+        background-color:#abefdc;
+        color:#000000;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>pseudo-class</h1>
+    <ol>
+      <li><a href="https://www.naver.com">naver</a></li>
+      <li><a href="www.daum.net">daum</a></li>
+      <li><a href="www.atom.io">atom</a></li>
+    </ol>
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui, laudantium
+      doloremque? Vel, unde officiis. Aspernatur, iusto nam totam provident
+      itaque perspiciatis vel eaque optio earum pariatur animi consectetur eum
+      repellendus.
+    </p>
+  </body>
+</html>

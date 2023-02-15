@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>css quiz</title>
+    <style>
+      div.boxHover {
+        width: 150px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        background-color: #abcdef;
+      }
+      div.boxHover:hover {
+        background-color: #fedcba;
+        
+        /* 이미지 크게 */
+        /* 구조에 영향x */
+        transform: scale(1.3, 1.3);
+
+        /* 구조에 영향o */
+        /* width: 160px;
+        height: 60px; */
+      }
+      input.textFocus {
+        padding: 16px 20px;
+        text-align: center;
+      }
+      input.textFocus:focus {
+        background-color: #eee;
+      }
+      </style>
+  </head>
+  <body>
+    <div id="quiz1">
+      <h1>문제 1</h1>
+      <div id="boxHover" class="boxHover">Mouse Over Me</div>
+    </div>
+    <div id="quiz2">
+      <h1>문제 2</h1>
+      <input
+        type="text"
+        name="text"
+        id="textFocus"
+        class="textFocus"
+        placeholder="Click Me To Get Forcus"
+      />
+    </div>
+  </body>
+</html>

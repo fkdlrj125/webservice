@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>background</title>
+  </head>
+  <style>
+    div.landscape {
+      /* background로 이미지를 넣을려면 공간을 할당해줘야 함 */
+      width: 500px;
+      height: 300px;
+      background-image: url(../img/vineyard-gbe7ddf395_1280.jpg);
+      /* 투명도 */
+      /* opacity: 0.015; */
+    }
+  </style>
+  <body>
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem ex
+      perferendis, at eligendi aut ad corrupti, iste quia inventore qui
+      necessitatibus omnis, alias vero aliquam. Magni voluptas eligendi
+      explicabo voluptate?
+    </div>
+    <div class="landscape">
+      
+    </div>
+    <hr>
+    <!-- 
+      img는 태그라 자동으로 공간을 차지하고
+      background-image는 css라 자동으로 공간을 차지하지 않음
+     -->
+    <img src="../img/vineyard-gbe7ddf395_1280.jpg" alt="풍경" width="500px">
+  </body>
+</html>

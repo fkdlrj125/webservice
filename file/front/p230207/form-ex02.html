@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>formEx02</title>
+  </head>
+  <body>
+    <h1>폼 태그</h1>
+
+    <form action="index.html" method="get">
+      <fieldset>
+        <!-- 영역 설정 -->
+        <legend>가입 양식</legend>
+        <div>
+          <label for="name">이름</label>
+          <input type="text" name="name" id="name" />
+        </div>
+
+        <div>
+          <label for="city">거주지역</label>
+          <!-- size를 통해 여러 옵션을 보여줄 수 있음 -->
+          <!-- multiple을 통해 다중 선택 가능 -->
+          <select name="city" id="city">
+            <option value="seoul" selected>서울</option>
+            <option value="daegu">대구</option>
+            <option value="incheon">인천</option>
+            <option value="jeju">제주</option>
+          </select>
+        </div>
+        <br />
+        <div>
+          <label for="info">간단한 소개</label> <br />
+          <!-- cols, rows는 한 화면에 들어올 수 있는 문자의 갯수 -->
+          <!-- cols는 폰트따라 들어오는 갯수가 다름 -->
+          <textarea name="info" id="info" cols="30" rows="10"></textarea>
+        </div>
+      </fieldset>
+
+      <div>
+        <input type="reset" value="취소" />
+        <input type="submit" value="전송" />
+      </div>
+
+    </form>
+  </body>
+</html>

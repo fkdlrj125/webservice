@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SelectorEx02</title>
+    <style>
+      /* 태그[속성이름] */
+      a[title] {
+        background-color: black;
+        color: #fff;
+      }
+      /* 
+        속성의 값
+        ^= -> 시작하는
+        $= -> 끝나는
+        *= -> 단어 중 일부 문자 일치
+        ~= -> 단어
+       */
+      a[href^="h"] {
+        background-color: #bbb;
+        color: #fff;
+      }
+
+      a[href$="com"] {
+        background-color: #dfd;
+        color: #000;
+      }
+
+      li[title~="lorem"] {
+        background-color: #abcdef;
+        color: #fedcba;
+      }
+
+      li[title*="ip"] {
+        background-color: #fad;
+        color: #11fffe;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li><a href="https://www.daum.net">daum</a></li>
+      <li><a href="https://www.naver.com">naver</a></li>
+      <!-- mailto : 메일 보내기(outlook) -->
+      <li><a href="mailto:help@host.co.kr" title="mail">help</a></li>
+      <li title="lorem ipsum">Lorem ipsum dolor sit amet.</li>
+      <li title="lorem">Lorem ipsum dolor sit amet.</li>
+    </ul>
+  </body>
+</html>

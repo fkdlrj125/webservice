@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>목록</title>
+  </head>
+  <body>
+    <h1>ol-ul-li태그</h1>
+    <!-- 
+      웹 표준 : 구조와 스타일을 구분
+      
+      [ol, ul ,li]
+
+      ol : 순서가 있는 목록, Ordered List
+        - 블릿(기호)를 변경 가능 -> css에서 가능
+      ul : 순서가 없는 목록, Unordered List
+        - 블릿(기호)를 변경 가능
+      dl : 정의 목록(사전), Definition List
+        - 스타일 적용이 쉬워 table 생성에 사용하기도 함
+      dt : 용어 제목, Definition Term
+      dd : 용어 설명, Definition Description
+      li : ol과 ul태그 내 사용, 항목, List Item
+
+      내비게이션바에 많이 사용
+    -->
+    
+    <div>식순</div>
+    <ol>
+      <li>대표님 말씀</li>
+      <li>신년인사</li>
+      <li>시무식</li>
+      <li>다과</li>
+      <li>
+        <ul>
+          <li>uno</li>
+          <li>dos</li>
+          <li>tres</li>
+          <li>cuatro</li>
+        </ul>
+      </li>
+      <ul>
+        <li>one</li>
+        <li>two</li>
+      </ul>
+    </ol>
+
+    <div>과일 종류</div>
+    <ul>
+      <li>사과</li>
+      <li>바나나</li>
+      <li>키위</li>
+    </ul>
+
+    <dl>
+      <dt>눈</dt>
+      <dd>사람의 눈</dd>
+      <dd>하늘에서 내리는 눈</dd>
+      <dt>사장</dt>
+      <dd>회사의 책임자</dd>
+      <dd>사창의 곡식을 나누어 주고 거둬들이는 일을 하는 사람</dd>
+    </dl>
+
+  </body>
+</html>

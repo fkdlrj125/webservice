@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>response</title>
+    <style>
+      #wrap{
+        width: 800px;
+        background-color: #ff0;
+        margin: 0 auto;
+      }
+      
+      /* 
+          [미디어쿼리]
+        - 일반 style보다 아래에 작성
+        - 특정 기기에서 스타일을 다르게 적용
+        - 미디어 타입 : all, screen(화면), print(출력), tv(텔레비전)
+
+        * max-width : 최대 너비, ~이하
+        * min-width : 최소 너비, ~이상
+
+      */
+      /* 
+          1. [min-width]
+        - 최소 너비 1200px
+        - 너비 : 1200px이상
+      */
+      
+      @media screen and (min-width:1200px) {
+        #wrap{
+          font: 15px/2em sans-serif;
+          width: auto;
+          background-color: #aaa;
+        }
+        #wrap h1{
+          color:#fff
+        }
+      }
+      /* 
+          2. [max-width]
+        - 최대 너비 970px
+        - 너비 : 970px이하
+      */
+      @media screen and (min-width:481px) and (max-width:970px) {
+        #wrap{
+          font:12px sans-serif;
+          background-color:#abcdef;
+          width: auto;
+        }
+        #wrap h1{
+          color: #ffa;
+        }
+      }
+      /* 
+          3.[max-width]
+        - 최대 너비 480px일 때
+        - 너비 : 480px이하
+        - 너비가 겹치는 부분은 더 가까운 부분이 먼저 적용되고
+          더 먼 부분의 스타일에서 없는 부분을 가져와서 적용
+        - 겹치는 부분이 있을 땐 의도하지 않는다면 적용범위를 명확하게 설정
+      */
+      @media screen and (max-width:480px) {
+        #wrap{
+          font-size: 19px;
+          background-color: #ddd;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <h1>LOGO</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque esse
+        aliquid earum beatae cum deleniti reiciendis at! Dolore incidunt quae
+        in? Perferendis voluptate suscipit rerum tempore aliquid odio numquam
+        autem.
+      </p>
+    </div>
+  </body>
+</html>

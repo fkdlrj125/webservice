@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>box model</title>
+    <style>
+      .box {
+        border: 3px solid #000;
+        padding: 20px;
+        margin: 30px;
+      }
+      .box2 {
+        /* content 넓이가 300px */
+        width: 300px;
+      }
+      .box3 {
+        /* 
+        padding, border, content 넓이를 
+        다 합친 값을 설정한 width값으로 맞춰줌 
+        */
+        box-sizing: border-box;
+      }      
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit saepe
+      numquam sit aspernatur nemo ea deleniti corrupti voluptatibus. Nemo natus
+      asperiores earum error, temporibus expedita! Facere nihil similique
+      exercitationem numquam!
+    </div>
+    <div class="box box2">
+      Quis commodi iure magnam, impedit, nemo ea eveniet recusandae minus quos
+      reiciendis inventore exercitationem quas beatae vitae at ex, voluptatum
+      nisi quaerat. Illo atque enim eius fuga unde? Sapiente, ullam.
+    </div>
+    <div class="box box2 box3">
+      Provident dolore magnam voluptate, ex adipisci eos aliquid, distinctio
+      laudantium labore nemo dolorum facere! Ab nulla architecto libero eligendi
+      aperiam, blanditiis at nihil eos facere quisquam veniam quidem
+      consectetur! Aut!
+    </div>
+  </body>
+</html>

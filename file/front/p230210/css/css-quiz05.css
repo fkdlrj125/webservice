@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+div#wrap {
+  width: 30vw;
+}
+div#navigation {
+  background-color: #f00;
+  height: 4vw;
+}
+div#main::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+#main div#left-menu {
+  float: left;
+  width: 5vw;
+  height: 20vw;
+  background-color: #0f0;
+}
+/* 오른쪽 배치도 해주는 게 좋음 */
+#main div#content {
+  float: right;
+  width: 25vw;
+}
+div#contain {
+  height: 15vw;
+  background-color: #ff0;
+}
+div#comment {
+  height: 5vw;
+  background-color: #0ff;
+}
+div#footer {
+  height: 4vw;
+  background-color: #eee;
+}

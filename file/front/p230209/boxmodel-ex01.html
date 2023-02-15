@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>box model</title>
+    <style>
+      * {
+        /* *은 margin padding값 초기화 할 때만 사용하는 것이 좋음 */
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        border: 3px solid #000;
+        background-color: #abcdef;
+        /* border와 content 사이 */
+        padding: 30px 20px 10px 5px;
+        /* border와 다른 element 사이 */
+        margin: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>hello</div>
+    <p>hello</p>
+    <div class="box">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus odit
+      possimus nisi unde repellat. Enim dolores eveniet doloremque omnis
+      recusandae, amet porro, eos quia non esse assumenda praesentium modi quo!
+    </div>
+  </body>
+</html>

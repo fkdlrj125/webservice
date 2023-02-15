@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>priority</title>
+    <style>
+      /* 
+        선택자 우선순위
+        1. !important
+        2. inline
+        3. element+class+id
+        4. id
+        5. class
+        6. element(태그)
+       */
+
+      div {
+        background-color: #aaf !important;
+      }
+
+      div.sample#sample {
+        background-color: #abffff;
+      }
+
+      #sample {
+        background-color: #fedcba;
+      }
+
+      .sample {
+        background-color: #abcdef;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>css selector</h1>
+    <div class="sample" id="sample" style="background-color: #fe115f">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim illum
+      consequuntur ut fugiat cumque accusantium dignissimos quam quidem rem
+      maxime error sit, voluptas delectus repudiandae. Nam esse magnam eveniet
+      labore.
+    </div>
+  </body>
+</html>
