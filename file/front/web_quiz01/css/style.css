@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+dl,
+dd,
+dt{
+  margin: 0;
+  padding: 0;
+}
+img{
+  border: 0;
+  vertical-align: top;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+strong,
+em {
+  font: normal normal 12px sans-serif;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+a:link {
+  text-decoration: none;
+}
+
+#skip-menu a {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 25px;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  line-height: 25px;
+  top: -999em;
+  left: 0;
+  z-index: 1000;
+}
+#skip-menu a:focus {
+  top: 0;
+}
+
+#wrap {
+  width: 800px;
+  margin: 0 auto;
+  background-color: #f0f0f0;
+}
+#header {
+  position: relative;
+}
+#header .logo {
+  background: url(../img/logo.png) no-repeat 15px 0;
+  height: 75px;
+  text-indent: -999em;
+}
+#header #gnb {
+  position: absolute;
+  top: 20%;
+  right: 0;
+}
+#header #gnb ul::after {
+  content: "";
+  display: block;
+  clear: left;
+}
+#header #gnb ul li {
+  float: left;
+}
+#header #gnb ul li a {
+  display: block;
+  padding-right :15px;
+  color: #555;
+}
+
+#container #content .intro img {
+  width: 100%;
+  margin: 10px 0;
+}
+#container #content dl dd p{
+  margin: 20px 0;
+}
+#container #content dl dd p.coffee1{
+  font: bold 18px sans-serif;
+}
+#container #content dl dd p.coffee2{
+  font: italic 20px sans-serif;
+  color: #006633;
+}
+
+#footer{
+  padding: 25px 0;
+  background-color: #333;
+}
+#footer .copyright{
+  text-align: center;
+}
+#footer .copyright ul li{
+  display: inline;
+}
+#footer .copyright ul li a{
+  padding: 0 3px;
+  text-decoration: none;
+  color: #ddd;
+}
+
+#footer .copyright p{
+  margin-top: 10px;
+  color: #ddd;
+}
+
+
