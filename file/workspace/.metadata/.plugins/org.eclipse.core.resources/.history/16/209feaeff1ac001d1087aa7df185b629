@@ -1,0 +1,38 @@
+/*
+ * 	[다형성]
+ * 	 - 
+ * 
+ */
+class Parent {
+	private int money=1_000_000;
+	public void spend(int money) {
+		this.money -= money;
+		System.out.println("남은 돈은 "+this.money+"입니다.");
+	}
+	public void working() {
+		System.out.println("부모님은 열심히 일하는 중입니다.");
+	}
+}
+
+class Son extends Parent{
+	public void play() {
+		System.out.println("노는 중~~~");
+	}
+}
+
+class Daughter extends Parent{
+	public void study() {
+		System.out.println("공부 중~~~");
+	}
+
+}
+
+public class PolymorhismEx01 {
+	public static void main(String[] args) {
+		
+		Parent p = new Parent();
+		
+		Son s = new Son();
+		s.spend(100_000);
+	}
+}

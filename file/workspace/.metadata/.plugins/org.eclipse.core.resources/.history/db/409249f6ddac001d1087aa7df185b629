@@ -1,0 +1,21 @@
+class Super{
+	private int numOne;
+	int numTwo;
+	
+	void showOne() {
+		System.out.println("showOne() 실행됨");
+	}
+	public void showTwo() {
+		System.out.println("showOne() 실행됨");
+	}
+}
+
+class Sub{
+	
+}
+
+public class AccessEx02 {
+	public static void main(String[] args) {
+		
+	}
+}

@@ -1,0 +1,29 @@
+class Computer extends Product{
+	public Computer() {
+		super(200);
+	}
+	@Override
+	public String toString() {
+		return "Computer";
+	}
+}
+
+class Tv extends Product{
+	public Tv() {
+		super(100);
+	}
+	public String toString() {
+		return "Tv";
+	}
+}
+
+public class Product {
+	int price;
+	int bonusPoint;
+
+	Product(int price) {
+		this.price = price;
+		bonusPoint = (int) (price / 10.0);
+	}
+}
+

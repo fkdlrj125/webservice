@@ -1,11 +1,11 @@
 package area;
-class Circle {
+public class CircleArea {
 	double rad;
 	final double PI;
 
-	public Circle(double r) {
+	public CircleArea(double r) {
 		rad = r;
-		PI = 3.14;
+		this.PI=3.14;
 	}
 
 	public double getArea() {
@@ -13,9 +13,9 @@ class Circle {
 	}
 }
 
-public class CircleArea {
-	public static void main(String[] args) {
-		Circle c = new Circle(1.5);
-		System.out.println("반지름이 1.5인 원의 넓이 : " + c.getArea());
-	}
-}
+//public class CircleArea {
+//	public static void main(String[] args) {
+//		Circle c = new Circle(1.5);
+//		System.out.println("반지름이 1.5인 원의 넓이 : " + c.getArea());
+//	}
+//}
