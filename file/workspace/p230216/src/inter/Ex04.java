@@ -1,6 +1,6 @@
 package inter;
 
-import java.sql.Driver;
+import javax.lang.model.element.Element;
 
 interface Vehicle{
 	void printNumber();
@@ -38,12 +38,20 @@ public class Ex04 {
 	public static void main(String[] args) {
 		Vehicle[] myVehicles = {new Car(8586),new Yacht(679111)};
 		
-		for(int i=0; i<myVehicles.length; i++) {
-			myVehicles[i].printNumber();
-			if(myVehicles[i] instanceof Car) {
-				((Car)myVehicles[i]).drive();
-			} else if(myVehicles[i] instanceof Yacht) {
-				((Yacht)myVehicles[i]).sail();
+//		for(int i=0; i<myVehicles.length; i++) {
+//			myVehicles[i].printNumber();
+//			if(myVehicles[i] instanceof Car) {
+//				((Car)myVehicles[i]).drive();
+//			} else if(myVehicles[i] instanceof Yacht) {
+//				((Yacht)myVehicles[i]).sail();
+//			}
+//		}
+		for(Vehicle e:myVehicles) {
+			e.printNumber();
+			if(e instanceof Car) {
+				((Car)e).drive();
+			} else if(e instanceof Yacht) {
+				((Yacht)e).sail();
 			}
 		}
 		// [반복문] 사용
