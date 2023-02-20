@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.lang.System"/>
-    <fullyQualifiedTypeName name="SwitchEx02"/>
-    <fullyQualifiedTypeName name="DoWhileEx01"/>
-    <fullyQualifiedTypeName name="Robot"/>
-    <fullyQualifiedTypeName name="Person"/>
     <fullyQualifiedTypeName name="Caculator"/>
     <fullyQualifiedTypeName name="Banana"/>
     <fullyQualifiedTypeName name="Student"/>
@@ -22,7 +17,6 @@
     <fullyQualifiedTypeName name="Police"/>
     <fullyQualifiedTypeName name="Gun"/>
     <fullyQualifiedTypeName name="Quiz02"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
     <fullyQualifiedTypeName name="Fruit"/>
     <fullyQualifiedTypeName name="ArrayStack"/>
@@ -45,10 +39,25 @@
     <fullyQualifiedTypeName name="inter.Variable"/>
     <fullyQualifiedTypeName name="inter.Method"/>
     <fullyQualifiedTypeName name="inter.Sub"/>
-    <fullyQualifiedTypeName name="inter.Vehicle"/>
     <fullyQualifiedTypeName name="java.sql.Driver"/>
     <fullyQualifiedTypeName name="inter.Yacht"/>
-    <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="java.lang.ArithmeticException"/>
     <fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
+    <fullyQualifiedTypeName name="javax.lang.model.element.Element"/>
+    <fullyQualifiedTypeName name="inter.Vehicle"/>
+    <fullyQualifiedTypeName name="java.lang.Thread"/>
+    <fullyQualifiedTypeName name="java.lang.InterruptedException"/>
+    <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="exception.Check"/>
+    <fullyQualifiedTypeName name="book.BookManager"/>
+    <fullyQualifiedTypeName name="pattern.Cat"/>
+    <fullyQualifiedTypeName name="java.lang.Package"/>
+    <fullyQualifiedTypeName name="pattern.Pattern"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="enumex.Week"/>
+    <fullyQualifiedTypeName name="enumex.Season"/>
+    <fullyQualifiedTypeName name="enumex.SeasonTwo"/>
+    <fullyQualifiedTypeName name="enumex.Number"/>
+    <fullyQualifiedTypeName name="book.AnimalInfo"/>
 </qualifiedTypeNameHistroy>

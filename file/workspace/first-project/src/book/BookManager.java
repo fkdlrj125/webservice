@@ -6,14 +6,15 @@ public class BookManager {
 	private final int MAX_CNT = 100;
 	private AnimalInfo[] infoStorage = new AnimalInfo[MAX_CNT];
 	private int index = 0;
-
+	public Scanner input = new Scanner(System.in);
+	
 	public void inputData() {
-		Scanner input = new Scanner(System.in);
+		//Scanner input = new Scanner(System.in);
 		String name = "";
 		int age = 0;
 
 		System.out.print("이름 : ");
-		name = input.nextLine();
+		name = input.next();
 		System.out.print("나이 : ");
 		age = input.nextInt();
 
@@ -26,12 +27,17 @@ public class BookManager {
 	}
 
 	public void showBook() {
-		for (AnimalInfo e : infoStorage) {
-			try {
+		int count=0;
+		for (AnimalInfo e : infoStorage) { 
+//			try {
+//			} catch (Exception e2) {
+//				break;
+//			}
+			if(count<index)
 				e.showAnimalInfo();
-			} catch (Exception e2) {
+			else 
 				break;
-			}
+			count++;
 		}
 	}
 }

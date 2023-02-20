@@ -1,8 +1,8 @@
 package enumex;
 
 enum SeasonTwo{
-//	enum은 상수로 사용할 변수가 첫 라인에 존재
-//	변수의 타입X, 키워드 접근제어자X, 값 변경X
+//	enum은 반드시 첫 라인에 객체생성이 와야함
+//	변수의 타입X(타입은 자기자신), 키워드 접근제어자X(public static final로 고정), 값 변경X(객체 생성으로 고정)
 //	따로 초기화 해주지 않으면 자동으로 변수명으로 초기화
 	SPRING(), SUMMER(), FALL(), WINTER();	
 	String name;
