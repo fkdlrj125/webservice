@@ -36,6 +36,7 @@
 # 				    not in(값, 값2, ...)
 # 	  문자열 연산자 : like
 #					  not like
+# 					  와일드 카드 - %(모든), _(하나)
 #     null 연산자: is null
 # 		    	   is not null
 

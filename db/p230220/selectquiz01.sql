@@ -16,14 +16,14 @@ where salary >= 150000;
 # 1986년 이후에 입사한 사원의 사원번호, 입사일, 이름 추출
 select emp_no, hire_date, first_name, last_name
 from employees
-where hire_date > "1986-12-31";
+where hire_date > "1985-12-31";
 
 # 1990년 이후부터 매니저로 근무하고 있는 사원들의 사원번호, 부서번호, 매니저 시작날짜 추출
 select emp_no, dept_no, from_date
 from dept_manager
-where from_date > "1990-12-31";
+where from_date > "1989-12-31";
 
 # 1990년 이전 입사한 사원들의 사원번호, 입사일 추출
 select emp_no, hire_date
 from employees
-where hire_date < "1990-01-01";
+where hire_date < "1991-01-01";
