@@ -1,7 +1,0 @@
-package access;
-
-public class UseEx01 {
-	public static void main(String[] args) {
-		
-	}
-}
