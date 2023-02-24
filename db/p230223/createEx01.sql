@@ -1,6 +1,6 @@
 /*
 	[SQL]
-    - DDL(정의어) : create, alter, drop 
+    - DDL(정의어) : create, alter, drop, truncate
     - DML(조작어) : select, insert, update, delete 
     - DCL(제어어) : grant, revoke, commit, rollback
     
@@ -48,7 +48,7 @@ from 테이블명
 where 조건;
 
  - [문법3] 
-테이블 구조 + 키 복사
+테이블 구조 + 키 복사 - 특정 컬럼만 복사 불가능
 create table [if not exists] 복사본_테이블명 like 원본_테이블명;
 ============================================================================================
 */

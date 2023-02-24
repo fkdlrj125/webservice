@@ -22,4 +22,13 @@ update t1
 set co3=0.1
 where co1 between 4 and 6;
 
+# [t1 테이블] co1이 7인 로우에서 co2와 co3를 7로 변경
+update t1
+set co2=7, co3=7
+where co1=7;
 
+# [copy_temp1] three 컬럼의 값을 200으로 변경
+select * from copy_temp1;
+
+update copy_temp1
+set three = 200;

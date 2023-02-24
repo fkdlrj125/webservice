@@ -36,8 +36,8 @@ select now(),date_sub(now(), interval 100 day);
 select hire_date, date_sub(hire_date, interval 7 day) as '7daysbefore'
 from employees;
 
-#	[년, 월, 일, 시, 분, 초만 조회]
-select now(), year(now()), month(now()), day(now());
+#	[년, 월, 일, 시, 분, 초만 조회]	- 리턴값은 정수
+select now(), year(now()), month(now()), day(now());		
 select now(), hour(now()), minute(now()), second(now());
 
 #	월을 영어로 리턴 : monthname(날짜)
