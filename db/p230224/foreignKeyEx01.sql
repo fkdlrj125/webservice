@@ -9,8 +9,7 @@
 			  참조하는 테이블에서 null로 설정됨
  no action  : 참조되는 테이블에서 데이터를 삭제하거나 수정하면,
 			  참조하는 테이블에서 데이터는 변경되지 않음
- restrict   : MySQL에서는 no action과 같음 / 참조되는 테이블에서 데이터를 삭제하거나 수정하면,
-											 참조하는 테이블에서 데이터 삭제나 수정을 못하게 함
+ restrict   : MySQL에서는 no action과 같음 / 참조하는 데이터가 있다면, 참조되는 데이터를 삭제하거나 수정할 수 없음
  
 =====================================================================================================================
 */
@@ -29,8 +28,6 @@ create table buy(
     foreign key (id) references customer(id)
 );
 
-drop table buy;
-
 desc customer;
 desc buy;
 
@@ -45,3 +42,20 @@ insert into buy values(1002, 990, '구이구이');
 
 select * from customer;
 select * from buy;
+
+# [삭제] customer 테이블의 id가 1002인 row 삭제
+delete from customer where id=1002;					# 기본 설정은 no action 상태 / MySQL에서만
+
+# [수정] customer 테이블의 id가 1000인 row의 id값을 2000으로 수정
+update customer										# 기본 설정은 no action 상태 / MySQL에서만
+set id = 2000
+where id = 1000;
+
+# [수정] customer 테이블의 id가 1001인 row의 id값을 2002로 수정
+update customer										# 참조되지 않은 값은 변경(수정, 삭제) 가능
+set id = 2002
+where id = 1001;
+
+# [삭제] customer 테이블의 id가 2002인 row 삭제
+delete from customer where id = 2002;
+

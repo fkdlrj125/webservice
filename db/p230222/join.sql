@@ -1,6 +1,13 @@
 /*
 	[join]
     - 수평 join : from 절에 테이블명을 ,로 구분하여 여러 개 / 관계설정(외래키로 연결된)이 된 관계로 하는게 일반적
+    
+	[수직 조인] - 합집합
+	- 합집합 : union - 중복 제거, union all - 중복 모두 표시
+
+	- 교집합, 차집합은 별도의 연산자X(mySQL)
+	- 교집합 : join 	 - 조인조건
+	- 차집합 : sub query - not in
 */
 
 select * from dept_manager;	# 24row
