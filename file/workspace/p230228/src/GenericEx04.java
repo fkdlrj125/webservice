@@ -52,7 +52,7 @@ class Pine extends Tree implements Available {
 public class GenericEx04 {
 	// [제네릭 메소드]
 	// 자료형에 안전하지 않은 코드
-	// 제네릭 매개변수는 Object method만 호출 가능
+	// 제네릭 매개변수는 Object의 method만 호출 가능
 	// : 따라서 강제 형변환 -> 자료형에 안전하지 않은 코드
 	// : 강제 형변환이 Available로 설정됨에 따라, 실행시 Error 발생 가능성 있음
 	// : 제네릭 장점 없어짐

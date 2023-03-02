@@ -32,5 +32,7 @@ public class GenericEx01 {
 		Test<String> str = new Test<String>();
 		str.setElement("안녕");
 		System.out.println("str >> "+str.getElement());
+		
+		System.out.println(new Test().getClass());
 	}
 }
