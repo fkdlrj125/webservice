@@ -26,8 +26,6 @@ class Person{
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
-	
 }
 
 public class ArrayListQuiz {
@@ -41,10 +39,16 @@ public class ArrayListQuiz {
 		arraylist.add(hong);
 		arraylist.add(park);
 		arraylist.add(lee);
+		arraylist.add(new Person("홍길동",47));
 		
 		System.out.println("<< 저장된 이름 전체 출력 >>");
 		for(Person p : arraylist) {
 			System.out.println(p.getName());
+		}
+		
+		System.out.println();
+		for(Object o : arraylist.toArray()) {
+			System.out.println(((Person)o).getName());		//down casting Object to Person
 		}
 		
 		System.out.println("\n<< 저장된 전체 요소 개수 >>");
@@ -71,7 +75,7 @@ public class ArrayListQuiz {
 		
 		System.out.println("\n<< 홍길동 이름을 화이팅으로 변경 >>");
 		for(Person p : arraylist) {
-			if(p.getName().equals("홍길동")) {
+			if("홍길동".equals(p.getName())) {					// 비교주체는 고정된 값으로 하는 것이 좋음
 				p.setName("화이팅");
 			}
 			System.out.println(p.getName());

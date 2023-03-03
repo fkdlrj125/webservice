@@ -27,6 +27,7 @@ public class AnimalBook {
 			case "y": case "Y": case "YES": case "Yes": case "yes": {
 				System.out.println("<<정보를 입력하세요>>");
 				manager.inputData();
+				break;
 //				continue;
 			}
 			case "n": case "N": case "NO": case "No": case "no": {

@@ -56,11 +56,10 @@ class Animal{}
 public class GenericEx06 {
 	
 	// [문제] Pen을 포함한 부모의 타입으로 제한
-	// Pen의 부모가 모두 올 수 있는 상태에서 컴파일을 하게 되면
-	// 서로 관련없는 타입이 올 수도 있기 때문에 형변환으로 정확히 지정
+	// 제한되지 않거나 super로 제한한 제네릭 타입은 컴파일하면 Object로 변환되기 때문에 컴파일 단계에서
+	// wrap의 타입이 Object라 error
 	public static void unwrapGift(Wrap<? super Pen> wrap) {
-		Thing thing = (Thing)wrap.unWrap();
-		System.out.println(wrap.unWrap() instanceof Object);
+		Thing thing = (Thing) wrap.unWrap();
 		System.out.println(thing);
 	}
 	

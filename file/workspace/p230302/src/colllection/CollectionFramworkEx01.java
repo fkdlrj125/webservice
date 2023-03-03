@@ -113,7 +113,6 @@ public class CollectionFramworkEx01 {
 		for (String s : arrayList) {
 			System.out.println(s);
 		}
-		
 //		모든 요소 삭제
 		arrayList.clear();
 		
