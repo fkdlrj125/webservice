@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class BookManager {
 //	ArrayList를 이용하여 AnimalInfo를 저장
 	private final int MAX_CNT = 100;
+//	private AnimalInfo[] infoStorage = new AnimalInfo[MAX_CNT];
 	private ArrayList<AnimalInfo> infoStorage = new ArrayList<AnimalInfo>();
 	private int index = 0;
 	public Scanner input = new Scanner(System.in);
@@ -21,6 +22,7 @@ public class BookManager {
 		age = input.nextInt();
 
 		if (index < MAX_CNT) {
+//			infoStorage[index++]=new AnimalInfo(name, age);
 			infoStorage.add(new AnimalInfo(name, age));
 			System.out.println("데이터 입력이 완료되었습니다.\n");
 		} else {

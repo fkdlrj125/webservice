@@ -32,8 +32,12 @@ class Person{
 	
 	@Override
 	public boolean equals(Object obj) {
-		Person p = (Person)obj;
-		return (p.name+p.age).equals(this.name+this.age) ;
+		if(obj instanceof Person) {
+			Person p = (Person)obj;
+			return (this.name+this.age).equals(p.name+p.age);
+		} else {
+			return false;
+		}
 	}
 	
 }
@@ -60,9 +64,9 @@ public class HashSetQuiz {
 		for(Person p : hashset) {
 			System.out.println("이름 : "+p.getName()+", 나이 : "+p.getAge());
 		}
-		System.out.println("<< 해쉬코드 확인 >>");
+		System.out.println("<< 해시코드 확인 >>");
 		for(Person p : hashset) {
-			System.out.println("이름 : "+p.getName()+", 해쉬코드 : "+p.hashCode());
+			System.out.println("이름 : "+p.getName()+", 해시코드 : "+p.hashCode());
 		}
 	}
 }

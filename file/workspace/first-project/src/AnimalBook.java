@@ -1,9 +1,9 @@
 //import java.util.Scanner;
 
-import book.BookManager;
+import book.BookManager2;
 
 public class AnimalBook {
-	private static BookManager manager = new BookManager();
+	private static BookManager2 manager = new BookManager2();
 	
 	public static void main(String[] args) {
 //		Scanner input = new Scanner(System.in);

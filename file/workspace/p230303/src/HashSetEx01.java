@@ -60,14 +60,14 @@ public class HashSetEx01 {
 		System.out.println("\n요소 추가 : 하나 >> "+set.add("하나"));
 		System.out.println("요소 추가 후 길이 >> "+set.size());
 		
-		System.out.println("\n<< 해쉬코드 >>");
-		System.out.println("'하나'의 해쉬코드 >> "+"하나".hashCode());		// 해쉬코드 값이 같으면 둘은 같은 요소 
-		System.out.println("'둘'의 해쉬코드 >> "+"둘".hashCode());			
+		System.out.println("\n<< 해시코드 >>");
+		System.out.println("'하나'의 해시코드 >> "+"하나".hashCode());		// 해시코드 값이 같으면 둘은 같은 요소 
+		System.out.println("'둘'의 해시코드 >> "+"둘".hashCode());			
 		for(String s : set) {
 			System.out.print(s+" >> ");
 			System.out.println(s.hashCode());
 		}
 		
-		System.out.println("\nset의 해쉬코드 >> "+set.hashCode()); 			// 모든 객체엔 해쉬코드가 존재
+		System.out.println("\nset의 해시코드 >> "+set.hashCode()); 			// 모든 객체엔 해시코드가 존재
 	}
 }
