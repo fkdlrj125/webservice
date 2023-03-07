@@ -48,11 +48,11 @@ public class PhoneBookManager {
 		int searchIndex = search(name);
 		if(searchIndex > -1) {
 			for(int i = searchIndex; i<index; i++) {
-				if(infoStorage[i+1] != null) {
-					infoStorage[i] = infoStorage[i+1];
-				} else {
+				if(i+1 == index) {
 					infoStorage[i] = null;
-					index -= 1;
+ 					index -= 1;
+				} else {
+					infoStorage[i] = infoStorage[i+1];
 				}
 			}
 			System.out.println("데이터 삭제가 완료되었습니다.");

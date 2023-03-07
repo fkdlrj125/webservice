@@ -6,8 +6,13 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="toString"/>
+		<item key="selection" value="compare("/>
 		<list key="findhistory">
+			<item value="compare("/>
+			<item value="compare"/>
+			<item value="comapre"/>
+			<item value="sort("/>
+			<item value="sort"/>
 			<item value="toString"/>
 			<item value="add"/>
 			<item value="hashcode"/>
