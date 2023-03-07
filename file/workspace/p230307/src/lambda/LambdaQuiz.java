@@ -1,4 +1,4 @@
-package anonymous;
+package lambda;
 
 @FunctionalInterface
 interface MaxReturn {

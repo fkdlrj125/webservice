@@ -1,4 +1,5 @@
 package inter;
+import java.util.Vector;
 
 interface Vehicle {
 	void printNumber();
@@ -45,12 +46,7 @@ public class Ex04 {
 	
 		
 		for(Vehicle vehicle:myVehicle) {
-			vehicle.printNumber();
-			if(vehicle instanceof Car){
-				((Car)vehicle).drive();
-			} else if(vehicle instanceof Yacht){
-				((Yacht)vehicle).sail();
-			}
+			System.out.println(vehicle);
 		}
 		
 		
