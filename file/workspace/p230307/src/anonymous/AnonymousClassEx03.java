@@ -26,5 +26,10 @@ public class AnonymousClassEx03 {
 			}
 		};
 		spaceTwo.youKnow();
+		
+//		3. 익명 클래스를 람다식으로 표현
+		Space spaceThree = () -> System.out.println("태양계는 수성, 금성, 지구, 화성, 목성, 토성, 천왕성, 혜왕성이 있다.");
+		spaceThree.youKnow();
+		
 	}
 }

@@ -1,5 +1,6 @@
 package anonymous;
 
+@FunctionalInterface
 interface Box{
 	public void boxing();
 }
@@ -27,5 +28,8 @@ public class AnonymousClassEx04 {
 				System.out.println("바나나를 포장합니다.");
 			}
 		});
+		
+//		익명 클래스를 람다식으로 표현
+		banana.buy(() -> System.out.println("박스"));
 	}
 }

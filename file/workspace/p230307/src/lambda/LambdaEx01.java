@@ -32,15 +32,21 @@
  *			실행부
  *			return 값;
  *		}
+ *	() : parameter - 메소드의 매개변수
+ *	-> : arrow 	   - {} 실행(진행방향)
+ *	{} : body	   - 메소드의 실행부(실행부가 한 줄이면 생략가능)
  *
  *	<< 활용 >>
- *	- 참조변수에 람다식을 저장
+ *	- 참조변수에 람다식을 저장 - 자바에선 람다식을 객체로 관리
  *	- return
  *	- 인수
  */
 
 package lambda;
 
+//	[함수형 인터페이스] 
+//	: 추상 메소드가 1개 정의되어 있고, 람다식을 다루기 위한 인터페이스
+//	: 추상 메소드는 반드시 1개만 정의 -> 람다식과 인터페이스가 1:1 대응(연결)
 @FunctionalInterface
 interface Mood {
 	String howAreYouFeeling(String feel);
@@ -53,7 +59,6 @@ class Person implements Mood {
 		return "오늘 기분은? -> " + feel;
 
 	}
-
 }
 
 public class LambdaEx01 {
