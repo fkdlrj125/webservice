@@ -41,7 +41,8 @@ public class FunctionalInterfaceEx03 {
 		
 		// 순행
 		System.out.println("<< 7를 1증가 후 제곱 >>");
-		System.out.println(power.compose(increment).apply(7));
+		System.out.println(power);
+		System.out.println(power.compose(increment));
 		
 		// 역행
 		System.out.println("<< 7를 제곱한 후 1 증가 >>");
