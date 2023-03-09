@@ -1,4 +1,5 @@
 INDEX VERSION 1.131+C:\Users\samsung\Documents\coding\webservice\file\workspace\.metadata\.plugins\org.eclipse.jdt.core
+<<<<<<< Updated upstream
 2500705711.index
 910600331.index
 523060497.index
@@ -7,6 +8,14 @@ INDEX VERSION 1.131+C:\Users\samsung\Documents\coding\webservice\file\workspace\
 2379540185.index
 1234599477.index
 95592510.index
+=======
+523060497.index
+910600331.index
+2500705711.index
+3821594382.index
+3552066517.index
+2379540185.index
+>>>>>>> Stashed changes
 3792342329.index
 1253141103.index
 3197628505.index
@@ -14,7 +23,10 @@ INDEX VERSION 1.131+C:\Users\samsung\Documents\coding\webservice\file\workspace\
 2108453549.index
 3836027671.index
 2763983683.index
+<<<<<<< Updated upstream
 1924501672.index
+=======
+>>>>>>> Stashed changes
 1747613063.index
 987471584.index
 599830433.index
