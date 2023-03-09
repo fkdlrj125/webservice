@@ -2,3 +2,8 @@
 file/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.jdt.ui.prefs
 eclipse/configuration/org.eclipse.core.runtime/.manager/.tmp2.instance
 file/workspace/.metadata/.plugins/org.eclipse.jdt.ui/QualifiedTypeNameHistory.xml
+*.xml
+*.xml
+file/workspace/.metadata/.log
+file/workspace/.metadata/.log
+*.prefs
