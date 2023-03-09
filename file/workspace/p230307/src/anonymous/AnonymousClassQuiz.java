@@ -1,6 +1,11 @@
 package anonymous;
 
+<<<<<<< Updated upstream
 import java.util.ArrayList;
+=======
+import java.util.Arrays;
+import java.util.Collections;
+>>>>>>> Stashed changes
 import java.util.Comparator;
 import java.util.HashSet;
 
@@ -29,6 +34,7 @@ class Person {
 public class AnonymousClassQuiz {
 	public static void main(String[] args) {
 		HashSet<Person> hashset = new HashSet<Person>();
+<<<<<<< Updated upstream
 		/*
 		 * 
 		 * 	public String sort(){
@@ -99,6 +105,26 @@ public class AnonymousClassQuiz {
 		// System.out.println(o.getName());
 		// }
 
+=======
+		hashset.add(new Person("홍길동", 29));
+		hashset.add(new Person("박보검", 35));
+		hashset.add(new Person("이미자", 52));
+		System.out.println(hashset);
+		Object[] obj = hashset.toArray();
+		
+		Comparator<Object> comparator = new Comparator<Object>() {
+			@Override
+			public int compare(Object p1, Object p2) {
+				return ((Person)p1).getName().compareTo(((Person)p2).getName());
+			}
+		};
+		
+		Arrays.sort(obj,comparator);
+		for(Object o : obj) {
+			System.out.println(((Person)o).getName());
+		}
+	
+>>>>>>> Stashed changes
 		// 출력 : 저장된 순서 확인
 		// Iterator<Person> itr = hashset.iterator();
 		// while (itr.hasNext()) {
