@@ -6,8 +6,15 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="forEach("/>
+		<item key="selection" value="peek"/>
 		<list key="findhistory">
+			<item value="peel"/>
+			<item value="peek"/>
+			<item value="distinct"/>
+			<item value="of"/>
+			<item value="remove"/>
+			<item value="iterator("/>
+			<item value="iterator"/>
 			<item value="forEach("/>
 			<item value="compare("/>
 			<item value="compare"/>
@@ -16,11 +23,6 @@
 			<item value="sort"/>
 			<item value="toString"/>
 			<item value="add"/>
-			<item value="hashcode"/>
-			<item value="toS"/>
-			<item value="to"/>
-			<item value="1"/>
-			<item value="out"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

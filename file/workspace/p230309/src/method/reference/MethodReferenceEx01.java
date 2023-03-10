@@ -10,6 +10,8 @@
  * 	- 리턴 타입과 파라미터 타입이 동일한 '기존에 구현된' 메서드를 
  * 	  빈 껍데기만 참조하면 더 간편하게 사용할 수 있음
  * 
+ * 	- 파라미터를 가공하지 않는다면 람다식을 축약해 바로 연결해서 사용가능
+ * 
  * 	- '기존에 구현된 메소드'와 abstract method의 선언부가 완전히 같아야 함
  * 	  단, 메소드명 달라도 됨(상관없음)
  * 	  매개변수 정보(타입, 개수)와 리턴 타입은 동일하고 기능만 다르다는 것이 핵심! 
@@ -87,16 +89,58 @@ public class MethodReferenceEx01 {
 //		================================================================================
 		
 //		4. 메소드 참조 표현식 ==========================================================
-		Add add = new Add();
+		Fruit anonymouseInstance = new Fruit() {
+			public String selfIntroduction(String s1, String s2) {
+				Add add = new Add();
+				return add.instanceAdd(s1, s2);
+			}
+		};
+		System.out.println(anonymouseInstance.selfIntroduction(" <<익명 클래스>> 첫번째", "두번째"));
+		
+		Fruit lambdaInstance = (String s1, String s2) -> {
+				Add add = new Add();
+				return add.instanceAdd(s1, s2);
+		};
+		System.out.println(lambdaInstance.selfIntroduction(" <<람다>> 첫번째", "두번째"));
+		
 //		instance method
+		Add add = new Add();
 		Fruit watermelon = add::instanceAdd;
 //		static method
 		Fruit melon = Add::staticAdd;
 //		constructor
 		Runnable constructor = Add::new;
-		
 		System.out.println(watermelon.selfIntroduction("나는", "수박"));
 		System.out.println(melon.selfIntroduction("나는", "메론"));
+		
+//		anonymous class instance way
+		Fruit anonymouseInstanceTwo = new Fruit() {
+			public String selfIntroduction(String s1, String s2) {
+				return new Add().instanceAdd(s1, s2);
+			}
+		};
+		System.out.println(anonymouseInstanceTwo.selfIntroduction(" <<익명 클래스2>> 첫번째", "두번째"));
+		
+//		lambda class instance way
+		Fruit lambdaInstanceTwo = (String s1, String s2) ->  new Add().instanceAdd(s1, s2);
+		System.out.println(lambdaInstanceTwo.selfIntroduction(" <<람다2>> 첫번째", "두번째"));
+		
+//		method reference instance way
+		Fruit reference = new Add()::instanceAdd;	// 람다식을 메소드 참조
+		
+//		anonymous class static way
+		Fruit anonyStatic = new Fruit() {
+			@Override
+			public String selfIntroduction(String s1, String s2) {
+				return Add.staticAdd(s1, s2);
+			}
+		};
+//		lambda class static way
+		Fruit lambdaStatic = (String s1, String s2) -> Add.staticAdd(s1, s2);
+		
+//		method reference static way
+		Fruit referenceStatic = Add::staticAdd;
+		
 //		================================================================================
 	}
 }
