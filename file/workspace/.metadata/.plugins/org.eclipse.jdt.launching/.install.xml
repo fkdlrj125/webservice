@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <dirs>
-<<<<<<< Updated upstream
-=======
-    <entry loc="D:\eclipse\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.5.v20221102-0933" stamp="1678289903286"/>
->>>>>>> Stashed changes
-    <entry loc="D:\eclipse\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.5.v20221102-0933\jre" stamp="1678289903339"/>
     <entry loc="D:\webservice\eclipse\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.3.v20220515-1416\jre" stamp="1674014150394"/>
-    <entry loc="D:\webservice\eclipse\plugins\org.eclipse.justj.openjdk.hotspot.jre.full.win32.x86_64_17.0.3.v20220515-1416" stamp="1674014150487"/>
 </dirs>
