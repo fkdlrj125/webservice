@@ -43,7 +43,7 @@ public class StreamEx03 {
 			.forEach(System.out::println);
 		
 		// [중간연산] peek ============================================================================================
-		// Stream 요소에 영향을 주지 않고 특정 작업 수행(IntStream만 가능)
+		// Stream 요소에 영향을 주지 않고 특정 작업 수행
 		// Consumer : 매개변수 1개, 리턴 X
 		System.out.println("\n[peek] 중간 출력");
 		int sum = IntStream.of(1, 2, 3, 4, 5)
