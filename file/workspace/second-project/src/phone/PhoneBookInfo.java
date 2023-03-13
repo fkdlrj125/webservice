@@ -12,5 +12,6 @@ public class PhoneBookInfo {
 	public void showPhoneInfo() {
 		System.out.println("이름 : "+this.name);
 		System.out.println("번호 : "+this.phoneNumber);
+		System.out.println();
 	}
 }

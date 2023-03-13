@@ -32,7 +32,7 @@ public class StreamEx02 {
 		// [문제] 
 		System.out.println("\n<< [Stream] 문자열의 길이가 4개 이상인 값 출력>>");
 		list.stream()
-				.filter((String s) -> s.length() >= 4)
-				.forEach(System.out::println);
+			.filter((String s) -> s.length() >= 4)
+			.forEach(System.out::println);
 	}
 }
