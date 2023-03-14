@@ -3,6 +3,8 @@ package Optional;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Stream;
 
 class Person{
 	private String name;
@@ -36,12 +38,19 @@ public class OptionalQuiz {
 											new Person("박보검", 35),
 											new Person("이미자", 52));
 		// 매개변수 name이 result에 저장되어 있으면, 객체의 주소 리턴
-		for(Person p : result) {
-			if(p.getName().equals(name))
-				return Optional.ofNullable(p);
-		}
-		// result에 저장되어 있지 않으면, null
-		return Optional.empty();
+//		for(Person p : result) {
+//			if(p.getName().equals(name))
+////				return Optional.ofNullable(p);
+//				return Optional.of(p);			// 조건문의 조건을 만족하면 변수 p는 null일 수 없기 때문에 of를 사용하는게 좋다
+//		}
+//		// result에 저장되어 있지 않으면, null
+//		return Optional.empty();
+		
+		// 위 코드를 스트림으로 구현
+		return result.stream()
+					.filter((Person p) -> p.getName().equals(name))
+				 	.findAny();
+				 							
 	}
 	public static void main(String[] args) {
 		if(findByName("박보검").isPresent())

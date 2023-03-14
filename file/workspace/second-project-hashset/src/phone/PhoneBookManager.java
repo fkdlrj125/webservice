@@ -37,9 +37,12 @@ public class PhoneBookManager {
 		System.out.println("데이터 삭제를 시작합니다..");
 		System.out.print("이름 : ");
 		String name = MenuViewer.INPUT.next();
-		for(PhoneBookInfo info : infoStorage) {
+		PhoneBookInfo info;
+		Iterator<PhoneBookInfo> itr = infoStorage.iterator();
+		while(itr.hasNext()) {
+			info=itr.next();
 			if(info.name.equals(name)) {
-				infoStorage.remove(info);
+				itr.remove();
 				System.out.println("데이터 삭제가 완료되었습니다.");
 				return;
 			}
@@ -50,9 +53,6 @@ public class PhoneBookManager {
 	public void allData() {
 		System.out.println("데이터 전체 조회를 시작합니다..");
 		for (PhoneBookInfo info : infoStorage) {
-			if (info == null) {
-				break;
-			}
 			info.showPhoneInfo();
 		}
 		System.out.println("모든 데이터 출력이 완료되었습니다.");

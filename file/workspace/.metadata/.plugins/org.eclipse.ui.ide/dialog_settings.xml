@@ -6,6 +6,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\webservice\file\workspace\first-spring"/>
 			<item value="C:\Users\samsung\Documents\coding\webservice\file\workspace"/>
 			<item value="D:\webservice\file\workspace\p230310"/>
 			<item value="D:\webservice\file\workspace"/>

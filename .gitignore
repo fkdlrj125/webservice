@@ -23,3 +23,16 @@ file/workspace/.metadata/.log
 *.index
 *.dat
 *.log
+*.xsd
+*.dtd
+*.md
+*.SF
+*.RSA
+*.MF
+*.jar
+*.gz
+*.inf
+*.jpg
+*.json
+*.jar
+*.bat
