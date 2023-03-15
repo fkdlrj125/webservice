@@ -1,13 +1,6 @@
 /*
- * 	[정적 사이트]
- * 	- 모든 사용자가 같은 페이지를 보는 사이트
- * 	- 서버에 요청하면 바로 보내주는 사이트
- * 	
- * 	[동적 사이트]
- * 	- 사용자마다 다른 페이지를 보는 사이트
- * 
  * 	[SpringBoot]
- * 	- Spring Container 안에서 객체를 1개만 생성해 사용(Singleton)
+ * 	- Spring Container 안에서 객체(Bean)를 1개만 생성해 사용(Singleton)
  * 	- SpringBoot의 라이브러리를 쉽게 가져다 쓸 수 있게 spring.io 사이트에서 
  * 	  프로젝트를 생성
  * 		- [프로젝트 종류] - 의존도의 차이
@@ -39,8 +32,16 @@
  * 	- test에 있는 자바파일은 작업 테스트
  * 	
  * 	- resources는 웹과 관련된 폴더
+ *   	[정적 사이트]
+ * 			- 모든 사용자가 같은 페이지를 보는 사이트
+ * 			- 서버에 요청하면 바로 보내주는 사이트
+ * 	
+ * 		[동적 사이트]
+ * 			- 사용자마다 다른 페이지를 보는 사이트
+ * 
  * 		- static 	: 정적 페이지(static content)  - tomcat이 기본적으로 static에서 index.html을 찾음
  * 								  					 static에 없다면 templates에서 찾음
+ * 												   - static 페이지는 추가되거나 수정되도 서버를 재실행X
  * 
  * 		- templates : 동적 페이지(dynamic content) - 서버언어(Server side language)를 사용해서 코드작성 
  * 													 대표적인 언어는 JSP 최은 Thymeleaf를 많이 사용함
@@ -56,7 +57,7 @@
  *	- 서버 종료버튼 옆에 재실행버튼
  *
  *	- 정적 파일이 아닌 파일(동적 파일)을 요청하면 controller가 동적파일을 찾아
- *	  thymeleaf나 jsp같은 서버쪽 언어를 처리하고 viewResolver가 사용자에게 전송
+ *	  viewResolver가 thymeleaf나 jsp같은 서버쪽 언어를 처리하고 사용자에게 전송
  */
 public class SpringBootEx01 {
 
