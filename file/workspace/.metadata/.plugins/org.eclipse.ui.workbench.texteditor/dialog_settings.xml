@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="Query("/>
+		<item key="selection" value="find"/>
 		<list key="findhistory">
+			<item value="find"/>
+			<item value="findany"/>
+			<item value="findAny"/>
 			<item value="query("/>
 			<item value="query"/>
 			<item value="return_"/>
@@ -20,9 +23,6 @@
 			<item value="distinct"/>
 			<item value="range"/>
 			<item value="toString"/>
-			<item value="hashCode"/>
-			<item value="hashCode("/>
-			<item value="peel"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

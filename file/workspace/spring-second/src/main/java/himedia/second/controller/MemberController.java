@@ -129,10 +129,8 @@ public class MemberController {
 		} else if(!member.getName().isEmpty()) {
 			searchMember = service.findName(member.getName());
 		}
-		if(searchMember.isEmpty()) {
-			searchMember = Optional.of(new Member());
-			searchMember.get().setId(0L);
-			searchMember.get().setName("해당 멤버는 존재하지 않습니다.");
+		if(searchMember.get().getId() == null) {
+			return "member/no-member";
 		}
 		model.addAttribute("searchResult", searchMember.get());
 		return "member/search";

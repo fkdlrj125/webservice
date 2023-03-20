@@ -31,14 +31,20 @@ public class MemberService {
 	 * 	아이디로 검색(조회)
 	 */
 	public Optional<Member> findId(Long memberId) {
-		return repository.findById(memberId);
+		Optional<Member> findId = repository.findById(memberId);
+		if(!findId.isPresent())
+			return Optional.ofNullable(new Member());
+		return findId;
 	}
 	
 	/**
 	 *  이름으로 검색(조회)
 	 */
 	public Optional<Member> findName(String memberName) {
-		return repository.findByName(memberName);
+		Optional<Member> findName = repository.findByName(memberName);
+		if(!findName.isPresent())
+			return Optional.ofNullable(new Member());
+		return findName;
 	}
 	
 	/**
