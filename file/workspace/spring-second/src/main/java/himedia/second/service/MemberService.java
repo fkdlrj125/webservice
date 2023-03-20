@@ -15,6 +15,7 @@ public class MemberService {
 	private final MemberRepository repository;
 	
 	public MemberService(MemberRepository repository) {
+		System.out.println("[MemberService] 실행됨");
 		this.repository = repository;
 	}
 	

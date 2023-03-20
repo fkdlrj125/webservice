@@ -19,7 +19,7 @@
       <tr th:each="member : ${members}">			<!-- thymeleaf의 반복문 -->
       	<!-- <td th:text="${member.getId()}"></td>	받아온 members 안에 객체가 저장돼 있기 때문에
         <td th:text="${member.getName()}"></td> 	메소드 사용 가능 -->
-        <td th:text="${member.id}"></td>			<!-- 필드명(변수명)으로 접근가능 -> 이 자체로 메소드 호출 -->
+        <td th:text="${member.id}"></td>			<!-- getter setter에 해당하는 변수만으로도 실행가능 -->
         <td th:text="${member.name}"></td>
       </tr>
     </tbody>

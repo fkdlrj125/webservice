@@ -6,9 +6,9 @@ import java.util.Optional;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import himedia.second.domain.Member;
 import himedia.second.domain.MemberForm;
@@ -42,7 +42,8 @@ public class MemberController {
 	// @Autowired
 	// 생성자를 통한 의존성 주입엔 어노테이션 @Autowired를 적어줘야되는데
 	// 참조변수의 키워드가 final이고 생성자가 1개일 땐 생략가능
-	public MemberController(MemberService service) { 
+	public MemberController(MemberService service) {
+		System.out.println("[MemberController] 실행");
 		this.service = service;
 	}
 	
@@ -66,25 +67,75 @@ public class MemberController {
 		model.addAttribute("members", members);
 		return "member/member-list";
 	}
-
+////	[첫 번째 방법]
+//	@GetMapping("/search")
+//	public String search(@RequestParam(required = false) Long id, 
+//			@RequestParam String name, 
+//			Model model) {
+////		Optional<Long> id = Optional.ofNullable(searchId);
+////		[첫 번째]
+////		Optional<Member> result = service.findMember().stream()
+////				.filter((Member m) -> {
+////					if(id.isEmpty())
+////						return m.getName().equals(searchName);
+////					return m.getId().equals(searchId));
+////				})
+////				.findAny();
+//		
+////		[두 번째]
+////		Optional<Member> searchResult= id.isPresent() ? service.findId(searchId) : service.findName(searchName);
+////		model.addAttribute("searchResult",searchResult.isPresent() ? searchResult.get() : new Member());
+//		
+////		[세 번째]
+//		Optional<Member> searchResult = Optional.of(new Member());
+//		if (id != null) {
+//			searchResult = service.findId(id);
+//		} else if (!name.isEmpty()) {
+//			searchResult = service.findName(name);
+//		}
+//		model.addAttribute("searchResult", searchResult.isPresent() ? searchMember.get() : new Member() );
+//		return "member/search";
+//	}
+	
+//	[두번째 방법]
+//	[리플렉션 기법] : Reflection 
+//	- 사용하려는 클래스의 정보(필드, 메소드)가 없을 때 클래스를 사용하는 기법
+//	view -> controller
+//	자동으로 setter 실행 -> 데이터 자동 처리
+	
+//	@ModelAttribute : view -> controller 
+//	Model 			: controller -> view
+	
+////	[첫 번째]
+//	@GetMapping("/search")
+//	public String search(@ModelAttribute Member member, Model model) {
+//		Optional<Member> searchMember = Optional.of(new Member()); // 빈 객체
+//		
+//		if(member.getId() != null)
+//			searchMember = service.findId(member.getId());
+//		else if(!member.getName().isEmpty())
+//			searchMember = service.findName(member.getName());
+//		model.addAttribute("searchResult", searchMember.isPresent() ? searchMember.get() : new Member());
+//		return "member/search";
+//	}
+	
+//	[두 번째]
 	@GetMapping("/search")
-	public String search(@RequestParam(required = false) String searchId, 
-			@RequestParam(required = false) String searchName, 
-			Model model) {
-//		Optional<Member> result = service.findMember().stream()
-//				.filter((Member m) -> {
-//					if(searchId.equals(""))
-//						return m.getName().equals(searchName);
-//					return m.getId().equals(Long.valueOf(searchId));
-//				})
-//				.findAny();
-		if(searchId.equals("")) {
-			Optional<Member> searchResult = service.findName(searchName);
-			model.addAttribute("searchResult",searchResult.isPresent()?searchResult:Optional.ofNullable(new Member()));
-			return "member/search";
+	public String search(@ModelAttribute Member member, Model model) {
+		Optional<Member> searchMember = Optional.of(new Member()); // 빈 객체
+		
+		if(member.getId() != null) {
+			searchMember = service.findId(member.getId());
+		} else if(!member.getName().isEmpty()) {
+			searchMember = service.findName(member.getName());
 		}
-		Optional<Member> searchResult = service.findId(Long.valueOf(searchId));
-		model.addAttribute("searchResult",searchResult.isPresent()?searchResult:Optional.ofNullable(new Member()));
+		if(searchMember.isEmpty()) {
+			searchMember = Optional.of(new Member());
+			searchMember.get().setId(0L);
+			searchMember.get().setName("해당 멤버는 존재하지 않습니다.");
+		}
+		model.addAttribute("searchResult", searchMember.get());
 		return "member/search";
 	}
+
 }

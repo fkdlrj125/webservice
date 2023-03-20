@@ -30,6 +30,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
 	}
 	
 	public JdbcTemplateMemberRepository(DataSource dataSource) { // 의존성 주입
+		System.out.println("[JdbcTemplateMemberRepository] 실행됨");
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	

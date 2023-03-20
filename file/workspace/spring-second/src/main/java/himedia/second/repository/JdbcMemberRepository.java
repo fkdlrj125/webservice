@@ -13,9 +13,11 @@ import javax.sql.DataSource;
 
 // 라이브러리 추가해야 함
 import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.stereotype.Repository;
 
 import himedia.second.domain.Member;
 
+//@Repository
 public class JdbcMemberRepository  implements MemberRepository {
 	
 	private final DataSource dataSource;
