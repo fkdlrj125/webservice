@@ -32,8 +32,6 @@ public class MemberService {
 	 */
 	public Optional<Member> findId(Long memberId) {
 		Optional<Member> findId = repository.findById(memberId);
-		if(!findId.isPresent())
-			return Optional.ofNullable(new Member());
 		return findId;
 	}
 	
@@ -42,8 +40,6 @@ public class MemberService {
 	 */
 	public Optional<Member> findName(String memberName) {
 		Optional<Member> findName = repository.findByName(memberName);
-		if(!findName.isPresent())
-			return Optional.ofNullable(new Member());
 		return findName;
 	}
 	

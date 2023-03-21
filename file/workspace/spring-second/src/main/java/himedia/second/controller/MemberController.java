@@ -122,17 +122,32 @@ public class MemberController {
 //	[두 번째]
 	@GetMapping("/search")
 	public String search(@ModelAttribute Member member, Model model) {
-		Optional<Member> searchMember = Optional.of(new Member()); // 빈 객체
+//		Member searchMember = new Member();
+//		
+//		if(member.getId() != null) {
+//			searchMember = service.findId(member.getId()).get();
+//		} else if(!member.getName().isEmpty()) {
+//			searchMember = service.findName(member.getName()).get();
+//		}
+//
+		Optional<Member> searchMember = Optional.empty(); // 빈 객체
 		
-		if(member.getId() != null) {
-			searchMember = service.findId(member.getId());
-		} else if(!member.getName().isEmpty()) {
-			searchMember = service.findName(member.getName());
-		}
-		if(searchMember.get().getId() == null) {
-			return "member/no-member";
-		}
-		model.addAttribute("searchResult", searchMember.get());
+//		if(member.getId() != null) {
+//			searchMember = service.findId(member.getId());
+//		} else if(!member.getName().isEmpty()) {
+//			searchMember = service.findName(member.getName());
+//		}
+		searchMember = member.getName().isEmpty() ? 
+				service.findId(member.getId()) : 
+					service.findName(member.getName());
+//		if(searchMember.isEmpty()) {
+//			return "member/no-member";
+//		}
+//		
+//		model.addAttribute("searchResult", searchMember.get());
+		model.addAttribute("searchResult", searchMember.isPresent() ?
+											searchMember.get() :
+												null);
 		return "member/search";
 	}
 

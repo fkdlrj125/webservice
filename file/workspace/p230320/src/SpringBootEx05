@@ -1,7 +1,0 @@
- [리플렉션 기법] : Reflection
-	view -> controller
-	자동으로 setter 실행 -> 데이터 자동 처리
- 
- [Http 파라미터]
- 	- @RequestParam   - wrapper 클래스나 기본참조형 처리가능
- 	- @ModelAttribute - 사용자가 정의한 클래스 처리가능

@@ -20,6 +20,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
 
 	private final JdbcTemplate jdbcTemplate;
 	
+	// DB에서 처리한 결과를 객체로 만드는 메소드
 	private RowMapper<Member> memberRowMapper() {
 		return (ResultSet rs, int rowNum) -> {
 			Member member = new Member();
@@ -57,7 +58,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
 
 	@Override
 	public Optional<Member> findByName(String name) {
-		List<Member> result = jdbcTemplate.query("select * from member where name = ?", memberRowMapper(),name);
+		List<Member> result = jdbcTemplate.query("select * from member where name like ?", memberRowMapper(),name);
 		return result.stream().findAny();
 	}
 

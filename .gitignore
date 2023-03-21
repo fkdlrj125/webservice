@@ -36,3 +36,7 @@ file/workspace/.metadata/.log
 *.json
 *.jar
 *.bat
+file/workspace/spring-third/gradlew
+*.gradle
+file/workspace/p230320/bin/.project
+file/workspace/p230317/bin/.project
