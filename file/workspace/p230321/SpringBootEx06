@@ -10,6 +10,7 @@
         - BeforeEach
  - Error    : 문법적 에러
  - Failures : 실행 실패 -> 기능적 에러
+
  - [Test 단계]
   - given : 어떤 데이터
   - when  : 어떤 작업

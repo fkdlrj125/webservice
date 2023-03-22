@@ -5,15 +5,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
-
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import himedia.third.domain.Member;
 
+@SpringBootTest
 public class MemoryMemberRepositoryTest {
 
-	MemoryMemberRepository repository = new MemoryMemberRepository();
+//	[방법 1]
+//	MemoryMemberRepository repository = new MemoryMemberRepository();
 
+//	[방법 2] - 필드에 직접 DI - Junit에서 생성자를 통한 작업이 있기 때문에 우선순위가 밀려 
+							 // 생성자를 통한 DI는 불가능
+	@Autowired MemoryMemberRepository repository;
+	
 	@AfterEach
 	void clear() {
 		repository.clearStore(); // repository내 Map(store)를 비워줘서

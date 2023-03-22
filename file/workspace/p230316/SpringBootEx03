@@ -6,8 +6,12 @@
  	- resources - application.properties에 server.port=""
  	
  [Post]
-	- header와 body로 구성된 파일이 암호화되어 전송
+	- header와 body로 구성된 패킷이 암호화되어 전송
 	- 'key = value' 형태로 저장해서 데이터 전송
+	- 기본타입는 x-www-form-urlencoded
+			- 인코딩을 해 보안이 좋음
+	- 많은 양의 데이터를 전송할 땐 form-data 사용
+			- 인코딩하지 않아 전송속도가 빠름
 
  [JSP]
  	- HTML 파일에 작성 불가

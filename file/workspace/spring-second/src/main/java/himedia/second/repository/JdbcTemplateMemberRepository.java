@@ -40,7 +40,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
 		// 데이터 저장을 쉽게 해줌
 		SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate); 	// Insert문을 생성하는 클래스 
 		jdbcInsert.withTableName("member").usingGeneratedKeyColumns("id"); 	// 테이블 지정, 자동으로 증가하는 키(기본키) 지정
-		
+																			// 자동으로 증가하는 키를 지정해 해당 컬럼은 insert 제외															
 		Map<String, Object> parameters = new HashMap<>();					// executeAndReturnKey가 매개변수로 Map을 받기 때문에 생성
 		parameters.put("name", member.getName());							// 현재 member에 id가 없기 때문에 name만 넣어줌
 		
