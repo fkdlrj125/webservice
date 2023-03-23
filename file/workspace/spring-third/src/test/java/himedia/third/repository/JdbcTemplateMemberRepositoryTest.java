@@ -7,9 +7,11 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import himedia.third.domain.Member;
 
+@Transactional
 @SpringBootTest
 class JdbcTemplateMemberRepositoryTest {
 
@@ -56,9 +58,11 @@ class JdbcTemplateMemberRepositoryTest {
 		assertThat(findMember.getName()).isEqualTo(member.getName());
 	}
 
+//	@Transactional
 	@Test
 	void 전체검사() {
 //		given
+		int size = repository.findAll().size();
 		Member member1 = new Member();
 		Member member2 = new Member();
 		member1.setName("one");
@@ -70,6 +74,6 @@ class JdbcTemplateMemberRepositoryTest {
 		List<Member> member = repository.findAll();
 
 //		then
-		assertThat(member.size()).isEqualTo(2);
+		assertThat(member.size()).isEqualTo(size+2);
 	}
 }

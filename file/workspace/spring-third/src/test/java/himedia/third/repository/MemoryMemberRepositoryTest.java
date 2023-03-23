@@ -89,6 +89,8 @@ public class MemoryMemberRepositoryTest {
 		List<Member> member = repository.findAll();
 
 //		then
+//		해당 인수를 Assert로 변환해서 비교
+//		assert클래스를 이용해 테스트
 		assertThat(member.size()).isEqualTo(2);
 	}
 }

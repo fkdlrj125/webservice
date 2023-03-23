@@ -15,3 +15,4 @@
   - given : 어떤 데이터
   - when  : 어떤 작업
   - then  : 검증
+   - assert클래스를 이용해 검증
