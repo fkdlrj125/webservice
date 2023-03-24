@@ -6,11 +6,12 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="assertThat"/>
+		<item key="selection" value="That("/>
 		<list key="findhistory">
+			<item value="that("/>
+			<item value="assetthat"/>
 			<item value="assertthat"/>
 			<item value="assertaht"/>
-			<item value="that("/>
 			<item value="that"/>
 			<item value="assertThat("/>
 			<item value="AssertThat"/>
@@ -22,7 +23,6 @@
 			<item value="findAny"/>
 			<item value="query("/>
 			<item value="query"/>
-			<item value="return_"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

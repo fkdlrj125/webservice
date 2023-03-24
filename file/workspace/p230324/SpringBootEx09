@@ -1,0 +1,23 @@
+ [Lombok]
+ - Slf4j : lombok에 내장된 로그를 쓰기 위한 인터페이스
+
+ [Log]
+2023-03-24 12:48:53.471 : 시작 시간
+INFO                    : 로그 레벨
+10932                   : PID(프로세스 ID)
+ --- [           main]  : 쓰레드명
+h.f.r.JdbcTemplateItemRepositoryTest : 클래스명 
+: item.getItemName() >> 진라면 : 로그 메세지
+
+ [Log level]
+ - default level : info
+ - default에서 info 기준으로 레벨이 높은건 로그로 보이지 않고 낮은건 로그에 보임
+ - 로그의 양
+      최대                         최소
+   - trace > debug > info > warn > error
+ - 기본 로그 레벨 설정
+   - logging.level.경로 = 로그레벨
+
+ [Thread]
+ - 프로세스 내 실행단위 - 하나의 프로그램에 하나의 스레드를 가질 수도 있고 하나의 프로그램에 여러 스레드를 가질 수도 있다
+ - 메모리를 효율적으로 사용하기 위해 필요한 기능, 프로그램만 메모리에 올려 사용

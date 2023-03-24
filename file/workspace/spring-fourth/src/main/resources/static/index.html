@@ -25,7 +25,8 @@
               class="nav-link fw-bold py-1 px-0 active"
               aria-current="page"
               href="#"
-              >Home</a>
+              >Home</a
+            >
             <a class="nav-link fw-bold py-1 px-0" href="#">Features</a>
             <a class="nav-link fw-bold py-1 px-0" href="#">Contact</a>
           </nav>
@@ -35,10 +36,13 @@
       <main class="px-3">
         <h1>행복한 마켓</h1>
         <p class="lead">행복한 마켓 방문을 환영합니다.</p>
-        <p class="lead">
-          <a href="html/items.html" class="btn btn-lg btn-light fw-bold border-white bg-white"
-          >상품 목록 이동</a>
-        </p>
+        <form action="/store/items">
+          <input
+            type="submit"
+            class="btn btn-lg btn-light fw-bold border-white bg-white"
+            value="상품 목록 이동"
+          />
+        </form>
       </main>
 
       <footer class="mt-auto text-white-50">
