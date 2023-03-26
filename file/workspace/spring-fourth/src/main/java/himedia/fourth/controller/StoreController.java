@@ -60,7 +60,7 @@ public class StoreController {
 		log.info("id >> "+item.getId());
 		repository.update(item.getId(), item);
 		model.addAttribute("item",item);
-		return "redirect:/store/items"+item.getId();
+		return "redirect:/store/items/"+item.getId();
 	}
 	
 }

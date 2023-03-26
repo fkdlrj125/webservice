@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>상품 목록</title>
-    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
   </head>
   <body>
     <div class="wrap position-relative min-vh-100 pb-5">
@@ -61,7 +61,7 @@
       <!-- Header End -->
 
       <!-- Container Start -->
-      <div class="container py-5 mb-5" style="max-width: 600px">
+      <div class="container py-5 mb-5" style="max-width: 600px;">
         <div class="py-5 text-center">
           <h2>상품 목록</h2>
         </div>
@@ -79,9 +79,21 @@
             </thead>
             <tbody class="table-group-divider">
               <tr th:each="item : ${itemlist}">
-                <td><a th:href="@{/store/items/{itemId}(itemId=${item.id})}" th:text="${item.id}" class="nav-link"></a></td>
-                <td><a th:href="@{/store/items/{itemId}(itemId=${item.id})}" th:text="${item.itemName
-                }" class="nav-link"></a></td>
+                <td>
+                  <a
+                    th:href="@{/store/items/{itemId}(itemId=${item.id})}"
+                    th:text="${item.id}"
+                    class="nav-link"
+                  ></a>
+                </td>
+                <td>
+                  <a
+                    th:href="@{/store/items/{itemId}(itemId=${item.id})}"
+                    th:text="${item.itemName
+                }"
+                    class="nav-link"
+                  ></a>
+                </td>
                 <td th:text="${item.price}">가격</td>
                 <td th:text="${item.quantity}">수량</td>
               </tr>

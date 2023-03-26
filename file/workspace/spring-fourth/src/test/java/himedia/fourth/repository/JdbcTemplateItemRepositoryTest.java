@@ -20,7 +20,6 @@ class JdbcTemplateItemRepositoryTest {
 	@Autowired JdbcTemplateItemRepository repository;
 	
 	@Test
-	@Transactional
 	void save() {
 //		given
 		Item item = new Item("진라면",1000,100);

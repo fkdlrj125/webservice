@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>상품 상세</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
   </head>
   <body>
     <div class="wrap position-relative min-vh-100 pb-5">
@@ -61,94 +61,94 @@
       <!-- Header End -->
 
       <!-- Container Start -->
-      <div class="container pb-5 mb-5" style="max-width: 600px">
+      <div class="container pb-5 mb-5" style="max-width: 600px;">
         <div class="py-5 text-center">
           <h2>상품 상세</h2>
         </div>
 
-          <div class="row mb-2">
-            <div class="col-2 fw-bold">
-              <label for="itemId">상품 ID</label>
-            </div>
-            <div class="col">
-              <input
-                type="text"
-                name="itemId"
-                id="itemId"
-                class="form-control"
-                th:value="${item.id}"
-                readonly
-              />
-              <span></span>
-            </div>
+        <div class="row mb-2">
+          <div class="col-2 fw-bold">
+            <label for="itemId">상품 ID</label>
           </div>
-          <div class="row mb-2">
-            <div class="col-2 fw-bold">
-              <label for="itemName">상품명</label>
-            </div>
-            <div class="col">
-              <input
-                type="text"
-                name="itemName"
-                id="itemName"
-                class="form-control"
-                th:value="${item.itemName}"
-                readonly
-              />
-            </div>
+          <div class="col">
+            <input
+              type="text"
+              name="itemId"
+              id="itemId"
+              class="form-control"
+              th:value="${item.id}"
+              readonly
+            />
+            <span></span>
           </div>
-          <div class="row mb-2">
-            <div class="col-2 fw-bold">
-              <label for="price">가격</label>
-            </div>
-            <div class="col">
-              <input
-                type="text"
-                name="price"
-                id="price"
-                class="form-control"
-                th:value="${item.price}"
-                readonly
-              />
-            </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-2 fw-bold">
+            <label for="itemName">상품명</label>
           </div>
-          <div class="row mb-2">
-            <div class="col-2 fw-bold">
-              <label for="quantity">수량</label>
-            </div>
-            <div class="col">
-              <input
-                type="text"
-                name="quantity"
-                id="quantity"
-                class="form-control"
-                th:value="${item.quantity}"
-                readonly
-              />
-            </div>
+          <div class="col">
+            <input
+              type="text"
+              name="itemName"
+              id="itemName"
+              class="form-control"
+              th:value="${item.itemName}"
+              readonly
+            />
           </div>
-          <hr class="my-4" />
-          <!-- button -->
-          <div class="row">
-            <div class="col d-grid gap-2">
-              <button
-                class="btn btn-outline-secondary btn-lg float-center"
-                type="button"
-                th:onclick="|location.href = '@{/store/items/{id}/edit(id=${item.id})}'|"
-              >
-                상품 수정
-              </button>
-            </div>
-            <div class="d-grid gap-2 col">
-              <button
-                class="btn btn-secondary btn-lg float-center"
-                type="button"
-                onclick="location.href = '/store/items'"
-              >
-                목록으로
-              </button>
-            </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-2 fw-bold">
+            <label for="price">가격</label>
           </div>
+          <div class="col">
+            <input
+              type="text"
+              name="price"
+              id="price"
+              class="form-control"
+              th:value="${item.price}"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col-2 fw-bold">
+            <label for="quantity">수량</label>
+          </div>
+          <div class="col">
+            <input
+              type="text"
+              name="quantity"
+              id="quantity"
+              class="form-control"
+              th:value="${item.quantity}"
+              readonly
+            />
+          </div>
+        </div>
+        <hr class="my-4" />
+        <!-- button -->
+        <div class="row">
+          <div class="col d-grid gap-2">
+            <button
+              class="btn btn-outline-secondary btn-lg float-center"
+              type="button"
+              th:onclick="|location.href = '@{/store/items/{id}/edit(id=${item.id})}'|"
+            >
+              상품 수정
+            </button>
+          </div>
+          <div class="d-grid gap-2 col">
+            <button
+              class="btn btn-secondary btn-lg float-center"
+              type="button"
+              onclick="location.href = '/store/items'"
+            >
+              목록으로
+            </button>
+          </div>
+        </div>
       </div>
       <!-- Container End -->
 
