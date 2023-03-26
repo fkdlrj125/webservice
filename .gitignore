@@ -1,4 +1,4 @@
-
+eclipse/*
 *.xml
 *.prefs
 *.xmi
@@ -23,3 +23,9 @@ file/workspace/.metadata/.log
 *.index
 *.dat
 *.log
+*.gradle
+file/workspace/spring-third/.classpath
+file/workspace/spring-third/.project
+file/workspace/spring-third/gradlew
+*.bat
+*.md
