@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>member-list.html</title>
+</head>
+<body>
+  <table>
+    <thead>
+      <tr>
+        <th>번호</th> <th>이름</th>
+      </tr>
+    </thead>
+    <tbody>
+<!-- 자바에서 웹으로 넘어온 객체를 프로퍼티(property)라 함 
+	 프로퍼티는 필드와 메소드의 중간적인 성격을 지닌다 -->
+      <tr th:each="member : ${members}">			<!-- thymeleaf의 반복문 -->
+      	<!-- <td th:text="${member.getId()}"></td>	받아온 members 안에 객체가 저장돼 있기 때문에
+        <td th:text="${member.getName()}"></td> 	메소드 사용 가능 -->
+        <td th:text="${member.id}"></td>			<!-- getter setter에 해당하는 변수만으로도 실행가능 -->
+        <td th:text="${member.name}"></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

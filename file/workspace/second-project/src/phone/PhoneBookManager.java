@@ -16,9 +16,9 @@ public class PhoneBookManager {
 
 	public void inputData() {
 		System.out.println("데이터 입력을 시작합니다..");
-		System.out.printf("이름 : ");
+		System.out.print("이름 : ");
 		String name = MenuViewer.INPUT.next();
-		System.out.printf("번호 : ");
+		System.out.print("번호 : ");
 		String number = MenuViewer.INPUT.next();
 		if (index < MAX_CNT) {
 			infoStorage[index++] = new PhoneBookInfo(name, number);
@@ -30,7 +30,7 @@ public class PhoneBookManager {
 
 	public void searchData() {
 		System.out.println("데이터 검색을 시작합니다..");
-		System.out.printf("이름 : ");
+		System.out.print("이름 : ");
 		String name = MenuViewer.INPUT.next();
 		if (search(name) > -1) {
 			infoStorage[search(name)].showPhoneInfo();
@@ -42,18 +42,14 @@ public class PhoneBookManager {
 
 	public void deleteData() {
 		System.out.println("데이터 삭제를 시작합니다..");
-		System.out.printf("이름 : ");
+		System.out.print("이름 : ");
 		String name = MenuViewer.INPUT.next();
 		int searchIndex = search(name);
 		if (searchIndex > -1) {
 			for (int i = searchIndex; i < index; i++) {
-				if (i + 1 == index) {
-					infoStorage[i] = null;
-					index -= 1;
-				} else {
-					infoStorage[i] = infoStorage[i + 1];
-				}
+				infoStorage[i] = infoStorage[i + 1];
 			}
+			index--;
 			System.out.println("데이터 삭제가 완료되었습니다.");
 		} else {
 			System.out.println("해당하는 데이터가 존재하지 않습니다.");
@@ -66,7 +62,7 @@ public class PhoneBookManager {
 			if (info == null) {
 				break;
 			}
-			info.showPhoneInfo();
+			info.showPhoneInfo(); 
 		}
 		System.out.println("모든 데이터 출력이 완료되었습니다.");
 	}

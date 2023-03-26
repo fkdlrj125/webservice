@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>search.html</title>
+</head>
+<body>
+  <h1>검색 결과</h1>
+  <div>
+    <span>아이디 : </span>
+    <!-- <span th:text="${searchResult.getId()}"></span>  -->
+    <!-- <span th:text="${searchResult.id}"></span>  -->
+    <!-- 삼항연산자축약(null과 비교할 때만 가능) -->
+    <!--  공백 있으면 에러 -->
+    <span th:text="${searchResult?.id}"></span> 
+  </div>
+  <div>
+    <span>이름 : </span>
+    <!-- <span th:text="${searchResult.getName()}"></span>  -->
+    <!-- <span th:text="${searchResult.name}"></span>  -->
+    <span th:text="${searchResult?.name}"></span> 
+  </div>
+</body>
+</html>

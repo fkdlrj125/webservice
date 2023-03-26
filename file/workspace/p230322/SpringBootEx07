@@ -1,0 +1,21 @@
+ [Test] - Junit
+ - Junit은 Parameter Resolver를 통해 의존성주입
+ - Test에서 Bean을 생성하기 위해 @SpringBootTest 어노테이션 사용
+    - @SpringBootTest를 사용하면 Container에서 Test를 위한 Bean의 정보만 모아서 생성
+    - 서버 실행과 무관하게 작동
+ - DI(의존성주입)는 @Autowired를 통해 변수에 넣어줘야 가능
+ - Junit에 자체적으로 생성자를 통해 생성하는 코드가 있기 때문에 생성자를 통한 DI는 불가능
+ 
+ [Parameter Resolver]
+ - Junit에서 DI를 하기 위한 인터페이스
+ - xxxExtension을 구현체로 보통 사용
+ - 주입할 수 있는 타입 여부를 확인하고 주입할 타입의 객체가 있다면 반환
+
+ [Domain]
+ - 도메인을 하나로 사용하는 것보다는 각 역할에 맞게 나눠서 사용하는 것이 좋음
+    - 계층간에 사용할 도메인, 매개변수로 받을 도메인, 데이터베이스 결과를 받을 도메인 
+
+ [데이터 전송방식]
+ - none : get방식 - query parameter 사용
+ - form-data : post방식 - 데이터형식 그대로 전송
+ - x-www-form-urlencoded - post방식 - 데이터를 인코딩해 전송
