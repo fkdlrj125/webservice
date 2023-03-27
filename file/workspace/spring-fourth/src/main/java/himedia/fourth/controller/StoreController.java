@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import himedia.fourth.domain.Item;
@@ -28,6 +29,13 @@ public class StoreController {
 		model.addAttribute("itemlist", list);
 		return "store/items";
 	}
+	
+	@GetMapping("/search")
+	public String search(@RequestParam String searchItem, RedirectAttributes redirect) {
+		redirect.addAttribute("searchId", repository.findByName(searchItem).get().getId());
+		return "redirect:/store/items/{searchId}";
+	}
+	
 	
 	@GetMapping("/{itemId}") 
 	public String item(@PathVariable Long itemId,Model model) {

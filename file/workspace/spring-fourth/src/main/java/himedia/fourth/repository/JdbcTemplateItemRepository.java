@@ -57,7 +57,7 @@ public class JdbcTemplateItemRepository implements ItemRepository {
 	
 	@Override
 	public Optional<Item> findByName(String name) {
-		List<Item> list = jdbcTemplate.query("select * from item where itemname = ?", rowMapper(), name);
+		List<Item> list = jdbcTemplate.query("select * from item where itemname like concat('%',?,'%')", rowMapper(), name);
 		return list.stream().findAny();
 	}
 
