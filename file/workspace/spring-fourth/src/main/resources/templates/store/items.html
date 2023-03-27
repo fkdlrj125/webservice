@@ -61,7 +61,7 @@
       <!-- Header End -->
 
       <!-- Container Start -->
-      <div class="container py-5 mb-5" style="max-width: 600px;">
+      <div class="container py-5 mb-5" style="max-width: 600px">
         <div class="py-5 text-center">
           <h2>상품 목록</h2>
         </div>
@@ -89,8 +89,7 @@
                 <td>
                   <a
                     th:href="@{/store/items/{itemId}(itemId=${item.id})}"
-                    th:text="${item.itemName
-                }"
+                    th:text="${item.itemName}"
                     class="nav-link"
                   ></a>
                 </td>
@@ -103,16 +102,15 @@
 
         <!-- button -->
         <div class="row">
-          <form action="/store/items/add">
-            <div class="d-grid gap-2">
-              <button
-                class="btn btn-secondary btn-lg float-center"
-                type="submit"
-              >
-                상품 등록
-              </button>
-            </div>
-          </form>
+          <div class="d-grid gap-2">
+            <button
+              class="btn btn-secondary btn-lg float-center"
+              type="button"
+              th:onclick="|location.href='@{/store/items/add}'|"
+            >
+              상품 등록
+            </button>
+          </div>
         </div>
       </div>
       <!-- Container End -->

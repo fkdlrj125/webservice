@@ -96,7 +96,7 @@ class JdbcTemplateItemRepositoryTest {
 	@Transactional
 	void clearStore() {
 		repository.clearStore();
-		assertThat(repository.findAll().size()).isEqualTo(0);
+		assertThat(repository.findAll()).isEmpty();
 	}
 
 }

@@ -69,10 +69,9 @@ public class JdbcTemplateItemRepository implements ItemRepository {
 	@Override
 	public Item update(Long itemId, Item updateItem) {
 		log.info("update() 실행됨");
-//		테이블의 정보를 변경하는 모든 활동을 update메소드로 실행
+//		테이블의 raw를 변경하는 모든 작업을 update메소드로 실행
 		jdbcTemplate.update("update item set itemname=?, price=?, quantity=? where id=?"
 				, updateItem.getItemName(), updateItem.getPrice(), updateItem.getQuantity(),itemId);
-		log.info("item >> {}",findById(itemId).get().getItemName());
 		return findById(itemId).get();
 	}
 

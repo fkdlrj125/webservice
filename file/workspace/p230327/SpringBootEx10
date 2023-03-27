@@ -1,0 +1,27 @@
+ [Thymeleaf]
+ - thymeleaf를 적용한 태그와 기존 태그가 있다면 
+    thymeleaf 태그가 우선권을 가져 기존 태그를 무시한다
+ 
+ [form action]
+ - action에 값이 없으면 요청할 url이 없기 때문에 현재페이지를 요청함
+
+ [기본표현법]
+ - ${} : 변수
+ - #{} : 변수 값이 문자라면 ''로 묶어줌
+ - @{} : 주소
+    - 주소에 변수사용
+    @{"/주소/주소/{변수}/주소(변수명=${프로퍼티})"}
+
+ [ModelAttribute]
+ - 사용자가 만든 class의 멤버필드에 html에서 넘어온 값에 해당하는 key가
+   바인딩이 된다면 자동으로 setter를 실행해 value를 넣어준다
+ - ModelAttribute는 자동으로 Model에 해당 데이터를 추가해준다
+
+ [Redirect]
+ - 문자열을 결합해 URI를 만드는 형식은 encoding 과정에서 문제가 발생할 수 있어
+   RedirectAttributes를 이용해 URI를 만들어 리턴하는 것이 좋다
+ - PRG(Post-Redirect-Get) 상황에서 사용
+ - 추가된 값이 pathVariable에 포함되면 pathVariable에 바인딩해주고
+   나머지는 query parameter로 처리
+      - redirect:/store/items/{itemId} - /store/items/id값
+      - redirect:/store/items/ - /store/items/?itemId=id값
