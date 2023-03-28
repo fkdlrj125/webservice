@@ -15,21 +15,6 @@
           <div
             class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
           >
-            <a
-              href="/"
-              class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
-            >
-              <svg
-                class="bi me-2"
-                width="40"
-                height="32"
-                role="img"
-                aria-label="Bootstrap"
-              >
-                <use xlink:href="#bootstrap" />
-              </svg>
-            </a>
-
             <ul
               class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
             >
@@ -49,29 +34,30 @@
             </ul>
 
             <form
-              class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3"
+              class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-1"
               role="search"
               action="/store/items/search"
             >
-              <input
-                type="search"
-                name="searchItem"
-                class="form-control form-control-dark text-bg-dark"
-                placeholder="Search..."
-                aria-label="Search"
-              />
+              <div class="row align-items-center">
+                <input
+                  type="search"
+                  name="searchItem"
+                  class="form-control form-control-dark text-bg-white col"
+                  placeholder="상품명 입력"
+                  aria-label="Search"
+                />
+                <button type="submit" class="btn btn-warning ms-1 col-3">
+                  검색
+                </button>
+              </div>
             </form>
-
-            <div class="text-end">
-              <button type="submit" class="btn btn-warning">검색</button>
-            </div>
           </div>
         </div>
       </header>
       <!-- Header End -->
 
       <!-- Container Start -->
-      <div class="container pb-5 mb-5" style="max-width: 600px;">
+      <div class="container pb-5 mb-5" style="max-width: 600px">
         <div class="py-5 text-center">
           <h2>상품 등록 폼</h2>
         </div>
@@ -145,7 +131,7 @@
 
       <!-- Footer Start -->
       <footer class="py-3 text-bg-dark position-absolute bottom-0 w-100">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+        <ul class="nav justify-content-center pb-2">
           <li class="nav-item">
             <a href="/index.html" class="nav-link px-2 text-white">홈</a>
           </li>
@@ -161,6 +147,25 @@
           </li>
         </ul>
         <p class="text-center text-white">&copy; 2022 Company, Inc</p>
+      </footer>
+      <!-- Footer End --><!-- Footer Start -->
+      <footer class="py-3 text-bg-dark position-absolute bottom-0 w-100">
+        <ul class="nav justify-content-center pb-2">
+          <li class="nav-item">
+            <a href="/index.html" class="nav-link px-2 text-white">홈</a>
+          </li>
+          <li class="nav-item">
+            <a href="/store/items" class="nav-link px-2 text-white"
+              >상품 목록</a
+            >
+          </li>
+          <li class="nav-item">
+            <a href="/store/items/add" class="nav-link px-2 text-white"
+              >상품 추가</a
+            >
+          </li>
+        </ul>
+        <p class="text-center text-white">&copy; 2023 Happy Market, Corp</p>
       </footer>
       <!-- Footer End -->
     </div>
