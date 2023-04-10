@@ -1,0 +1,147 @@
+ [다음주까지] 
+  팀 소개 - 작업한 거 정리
+  포트폴리오 - 핵심기능 트러블 슈팅에 내 작업만 추가
+  배포 : DNS
+ 
+ [AWS]
+  배포하기 전 설정
+    1. 서버에서 사용할 RDBMS 선택
+      - 원격서버에 있는 DB에 추가
+      - MySQL, Oracle, MariaDB 등
+
+      [local]
+      1. 라이브러리 추가
+        - runtimeOnly 'com.mysql:mysql-connector-j' 의존성 추가
+
+      2. application.properties에 추가
+        - MySQL 포트 번호 : 3306
+        - spring.datasource.url=jdbc:mysql://localhost:3306/mydb?useSSL=false&serverTimezone=Asia/Seoul 
+        - spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver // 원격에선 드라이버가 인식이 안돼 커넥션 설정을 해줘야 함
+        - spring.datasource.username=root
+        - spring.datasource.password=1111
+
+      3. DB에 테이블 추가
+
+      4. SpingBoot은 DML을 auto commit하지 않아 auto commit을 설정해주거나 commit 쿼리를 해줘야 DB에 적용됨
+        - select @@autocommit; 으로 auto commit 확인
+        - set autocommit=1; auto commit을 true로 설정
+
+      [server]
+      1. application.properties 수정
+        - url localhost에서 엔드포인트 값으로 수정
+        - username, password 수정
+
+      2. mysql-connector-j-8.0.32를 추가해 드라이버 설정
+        - 해당 파일이 없으면 서버에서 DB와 연동이 불가
+        - 설치한 MySQL버전과 드라이버의 버전이 일치해야 함
+            
+        1. 해당 프로젝트에서 우클릭 - build path
+        2. 라이브러리 - class path - add external jars
+
+    2. 설정이 완료된 프로젝트를 .jar파일로 생성
+        - gradlew.bat 파일을 이용해 배포에 필요한 .jar파일 생성
+
+      1. cmd로 프로젝트 파일 내에서 gradlew.bat 파일명 으로 실행
+
+      2. 파일명 내 libs 파일 내 spring-fourth-aws-0.0.1-SNAPSHOT.jar 실행
+
+    3. aws 설정
+      1. 인스턴스 생성
+        - 아마존 서버에 사용하기 위한 공간을 확보하기 위해 인스턴스 생성
+        - 결제 알림 생성해서 프리 티어 사용량 알림 받기 설정
+
+        1. EC2 접속
+
+        2. Ubuntu OS 선택
+
+        3. 키 페어 - 인스턴스 사용자를 인증위해 사용
+          - 한 번 생성하면 계속 사용 가능 
+          - 로컬에서 가상서버에 해당 키로 한 번 접속을 해야 가상서버 사용 가능
+
+        4. 인터넷에서 HTTPS 트래픽 허용 
+           인터넷에서 HTTP 트래픽 허용
+           체크
+
+        5. 스토리지 구성 기본
+
+        6. 고급 설정 안함
+    
+      2. 인스턴스 연결
+        - 로컬에서 서버에 연결할 때 키가 필요
+
+        1. 사용자 이름 기본으로 설정
+          - 사용자 이름 변경했을 땐 연결 불가능
+        
+        2. SSH 클라이언트 
+          - 권한 축소 
+            - spring-fourth-aws.pem의 보안 속성 -> 고급
+            - 관리자 계정 선택 -> 상속 사용 안함 -> 이 개체에서 상속된 사용 권한을 모두 제거합니다.
+            - 추가 -> 보안 주체 선택 -> 고급 -> 지금 찾기 -> 사용자 선택  
+            - 읽기 및 실행, 읽기 권한만 지정
+
+          - cmd에서 키 위치에서 명령어 실행
+            - ssh -i "spring-fourth-aws.pem" ubuntu@ec2-13-125-208-93.ap-northeast-2.compute.amazonaws.com
+
+          - ubuntu의 패키징을 최신상태로 설정
+            - audo apt update;
+
+          - java 설치 
+            - sudo apt-get install openjdk-11-jdk
+
+      3. 인바운드 설정
+        - 인바운드 서버를 기준으로 서버 외부에서 들어오는 게 인바운드
+        - 서버 기준으로 서버 외부로 나가는게 아웃바운드
+          
+          - 인바운드 규칙 추가
+            1. ec2-rds-1 클릭
+            2. 인바운드 규칙 편집
+            3. 규칙 추가
+            4. 모든 트래픽 - IPv4, IPv6로 2개 추가
+
+      4. DB 설치
+        - 서비스 - 데이터베이스 - RDS
+          1. 데이터베이스 생성
+            - MySQL 최신 버전 
+            - 템플릿 프리 티어
+            - 관리자 설정
+            - 인스턴스 구성 기본
+            - 연결(중요)
+              - EC2 컴퓨팅 리소스 연결 안 함
+              - IPv4
+              - 퍼블릭 액세스 - 예(중요)
+              - 보안 그룹 - 새로 생성
+              - 추가 구성 - 데이터베이스 이름 설정
+            
+          2. 데이터베이스 인스턴스 연결
+            - EC2 연결 설정
+              - 인스턴스 선택
+
+          3. 데이터베이스 확인
+            - cmd에 mysql -u admin --host database-1.cyobkvx2blbi.ap-northeast-2.rds.amazonaws.com -P 3306 -p
+            - 비밀번호 입력
+
+            - workbench에서 connection 추가
+            - hostname에 엔드포인트 추가
+
+      5. 파일 전송을 위한 FTP 사용
+        1. FileZilla 설치
+
+        2. 설정 - SFTP - 키파일 추가 - pem파일 추가
+        
+        3. 사이트 관리자 - 새 사이트 
+          1. 프로토콜 : SFTP(SSH File Transfer Protocol)
+          2. 호스트 : 인스턴스에 퍼블릭 IPv4 DNS 
+          3. 사용자 : OS 설정했을 때 설정한 이름
+
+        4. 리모트 사이트
+          1. 디렉토리 생성 
+          2. .jar파일 추가
+
+        5. 파일에 사용자 실행권한 부여
+          - sudo chmod +x spring-fourth-aws-0.0.1-SNAPSHOT.jar
+
+        6. 백그라운드 준비 
+          - sudo nohup java -jar spring-fourth-aws-0.0.1-SNAPSHOT.jar &
+
+        7. 실행
+          - sudo cat nohup.out

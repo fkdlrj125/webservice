@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy>
-    <typeInfo handle="=spring-fourth/C:\/Users\/hi-sinchon\/.gradle\/caches\/modules-2\/files-2.1\/org.springframework\/spring-web\/5.3.26\/479b988a36bcaa2d4bf7c50e53bc7cbcedbe645c\/spring-web-5.3.26.jar=/gradle_used_by_scope=/main,test=/&lt;org.springframework.web.bind.annotation(ModelAttribute.class[ModelAttribute" modifiers="9729" timestamp="1679877101997"/>
-    <typeInfo handle="=spring-fourth/C:\/Users\/hi-sinchon\/.gradle\/caches\/modules-2\/files-2.1\/org.springframework\/spring-web\/5.3.26\/479b988a36bcaa2d4bf7c50e53bc7cbcedbe645c\/spring-web-5.3.26.jar=/gradle_used_by_scope=/main,test=/&lt;org.springframework.web.bind.annotation(RequestParam.class[RequestParam" modifiers="9729" timestamp="1679877101997"/>
-    <typeInfo handle="=spring-fourth/C:\/Users\/hi-sinchon\/.gradle\/caches\/modules-2\/files-2.1\/org.springframework\/spring-web\/5.3.26\/479b988a36bcaa2d4bf7c50e53bc7cbcedbe645c\/spring-web-5.3.26.jar=/gradle_used_by_scope=/main,test=/&lt;org.springframework.web.bind.annotation(PathVariable.class[PathVariable" modifiers="9729" timestamp="1679877101997"/>
-</typeInfoHistroy>
+<typeInfoHistroy/>

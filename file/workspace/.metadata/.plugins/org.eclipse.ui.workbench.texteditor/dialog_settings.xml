@@ -6,8 +6,12 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="That("/>
+		<item key="selection" value="writer"/>
 		<list key="findhistory">
+			<item value="writer"/>
+			<item value="login"/>
+			<item value="|"/>
+			<item value="id"/>
 			<item value="that("/>
 			<item value="assetthat"/>
 			<item value="assertthat"/>
@@ -19,17 +23,13 @@
 			<item value="assertThat"/>
 			<item value="assert"/>
 			<item value="find"/>
-			<item value="findany"/>
-			<item value="findAny"/>
-			<item value="query("/>
-			<item value="query"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="-19"/>
+		<item key="DIALOG_X_ORIGIN" value="8"/>
 		<item key="DIALOG_Y_ORIGIN" value="382"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="384"/>
