@@ -68,7 +68,7 @@ public class UserController {
 	
 	@GetMapping("/join")
 	public String getJoin() {
-		return "/user/join-form";
+		return "user/join-form";
 	}
 	
 	@PostMapping("/join")
@@ -80,13 +80,13 @@ public class UserController {
 	
 	@GetMapping("/pw")
 	public String getPw() {
-		return "/user/search-pwd";
+		return "user/search-pwd";
 	}
 	
 	@PostMapping("/pw")
 	public String postPw(String userName, String email,Model model) {
 		String result = userService.searchPassword(userName, email);
 		model.addAttribute("result", result);
-		return "/user/search-result";
+		return "user/search-result";
 	}
 }

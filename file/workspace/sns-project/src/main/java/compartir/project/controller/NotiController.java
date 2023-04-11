@@ -78,7 +78,7 @@ public class NotiController {
 	@GetMapping("/create")
 	public String notiCreateForm(@SessionAttribute User loginUser, Model model) {
 		model.addAttribute("loginUser", loginUser);
-		return "/noti/noti-create";
+		return "noti/noti-create";
 	}
 
 	// 공지사항 글 작성 후 저장

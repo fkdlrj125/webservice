@@ -83,7 +83,7 @@ public class ProfileController {
 		model.addAttribute("posts", posts);
 		if(loginUser != null)
 			model.addAttribute("auth", adminService.adminCheck(loginUser.getUserId()));	
-		return "/user/profile";
+		return "user/profile";
 	}
 }
 

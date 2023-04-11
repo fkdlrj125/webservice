@@ -83,7 +83,7 @@
             - ssh -i "spring-fourth-aws.pem" ubuntu@ec2-13-125-208-93.ap-northeast-2.compute.amazonaws.com
 
           - ubuntu의 패키징을 최신상태로 설정
-            - audo apt update;
+            - sudo apt update;
 
           - java 설치 
             - sudo apt-get install openjdk-11-jdk
@@ -145,3 +145,12 @@
 
         7. 실행
           - sudo cat nohup.out
+      
+      6. 삭제
+        1. DB삭제
+          1. RDS - DB 인스턴스
+          2. DB 선택 후 작업 -> 삭제
+        2. 인스턴스 삭제
+          1. 컴퓨팅 - EC2
+          2. 인스턴스 선택 후 인스턴스 상태 - 인스턴스 종료
+            - 바로 삭제되지 않고 시간이 지나면 삭제됨
