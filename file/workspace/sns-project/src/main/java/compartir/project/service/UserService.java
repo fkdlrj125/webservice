@@ -80,7 +80,6 @@ public class UserService {
 			// 서버에 파일이 저장된 후 eclipse가 인식하기까지의 시간을 벌기 위해 thread를 잠시 정지합니다.
 			// eclipse 가 refresh를 자동으로 하게 만들기 위해 window -> preferences -> general -> workspace -> 첫번째인 refresh~~를 체크 설정해줍니다.
 //			System.out.println("Thread 정지");
-			try {Thread.sleep(2500);} catch (Exception e) {}
 //			System.out.println("Thread 재개");
 			user.setProfile("/image/profile/"+name);
 		}

@@ -20,6 +20,7 @@ import compartir.project.domain.User;
 import compartir.project.domain.UserPage;
 import compartir.project.service.AdminService;
 import compartir.project.service.PostService;
+import compartir.project.service.S3FileUploadService;
 import compartir.project.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,11 +32,13 @@ public class PostController{
 	private final PostService postService;
 	private final UserService userService;
 	private final AdminService adminService;
+	private final S3FileUploadService s3FileUploadService;
 	
-	public PostController(PostService postService, UserService userService, AdminService adminService) {
+	public PostController(PostService postService, UserService userService, AdminService adminService, S3FileUploadService s3FileUploadService) {
 		this.postService = postService;
 		this.userService = userService;
 		this.adminService = adminService;
+		this.s3FileUploadService = s3FileUploadService;
 	}
 	
 	@GetMapping("/create")
@@ -48,7 +51,8 @@ public class PostController{
 	
 	@PostMapping("/create")
 	public String createPost(@SessionAttribute User loginUser, @RequestParam(name="postImage", required = false) MultipartFile file, @RequestParam(name="postContent", required = false) String content, RedirectAttributes redirect) throws IllegalStateException, IOException {
-		PostData postForm = new PostData(loginUser.getUserId(),file, content);
+		String url = s3FileUploadService.upload(file);
+		PostData postForm = new PostData(loginUser.getUserId(),url, content);
 		Post savedPost = postService.create(postForm);
 		redirect.addAttribute("postId", savedPost.getPostId());
 		
@@ -99,7 +103,8 @@ public class PostController{
 	
 	@PostMapping("/{postId}/edit")
 	public String editPost(@PathVariable Long postId, @RequestParam(name="postContent", required=false) String modifiedContent, @RequestParam(name="postImage", required=false) MultipartFile modifiedImage, Model model) throws IllegalStateException, IOException {
-		PostData postForm = new PostData(modifiedImage, modifiedContent);
+		String url = s3FileUploadService.upload(modifiedImage);
+		PostData postForm = new PostData(url, modifiedContent);
 		postService.editPost(postForm, postId);
 		log.info("게시물 수정 완료");
 		return "redirect:/post/{postId}";

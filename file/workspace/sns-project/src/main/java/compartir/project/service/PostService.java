@@ -30,15 +30,9 @@ public class PostService {
 	 * @throws IllegalStateException 
 	 */
 	public Post create(PostData postForm) throws IllegalStateException, IOException {
-		MultipartFile uploadedFile = postForm.getPostImage();
+		String uploadedFile = postForm.getPostImage();
 		Post post = new Post();
-		if(!uploadedFile.getOriginalFilename().isEmpty()) {
-			String path = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\image\\post\\";
-			UUID uuid = UUID.randomUUID(); // 서버에 저장될 파일의 이름 중복 방지
-			String name = uuid +"_"+uploadedFile.getOriginalFilename();
-			post.setPostImage("/image/post/"+name);
-			uploadedFile.transferTo(new File(path, name)); // 물리적 위치에 저장하기
-		}
+		
 		// DB에 저장할 post 임시파일 생성
 		post.setUserId(postForm.getUserId());
 		post.setPostContent(postForm.getPostContent());
@@ -46,8 +40,6 @@ public class PostService {
 		Post savedPost = repository.save(post); // DB에 파일 저장
 		
 		// 서버에서 파일이 인식되는 시간 벌기
-		try {Thread.sleep(2500);} catch (Exception e) {}
-		
 		return savedPost;
 	}
 	
@@ -70,15 +62,7 @@ public class PostService {
 	public void editPost(PostData postForm, Long postId) throws IllegalStateException, IOException {
 		Post post = repository.findById(postId);
 		if(!postForm.getPostImage().isEmpty()) {
-			MultipartFile uploadedFile = postForm.getPostImage();
-			String path = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\image\\post\\";
-			
-			UUID uuid = UUID.randomUUID(); // 서버에 저장될 파일의 이름 중복 방지
-			String name = uuid +"_"+uploadedFile.getOriginalFilename();
-			
-			uploadedFile.transferTo(new File(path, name)); // 물리적 위치에 저장하기
-			
-			post.setPostImage("/image/post/"+name);
+			post.setPostImage(postForm.getPostImage());
 		}
 		if(!postForm.getPostContent().isEmpty()) {
 			post.setPostContent(postForm.getPostContent());

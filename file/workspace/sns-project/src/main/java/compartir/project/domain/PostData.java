@@ -8,18 +8,18 @@ import lombok.Setter;
 @Getter @Setter
 public class PostData {
 	public Long userId;
-	public MultipartFile postImage;
+	public String postImage;
 	public String postContent;
 	
-	public PostData(Long userId ,MultipartFile postImage, String postContent) {
+	public PostData(Long userId ,String url, String postContent) {
 		super();
 		this.userId = userId;
-		this.postImage = postImage;
+		this.postImage = url;
 		this.postContent = postContent;
 	}
 	
-	public PostData(MultipartFile postImage, String postContent) {
-		this.postImage = postImage;
+	public PostData(String url, String postContent) {
+		this.postImage = url;
 		this.postContent = postContent;
 	}
 }
