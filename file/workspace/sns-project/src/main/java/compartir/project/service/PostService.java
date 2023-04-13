@@ -30,12 +30,12 @@ public class PostService {
 	 * @throws IllegalStateException 
 	 */
 	public Post create(PostData postForm) throws IllegalStateException, IOException {
-		String uploadedFile = postForm.getPostImage();
 		Post post = new Post();
 		
 		// DB에 저장할 post 임시파일 생성
 		post.setUserId(postForm.getUserId());
 		post.setPostContent(postForm.getPostContent());
+		post.setPostImage(postForm.getPostImage());
 		post.setDate(LocalDate.now().toString());
 		Post savedPost = repository.save(post); // DB에 파일 저장
 		

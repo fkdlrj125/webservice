@@ -20,6 +20,7 @@ import compartir.project.domain.Post;
 import compartir.project.domain.User;
 import compartir.project.service.AdminService;
 import compartir.project.service.PostService;
+import compartir.project.service.S3FileUploadService;
 import compartir.project.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,11 +32,13 @@ public class ProfileController {
 	private final UserService userService;
 	private final PostService postService;
 	private final AdminService adminService;
+	private final S3FileUploadService s3FileUploadService;
 	
-	public ProfileController(UserService userService, PostService postService, AdminService adminService) {
+	public ProfileController(UserService userService, PostService postService, AdminService adminService, S3FileUploadService s3FileUploadService) {
 		this.userService = userService;
 		this.postService = postService;
 		this.adminService = adminService;
+		this.s3FileUploadService = s3FileUploadService;
 	}
 	
 	@GetMapping("/{userId}")
@@ -60,9 +63,9 @@ public class ProfileController {
 	}
 	
 	@PostMapping("/edit")
-	public String postEdit(@SessionAttribute User loginUser, @RequestParam(name="profileIcon", required=false) MultipartFile profileIcon, User updateUser, HttpServletRequest request, RedirectAttributes redirect) throws IllegalStateException, IOException {
-		String profile = userService.updateProfileInService(profileIcon,loginUser);
-		updateUser.setProfile(profile);
+	public String postEdit(@SessionAttribute User loginUser, @RequestParam(required=false) MultipartFile profileIcon, User updateUser, HttpServletRequest request, RedirectAttributes redirect) throws IllegalStateException, IOException {
+		String url = s3FileUploadService.uploadProfile(profileIcon);
+		updateUser.setProfile(url);
 		request.getSession().setAttribute("loginUser", userService.update(loginUser.getUserId(), updateUser));
 		redirect.addAttribute("userId", loginUser.getUserId());
 		return "redirect:/profile/{userId}";

@@ -69,26 +69,6 @@ public class UserService {
 		return updateUser;
 	}
 	
-	public String updateProfileInService(MultipartFile profile,User user) throws IllegalStateException, IOException {
-		if(!profile.getOriginalFilename().isEmpty()) {
-			String path = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\image\\profile\\";// 저장 경로
-			UUID uuid = UUID.randomUUID(); // 서버에 저장될 파일의 이름 중복 방지
-			String name = uuid +"_"+profile.getOriginalFilename(); // 서버에 저장될 파일 이름
-			
-			profile.transferTo(new File(path, name)); // 실제 서버에 저장
-			
-			// 서버에 파일이 저장된 후 eclipse가 인식하기까지의 시간을 벌기 위해 thread를 잠시 정지합니다.
-			// eclipse 가 refresh를 자동으로 하게 만들기 위해 window -> preferences -> general -> workspace -> 첫번째인 refresh~~를 체크 설정해줍니다.
-//			System.out.println("Thread 정지");
-//			System.out.println("Thread 재개");
-			user.setProfile("/image/profile/"+name);
-		}
-		// db에 수정 정보로 들어가기 위해 임시로 만든 유저 : 업데이트할 유저 내용 정보중 프로필 경로만 설정한 것입니다.
-		// 아래에 적혀있지 않은 setter들을 이용해 정보들을 모두 갖춘 유저 정보를 넘겨야합니다.
-		return user.getProfile();
-		// user.set~~~ 설정할 것
-	}
-	
 	public String searchPassword(String userName, String email) {
 		Optional<User> result = repository.findPassword(userName, email);
 		if(result.isEmpty())

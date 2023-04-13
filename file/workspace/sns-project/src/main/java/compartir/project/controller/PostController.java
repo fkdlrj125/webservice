@@ -51,7 +51,7 @@ public class PostController{
 	
 	@PostMapping("/create")
 	public String createPost(@SessionAttribute User loginUser, @RequestParam(name="postImage", required = false) MultipartFile file, @RequestParam(name="postContent", required = false) String content, RedirectAttributes redirect) throws IllegalStateException, IOException {
-		String url = s3FileUploadService.upload(file);
+		String url = s3FileUploadService.uploadPost(file);
 		PostData postForm = new PostData(loginUser.getUserId(),url, content);
 		Post savedPost = postService.create(postForm);
 		redirect.addAttribute("postId", savedPost.getPostId());
@@ -74,6 +74,7 @@ public class PostController{
 	
 	@PostMapping("/{postId}/del")
 	public String deletePost(@SessionAttribute User loginUser, @PathVariable Long postId,@RequestParam(defaultValue = "1") int currentPage,Model model) {
+		s3FileUploadService.fileDelete(postService.findPostById(postId).getPostImage());
 		postService.deletePost(postId);
 		if(adminService.adminCheck(loginUser.getUserId())) {
 			List<User> userList = userService.users();
@@ -103,10 +104,9 @@ public class PostController{
 	
 	@PostMapping("/{postId}/edit")
 	public String editPost(@PathVariable Long postId, @RequestParam(name="postContent", required=false) String modifiedContent, @RequestParam(name="postImage", required=false) MultipartFile modifiedImage, Model model) throws IllegalStateException, IOException {
-		String url = s3FileUploadService.upload(modifiedImage);
+		String url = s3FileUploadService.uploadPost(modifiedImage);
 		PostData postForm = new PostData(url, modifiedContent);
 		postService.editPost(postForm, postId);
-		log.info("게시물 수정 완료");
 		return "redirect:/post/{postId}";
 	}
 }

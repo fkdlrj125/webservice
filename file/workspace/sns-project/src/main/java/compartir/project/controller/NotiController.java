@@ -41,8 +41,6 @@ public class NotiController {
 	public String notiList(@SessionAttribute User loginUser, Model model,@RequestParam(defaultValue = "1") int currentPage) {
 		List<Noti> notiList = notiService.findAll();
 		model.addAttribute("loginUser", loginUser);
-		log.info("currentPage >> {}",currentPage);
-		log.info("notiList >> {}",notiList);
 		model.addAttribute("notiList", new NotiPage(notiList.size(), currentPage, 10, 10, notiList));
 		model.addAttribute("auth", adminService.adminCheck(loginUser.getUserId()));
 		return "noti/noti-list";
