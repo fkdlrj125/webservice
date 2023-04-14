@@ -36,6 +36,7 @@ public class PostService {
 		post.setUserId(postForm.getUserId());
 		post.setPostContent(postForm.getPostContent());
 		post.setPostImage(postForm.getPostImage());
+		log.info(postForm.getPostImage());
 		post.setDate(LocalDate.now().toString());
 		Post savedPost = repository.save(post); // DB에 파일 저장
 		
@@ -61,10 +62,10 @@ public class PostService {
 	 */
 	public void editPost(PostData postForm, Long postId) throws IllegalStateException, IOException {
 		Post post = repository.findById(postId);
-		if(!postForm.getPostImage().isEmpty()) {
+		if(postForm.getPostImage() != null) {
 			post.setPostImage(postForm.getPostImage());
 		}
-		if(!postForm.getPostContent().isEmpty()) {
+		if(postForm.getPostContent() != null) {
 			post.setPostContent(postForm.getPostContent());
 		}
 		post.setDate(LocalDate.now().toString());

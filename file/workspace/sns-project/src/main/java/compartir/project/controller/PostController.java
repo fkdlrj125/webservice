@@ -22,10 +22,8 @@ import compartir.project.service.AdminService;
 import compartir.project.service.PostService;
 import compartir.project.service.S3FileUploadService;
 import compartir.project.service.UserService;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@Slf4j
 @RequestMapping("/post")
 public class PostController{
 
@@ -74,7 +72,10 @@ public class PostController{
 	
 	@PostMapping("/{postId}/del")
 	public String deletePost(@SessionAttribute User loginUser, @PathVariable Long postId,@RequestParam(defaultValue = "1") int currentPage,Model model) {
-		s3FileUploadService.fileDelete(postService.findPostById(postId).getPostImage());
+		Post post = postService.findPostById(postId);
+		if(post.getPostImage()!=null) {
+			s3FileUploadService.fileDelete(post.getPostImage());
+		}
 		postService.deletePost(postId);
 		if(adminService.adminCheck(loginUser.getUserId())) {
 			List<User> userList = userService.users();
@@ -82,7 +83,6 @@ public class PostController{
 			model.addAttribute("userList", new UserPage(userList.size(), currentPage, 10, 10, userList));
 			return "users/admin";
 		}
-		// 보여줄 뷰 입력
 		return "redirect:/";
 	}
 	
@@ -104,9 +104,22 @@ public class PostController{
 	
 	@PostMapping("/{postId}/edit")
 	public String editPost(@PathVariable Long postId, @RequestParam(name="postContent", required=false) String modifiedContent, @RequestParam(name="postImage", required=false) MultipartFile modifiedImage, Model model) throws IllegalStateException, IOException {
-		String url = s3FileUploadService.uploadPost(modifiedImage);
-		PostData postForm = new PostData(url, modifiedContent);
+		Post post = postService.findPostById(postId);
+		String url = post.getPostImage();
+		PostData postForm;
+		if(!modifiedImage.isEmpty()) {
+			s3FileUploadService.fileDelete(post.getPostImage());
+			url = s3FileUploadService.uploadPost(modifiedImage);
+		}
+		postForm = new PostData(url,modifiedContent);
 		postService.editPost(postForm, postId);
 		return "redirect:/post/{postId}";
 	}
+//	사진X, 사진변경x, 내용변경X -> 원본유지
+//	사진x, 사진변경x, 내용변경o -> 사진유지, 내용변경
+//	사진x, 사진변경o, 내용변경o -> 사진변경, 내용변경
+	
+//	사진o, 사진변경x, 내용변경X -> 원본유지
+//	사진o, 사진변경o, 내용변경o -> 사진변경, 내용유지
+//	사진o, 사진변경o, 내용변경o -> 사진변경, 내용변경
 }

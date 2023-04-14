@@ -1,5 +1,8 @@
 package compartir.project.controller;
 
+import java.util.Collections;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import compartir.project.domain.Post;
 import compartir.project.domain.User;
 import compartir.project.service.AdminService;
 import compartir.project.service.PostService;
@@ -30,7 +34,10 @@ public class UserController {
 	
 	@GetMapping
 	public String index(@SessionAttribute(required = false) User loginUser, Model model) {
-		model.addAttribute("posts", postService.posts());
+		List<Post> posts = postService.posts();
+		Collections.reverse(posts);
+		
+		model.addAttribute("posts", posts);
 		model.addAttribute("postInfo", postService.postInfo());
 		model.addAttribute("loginUser",loginUser);
 		return "index";

@@ -1,6 +1,7 @@
 package compartir.project.controller;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +45,7 @@ public class ProfileController {
 	@GetMapping("/{userId}")
 	public String profile(@SessionAttribute(required = false) User loginUser, @PathVariable Long userId,Model model) {
 		List<Post> posts = postService.userPosts(userId);
+		Collections.reverse(posts);
 		
 		model.addAttribute("loginUser", loginUser);
 		model.addAttribute("profile", userService.findId(userId));
@@ -64,8 +66,11 @@ public class ProfileController {
 	
 	@PostMapping("/edit")
 	public String postEdit(@SessionAttribute User loginUser, @RequestParam(required=false) MultipartFile profileIcon, User updateUser, HttpServletRequest request, RedirectAttributes redirect) throws IllegalStateException, IOException {
-		String url = s3FileUploadService.uploadProfile(profileIcon);
-		updateUser.setProfile(url);
+		if(!profileIcon.isEmpty()) {
+			s3FileUploadService.fileDelete(loginUser.getProfile());
+			String url = s3FileUploadService.uploadProfile(profileIcon);
+			updateUser.setProfile(url);
+		}
 		request.getSession().setAttribute("loginUser", userService.update(loginUser.getUserId(), updateUser));
 		redirect.addAttribute("userId", loginUser.getUserId());
 		return "redirect:/profile/{userId}";
@@ -89,5 +94,3 @@ public class ProfileController {
 		return "user/profile";
 	}
 }
-
-// user목록에서 admin 제외

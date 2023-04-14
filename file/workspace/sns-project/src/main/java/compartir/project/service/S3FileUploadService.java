@@ -36,22 +36,30 @@ public class S3FileUploadService {
     }
     
     public String uploadPost(MultipartFile uploadFile) throws IOException{
-    	String url=defaultUrl+upload(uploadFile,"/post");
-    	return url;
+    	String fileUrl = upload(uploadFile,"/post");
+    	if(!fileUrl.isEmpty())
+    		return defaultUrl+fileUrl;
+    	return null;
+    	
     }
     
     public String uploadProfile(MultipartFile uploadFile) throws IOException{
-    	String url=defaultUrl+upload(uploadFile,"/profile");
-    	return url;
+    	String fileUrl = upload(uploadFile,"/profile");
+    	if(!fileUrl.isEmpty())
+    		return defaultUrl+fileUrl;
+    	return null;
     }
     
     public void fileDelete(String url) {
-    	url=url.split(".com/")[1];
+    	try {
+    		url=url.split(".com/")[1];
+    	} catch (Exception e) {} 
         amazonS3Client.deleteObject(new DeleteObjectRequest(bucket, url));
     }
 
     private String upload(MultipartFile uploadFile,String type) throws IOException {
         String origName = uploadFile.getOriginalFilename();
+        log.info(origName);
         if(!origName.isEmpty()) {
         	// 확장자를 찾기 위한 코드
             final String ext = origName.substring(origName.lastIndexOf('.'));

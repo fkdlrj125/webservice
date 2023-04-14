@@ -4,6 +4,8 @@ number = [100, 200, 100, 500, 200, 600, 300]
 
 # 1) 중복된 요소를 제거한 후, 오름차순 정렬
 # number = list(set(number))
+# number.sort()
+# 정렬을 보장하지 않기 때문에 정렬을 원한다면 정렬까지 하는 것이 좋음
 
 # number.sort()
 # del number[1:3]
@@ -21,8 +23,6 @@ del result[0:2]
 
 print(result)
 
-
-
 # 2) 요소 300 다음에 400 추가
-number.insert(number.index(300)+1,400)
+number.insert(number.index(300)+1, 400)
 print(number)

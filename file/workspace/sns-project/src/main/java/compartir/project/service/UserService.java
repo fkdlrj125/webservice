@@ -65,6 +65,9 @@ public class UserService {
 	}
 
 	public User update(Long updateId,User user) {
+		if(user.getProfile() == null) {
+			user.setProfile(repository.findById(updateId).get().getProfile());
+		}
 		User updateUser = repository.updateUser(updateId,user);
 		return updateUser;
 	}

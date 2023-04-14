@@ -97,7 +97,7 @@ public class JdbcTemplatePostRepository implements PostRepository {
 
 	@Override
 	public List<Post> findAll() {
-		return jdbcTemplate.query("select * from post order by post_id desc;", postRowMapper());
+		return jdbcTemplate.query("select * from post;", postRowMapper());
 	}
 
 	@Override

@@ -14,11 +14,9 @@ import compartir.project.domain.User;
 import compartir.project.domain.UserPage;
 import compartir.project.service.AdminService;
 import compartir.project.service.UserService;
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("/users")
-@Slf4j
 public class AdminController {
 	
 	private final UserService userService;
