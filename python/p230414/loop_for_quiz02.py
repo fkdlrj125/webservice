@@ -14,13 +14,20 @@ random.shuffle(castLots)
 #     else:
 #         print(f'{r+1}번은 {castLots[r]} 당첨! 축하!')
 
-count = 1
-for item in castLots:
+# count = 1
+# for item in castLots:
+#     if item == '꽝':
+#         print(f'{count}번은 {item}입니다.')
+#         break
+#     else:
+#         print(f'{count}번은 {item} 당첨! 축하!')
+#     count += 1
+
+for idx, item in enumerate(castLots, 1):
     if item == '꽝':
-        print(f'{count}번은 {item}입니다.')
+        print(f'{idx}번은 {item}입니다.')
         break
     else:
-        print(f'{count}번은 {item} 당첨! 축하!')
-    count += 1
+        print(f'{idx}번은 {item} 당첨! 축하!')
 
 print(castLots)

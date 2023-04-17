@@ -24,8 +24,18 @@ print('='*50)
 #         print(f'{r+1}번 학생은 {math[r]}점으로 합격입니다.')
 
 # 3번
-[print(f'{r+1}번 학생은 {math[r]}점으로 합격입니다.') for r in range(0,len(math)) if math[r] > 59]
+# [print(f'{r+1}번 학생은 {math[r]}점으로 합격입니다.') for r in range(0,len(math)) if math[r] > 59]
 
+
+# 4번
+# for idx, score in enumerate(math,1):
+#     if score > 59:
+#         print(f'{idx}번 학생은 {score}점으로 합격입니다.')
+
+for m in enumerate(math,1):
+    if m[1] > 59:
+        print(f'{m[0]}번 학생은 {m[1]}점으로 합격입니다.')
+    
 print('='*50, end='\n\n')
 
 # 문제 3. 60점 이상인 학생의 이름과 점수 출력

@@ -5,7 +5,7 @@ prompt = '''
 3. 목록
 4. 종료
 
-번호 선택 = '''
+번호 선택 ='''
 
 number = 0
 
@@ -16,7 +16,7 @@ number = 0
 
 # 방법2. 무한루프
 while True:
-    print(prompt,end=' ')
+    print(prompt, end=' ')
     number = int(input())
 
     if number == 4:

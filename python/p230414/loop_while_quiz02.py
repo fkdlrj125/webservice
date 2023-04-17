@@ -1,9 +1,10 @@
 
 # 문제 
 count = 1
-lt = []
+lt = list()
+# lt = []
 while True:
-    # print(f'[{count}번째] 1 이상의 정수 입력 ... ',end=' ')
+    # print(f'[{count}번째] 1 이상의 정수 입력 ...', end=' ')
     # lt.append(int(input()))
     # lt.append(int(input('[%d번째] 1 이상의 정수 입력 ... '%count)))
     # lt.append(int(input('[{}번째] 1 이상의 정수 입력 ... ').format(count)))
@@ -25,5 +26,7 @@ while True:
         break
     count += 1
 
-print(f'누적 합 : {sum(lt)}') 
-print(f'입력된 값 모두 출력 : {lt}')
+print('누적 합 :',sum(lt)) 
+# print(f'누적 합 : {sum(lt)}') 
+print(f'입력된 값 모두 출력 :',lt)
+# print(f'입력된 값 모두 출력 : {lt}')
