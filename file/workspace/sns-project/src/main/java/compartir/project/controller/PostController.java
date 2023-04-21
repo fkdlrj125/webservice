@@ -108,7 +108,8 @@ public class PostController{
 		String url = post.getPostImage();
 		PostData postForm;
 		if(!modifiedImage.isEmpty()) {
-			s3FileUploadService.fileDelete(post.getPostImage());
+			if(post.getPostImage() != null)
+				s3FileUploadService.fileDelete(post.getPostImage());
 			url = s3FileUploadService.uploadPost(modifiedImage);
 		}
 		postForm = new PostData(url,modifiedContent);

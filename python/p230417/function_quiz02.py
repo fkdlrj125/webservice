@@ -12,7 +12,7 @@
 # 함수 정의
 def add(n1, n2):
     # if type(n1) == type(n2):
-    #     print('덧셈 결과 : ',n1 + n2)
+    #     print('덧셈 결과 :', n1 + n2)
     # else:
     #     print('타입이 달라서 덧셈 불가능')
     

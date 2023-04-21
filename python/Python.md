@@ -10,6 +10,7 @@
     - Java의 메소드 = 함수
     - 파이썬은 2버전과 3버전의 문법이 다름
     - 파이썬은 메모리를 알아서 관리해 메모리 할당, 해제를 자동으로 처리
+    - 파이썬은 파이썬코드 외에 C나 C++로도 코드 제작이 가능하며 C나 C++로 작성한 코드는 보여지지 않는다
 
   [Type]
     - 정수형, 실수형은 있지만 크기가 고정되지 않음
@@ -46,6 +47,11 @@
       ○ 전역 변수 : 함수 외에 생성된 변수
       ○ 지역 변수 : 함수 내에 생성된 변수
 
+      <<클래스 내>>
+      ○ 인스턴스 변수 : 메소드 내에서 생성된 변수
+      ○ 클래스 변수 : 클래스 내에 생성된 변수
+                      static 변수와 동일
+
   [Operator]  
     [대입 연산자]
       = : 대입 연산자
@@ -81,6 +87,8 @@
     [조건 연산자]
       True일때 if 조건 else False일때
       - 조건이 True일 때 왼쪽 영역 실행 조건이 False일 때 else 오른쪽 영역 실행
+      - 조건 연산자에 True 와 False일 때 결과가 하나만 존재해야 함
+      - 조건 연산자에선 값이 여러 개 올 때 튜플로 묶어주지 않는다.
 
     [연산자]
       - del : 요소 삭제
@@ -92,26 +100,26 @@
 
   [function]
     [내장 함수]
-      - type(Object) - class 타입
+      ○ type(Object) - class 타입
 
-      - id(Object) - 주소값
+      ○ id(Object) - 주소값
 
-      - len(Object) - 길이
+      ○ len(Object) - 길이
 
-      - max(args,Iterable) - 최댓값
+      ○ max(args,Iterable) - 최댓값
 
-      - sum(Iterable) - 입력값의 합
+      ○ sum(Iterable) - 입력값의 합
 
-      - range(start, end, step) - 시작 위치 ~ 끝-1만큼 숫자 생성(튜플)
+      ○ range(start, stop, step) - 시작 위치 ~ 끝-1만큼 숫자 생성(튜플)
         - 끝 값만 입력하면 0 ~ 끝-1까지
         - 시작, 끝, 간격을 입력하면 시작 ~ 끝-1까지 증감폭만큼 증감하는 숫자 생성
           - 증감폭이 맞지 않으면 실행X
         - 많은 양의 데이터를 만드는 데 효율적이지 않음
 
-      - enumerate(여러 값, 시작 값) - 반복문이 실행될 때 자동으로 증가하는 값 생성
+      ○ enumerate(Iterable, start) - 반복문이 실행될 때 자동으로 증가하는 값 생성
         - 리턴 : 튜플
         - 기본 시작 값 : 0
-        
+
         ex) for score in enumerate(math):
               print(score)
             (0, 90)
@@ -120,10 +128,33 @@
             (3, 75)
             (4, 50)
 
+      ○ eval(str) - 입력받은 문자열을 정수, 실수로 구분
+
+      ○ '추가할 문자'.join(Iterable) - 요소 사이에 문자 추가
+
+      ○ isinstance(객체명, 클래스명) - 타입비교 - True/False 리턴
+        ex) isinstance(5,int)
+            True
+
+        여러 타입 비교 - or 연산
+        ex) isinstance(Child(),(Child, Parent))
+            True
+
+      ○ dir() - 파일의 정보를 리턴
+        ex) dir(pack.module)
+            ['Increment', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'show', 'value']
+
     [외장 함수]
       [random]
         - shuffle
           ex) random.shuffle(여러 값)
+        
+        - random
+          ○ uniform(start, stop) - min ~ max 사이의 실수 리턴 
+
+          ○ randrange(start, stop) - min ~ max 사이의 정수 리턴
+
+          ○ choice(Iterable) - 입력한 값들 중 랜덤으로 리턴
           
   [list]
     - [요소1, 요소2, 요소3, ...]
@@ -759,8 +790,8 @@
     - 터미널에서 입력받은 데이터는 외부에서 오는 데이터라 파이썬이 데이터를 받을 때 문자열로 데이터를 받음
 
     -[eval()]-
-      - eval(dict)
-      - 입력받은 딕셔너리를 정수, 실수로 구분
+      - eval(str)
+      - 입력받은 문자열을 정수, 실수로 구분
 
       =[여러 값 받기]=
         - ','로 여러 값 받기 가능
@@ -787,6 +818,8 @@
 
           def add(num):
           add(3, 5) -> Error
+
+    - 기본적으로 함수 오버로딩 불가능
 
     ● [함수 정의] 
       ○ def 함수명(매개변수, 매개변수):
@@ -854,17 +887,490 @@
         - locals()
 
   [File]
+    ● [모드]
+        ○ w - 쓰기(이전에 있는 내용을 지우고 내용을 덮어 씌움)
+        ○ a - 쓰기(이전에 있는 내용 뒤에 추가)
+        ○ r - 읽기(해당 파일의 내용을 읽어옴)
+
+    ● [인코딩 / 디코딩]
+        - 사람이 쓰는 언어 -> 컴퓨터 언어 : 인코딩 
+          컴퓨터 언어 -> 사람이 쓰는 언어 : 디코딩
+
+        - 고수준 언어(high level language) : Java, Python -> 사람이 쓰는 언어에 가까운 언어
+
+        - 저수준 언어(low level language) : c언어 -> 기계가 쓰는 언어에 가까운 언어
+
     ● [파일 쓰기]
-      1. open 함수 : 모드 - w, a
+      1. open 함수 : 모드 - w(write), a(append), r(read), x(exist)
         ○ open('경로\파일명.확장자 or 파일명.확장자, '모드')
           ex) file = open('new.txt', 'w')
-              - IDE마다 파일이 생성되는 위치가 다름
-                VSC는 최상위 경로에 파일 생성
+              - 상대경로는 IDE(IDLE)마다 파일이 생성되는 위치가 다름
+                VSC는 열려있는 폴더의 최상위 경로에 파일 생성
+                IDLE는 현재 위치에 파일 생성
 
-      2. write 함수 
+          ex) file = open('D:\webservice\python\p230418\gugudan.txt', 'a')
+              - 절대경로는 디스크 위치부터 시작
+              - 경로에 의도치 않은 이스케이프문자가 발생할 수 있어 처리를 해줘야함
+
+          - 리소스 할당
+          - 기본 모드 : r(읽기)
+          - 기본 인코딩 : cp949
+            - 가장 많이 쓰는 인코딩 : utf-8
+            - 인코딩 변경
+              ex) file = open('numberTwo.txt', 'a', encoding='utf-8')
+
+      2-1. write 함수 
         ○ open한 파일.write()
-            ex) file.write('new.txt', 'w')
+          ex) file.write('내용')
+
+        - w모드 : 기존에 있던 내용을 지우고 새로운 내용으로 덮어씀
+        - a모드 : 기존에 있던 내용에 새로운 내용을 붙임
+        - 기본적으로 줄바꿈 X -> 줄바꿈을 원하면 \n입력
+        - 파일에 적을 땐 숫자와 문자의 개념이 의미가 없기 때문에 모두 문자로 바꿔 적어줌
+
+      2-2. writelines 함수
+        ○ open한 파일.writelines(Iterable)
+          ex) gugudan.writelines(data)
 
       3. close 함수
-        ○ open('경로\파일명.확장자 or 파일명.확장자, '모드')
-            ex) open('new.txt', 'w')
+        ○ open한 파일.close()
+          ex) file.close()
+        
+        - 리소스 해제
+
+    ● [파일 읽기]
+      1. open 함수 : 모드 - r
+         ex) open('D:\webservice\python\p230418\gugudan.txt', 'r')
+
+      2. readline 함수, readlines 함수, read 함수
+        ○ readline()
+          - 라인 한 줄을 읽어온 후 해당 위치를 저장
+          ex) line = gugudan.readline()
+              line >> 2 * 1 = 2
+        
+        ○ readlines()
+          - 파일 전체 줄을 읽어온 후 저장
+          ex) lines = gugudan.readlines()
+          
+          - 파일의 모든 내용을 문자열로 묶은 후 리스트에 저장해 리턴
+
+         ○ read()
+          - 파일 전체 줄을 읽어온 후 저장
+          ex) lines = gugudan.read()
+
+          - 파일 모든 내용을 문자열로 묶은 후 리턴
+
+      3. close 함수
+
+    ● [With문]
+      ○ with open() as 변수:
+            명령어
+            명령어
+        ex) with open    ('D:\webservice\python\p230418\gugudan.txt', 'r') as gugudan:
+                lines = gugudan.read()
+                print(lines)
+                print(type(lines))
+
+        - close()를 내부적으로 호출
+
+  [Class]
+    - 관련이 있는 변수와 메소드(함수)로 이루어진 타입
+    - 클래스 멤버
+      - 변수 : 클래스 변수, 인스턴스 변수
+      - 메소드 : 클래스 메소드, 인스턴스 메소드
+        - 인스턴스 메소드 : 내부 -> self.메소드명
+                            외부 -> 클래스명.메소드명(주소), 참조변수명.메소드명()
+        - 클래스 메소드 : 클래스.메소드명()
+          - 외부에서 사용하기 위한 메소드
+        - 정적(static) 메소드 : 클래스.메소드명()
+          - 외부에서 사용하기 위한 메소드
+
+    ● [클래스 정의]
+      ○ class 클래스명:
+            코드
+
+      ex) class Student:
+              name
+              age
+
+              def greeting(self):
+                  print('안녕하세요.')
+
+    ● [인스턴스(객체) 생성]
+      ○ 변수명 = 클래스명()
+      
+      ex) hong = Student()
+          hong.greeting() -> hong에 저장된 주소(Student객체)가 인수로 넘어감
+    
+    ● [인스턴스 변수] 
+      - 메소드를 통해서만 생성 가능
+      - 접근 권한이 없기 때문에 외부에서 접근 가능
+
+      ○ def 메소드명(self, 매개변수명):
+            self.변수명 = 매개변수명
+
+      ex) def setName(self, name):
+              self.name = name
+
+    ● [클래스 변수]
+      - 클래스 내에 생성한 변수
+      - Java의 static 변수와 동일
+      - 클래스가 메모리에 로드될 때 클래스 변수 할당
+
+      ○ class 클래스명:
+            변수 생성
+
+        - 클래스명.변수명으로 사용
+
+      ex) class Person:
+              count = 1
+
+              def __init__(self):
+                  print('생성자 실행됨')
+                  print(f'{Person.count}번 사람 생성')
+                  Person.count += 1
+
+    ● [생성자]
+      - 객체가 생성될 때, 변수 초기화
+      - 개체가 생성될 때, 특정 메소드(기능) 실행
+      - 객체가 생성될 때 무조건 실행 X
+      - 생성자를 정의하지 않으면, 기본 생성자가 실행
+      - 생성자는 1개만 정의 가능
+      - 생성자명 : __init__
+        - 생성자를 메소드 호출로 사용 가능
+        ex) 변수.__init__()
+
+      ○ def __init__(self):
+            코드
+
+      - 생성자를 통한 인스턴스 생성
+      ex) def __init__(self, name):
+              print('생성자 실행됨!')
+              self.name = name
+
+      - 생성자내에서 다른 메소드 호출
+      ○ def __init__(self):
+            self.메소드명()
+
+    ● [메소드]
+      - 메소드 : class내에 정의된 함수
+      - 메소드 호출시 인수로 호출한 참조변수에 저장된 주소가 첫 번째로 ※※무조건※※ 넘어감
+      - 메소드는 ※※무조건※※ 주소를 받을 매개변수가 있어야 함
+        - 매개변수가 필요없을 때 보통 받아주는 매개변수명은 self
+      - 메소드는 객체 안에 있지 않음
+        - 클래스 정보 안에 메소드를 넣고 객체에는 해당 주소를 넣어주는 형식으로 작동
+        - 인스턴스 변수를 사용하기 위해선 인스턴스 주소가 필요하기 때문에 모든 메소드가 인스턴스 주소를 요구
+
+      - 모든 메소드는 기본적으로 클래스 메소드
+
+    ● [클래스 메소드]
+      - 데코레이터를 통해 클래스 메소드 지정
+      - 매개변수로 자동으로 클래스 타입을 받음
+      - 인스턴스 변수 사용 불가
+
+      ○ @classmethod  / decorator(데코레이터)
+        def 메소드명(cls): 
+
+      ● [클래스 메소드를 이용한 객체 생성]
+         ○ @classmethod
+            def 메소드명(cls): 
+                return cls()
+
+    ● [정적(static) 메소드]
+      - 자동으로 받는 매개변수 X
+      - 클래스 변수와 지역 변수만 사용 가능
+
+      ○ @staticmethod  / decorator(데코레이터)
+        def 메소드명(): 
+
+  [상속]
+    - 다중 상속 가능
+    - 메소드 오버라이딩 가능
+      - 상속관계에서 부모의 메소드 재정의 -> 선언부 그대로, 기능만 수정
+
+    ○ class 부모클래스:
+          멤버
+      
+      class 자식클래스(부모클래스, 부모클래스):
+          멤버
+
+    ● [부모 생성자 실행]
+      - 부모의 생성자를 자식의 생성자에서 호출
+      ○  super().__init__()
+        - 매개변수의 개수를 맞춰서 전달
+  
+  [module]
+    - 실행 단위(파이썬 파일)
+    - 파일에 함수 하나만 존재해도 하나의 모듈
+    - 모듈안엔 서로 연관된 요소들이 존재해야 한다
+    - __pycache__ : import할 때 필요한 정보
+    
+    ● [모듈 읽어오기]
+      ○ 1) import 모듈명
+      ex) import random
+          random.random()
+      
+      ○ 2) from 모듈명 import 모듈 안 멤버(변수명, 함수명, 클래스명)
+      ex) from random import random
+          random()
+      ex) from random import * / 모든 멤버 import
+
+      ○ 3) import 모듈명 as(alias) 별칭 - 관용적으로 쓰는 alias가 아니라면 가독성이 떨어질 수 있다
+      ex) import random as rd
+          rd.random()
+
+    ● [import]
+      - 해당 모듈을 무조건 실행시킨 후 안에 있는 정보를 메모리에 올림
+
+    ● [__name__]
+      - 실행 주체의 이름을 저장한 내장 변수
+      - 실행 대상 
+        - 직접(파일에서 실행)      : __main__
+        - 간접(import를 통한 실행) : 모듈명(파일명)
+      
+      ● [__name__을 통한 test code]
+        ○ if __name__ == '__main__':
+              코드
+  
+  [package]
+    - 관련있는 모듈(파일)을 모아놓은 것
+    - site-packages : 별도로 설치하는 라이브러리가 저장되는 패키지
+    
+    ● [패키지 안 module 접근]
+      ○ 1) import 패키지명.모듈명
+      ex) import pack.module
+          pack.module.value
+      
+      ○ 2-1) from 패키지명 import 모듈명
+      ex) from pack import module
+          module.value
+
+      ○ 2-2) from 패키지명 import 모듈명 as 별칭
+      ex) from pack import module as md
+          md.value
+
+      ○ 3) import 패키지명.모듈명 as(alias) 별칭
+      ex) import pack.module as md
+          md.value
+
+    - __init__.py : 패키지를 import할 때 자동으로 실행되는 파이썬 파일(클래스의 생성자와 같은 역할)
+
+  [exception]
+    - 프로그램이 실행되다 비정상 종료되는 상황을 예방하기 위해 예외처리를 해줌
+    - 예외 회피 : 예외가 발생했을 때 원하는 작업이 없는 상태
+
+    ○ [필수]
+      try:
+          예외 발생 가능한 명령어
+      except: - 여러 개 사용 가능
+          예외 발생했을 때, 실행할 명령어
+      except 에러클래스명: 
+          예외 발생했을 때, 실행할 명령어
+      except 에러클래스명 as 변수명: - 예외 발생시 출력할 문구 저장
+          예외 발생했을 때, 실행할 명령어
+      [선택]
+      else:
+          예외가 발생하지 않았을 때, 실행할 명령어
+      finally:
+          예외 발생 여부와 상관없이, 마지막에 실행할 명령어
+
+  [Regex]
+    - 특정한 규칙을 가진 문자열의 패턴을 표현하는 데 사용하는 표현식
+
+    ○ import re
+      변수 = re.compile('정규 표현식')
+      변수.함수명('문자열')
+      
+    ● [정규 표현식 함수]
+      ○ match() - 시작 문자열이 일치한지 확인
+      ex) data = '''abc mart food2 10days'''
+          cp = re.compile('a')     # a를 찾으세요
+          print('1) match :', cp.match(data))
+          1) match : <re.Match object; span=(0, 1), match='a'>
+            - span : 데이터의 위치
+      
+      ○ search() - 데이터에서 일치하는 데이터가 있는지 확인(첫 번째로 일치한 데이터만)
+      ex) print('2) search :', cp.search(data))
+          2) search : <re.Match object; span=(0, 1), match='a'>
+
+      ○ findall() - 데이터에서 일치하는 데이터가 있는지 확인(모든 데이터)
+      ex) print('3) findall :', cp.findall(data))
+          3) findall : ['a', 'a', 'a']
+            - 리스트 리턴
+            - 위치 정보 X
+
+      ○ finditer() - 데이터에서 일치하는 데이터가 있는지 확인(모든 데이터)
+      ex) print('4) finditer :', cp.finditer(data))
+          4) finditer : <callable_iterator object at 0x000001F5ACD63520>
+            - callable_iterator 클래스로 위치 정보 객체들을 묶어서 리턴
+
+            <re.Match object; span=(0, 1), match='a'>
+            <re.Match object; span=(5, 6), match='a'>
+            <re.Match object; span=(18, 19), match='a'>
+    
+    ● [정규 표현식]
+      ○ [] : or 개념 
+      ex) [ac] : a 또는 c
+
+      ○ - : ~부터 ~까지 | [] 안에서만 사용 가능
+      ex) [a-z] : a부터 z까지
+      ex) [a-zA-Z] : a부터 z까지 or A부터 Z까지
+
+      ○ ^ : 부정(not) | [] 안에서만 사용 가능
+      ex) [a-z] : a부터 z까지가 아닌것
+
+    ● [메타 문자]
+      - 메타 : 데이터의 데이터
+      - 메타 문자 : 원래 문자가 갖는 의미가 아닌 특별한 용도로 사용하는 문자
+      - 바로 앞에 있는 문자 하나만 적용
+      - []안에선 그냥 문자
+
+      ○ [반복]
+        - * : 0개 이상
+        - + : 1개 이상
+        - {n} : n개
+        - {m,n} : m~n개 - 공백 X
+        - ? : 0~1개
+
+      ○ [자리]
+        - . : 한 자리, 모든 문자(\n 제외)
+        - ^ : 문자열 시작
+
+    ○ [문자 표현식]
+      - \w : [a-zA-z0-9] - 모든 문자(한글도 가능)
+      - \W : [^a-zA-z0-9] - 공백, 기호, 줄바꿈
+      - \d : [0-9] 
+      - \D : [^0-9]
+      - \s : [ \t\n\r\f\v] - 공백
+      - \S : [^ \t\n\r\f\v]
+  
+  [File System]
+    - __file__ : 현재 파일의 저장경로와 파일명 저장
+    
+    ● [os]
+      ○ os.path.dirname(경로) : 디렉토리 경로를 추출
+      ex) os.path.dirname(__file__)
+          d:/webservice/python/p230421
+    
+      ○ os.path.join(경로, 추가할 문자열) : 경로에 추가할 문자열 연결 - 인수로 추가할 문자열 여러 개 가능
+      ex) os.path.join(current_path, 'gugudan.txt')
+          d:/webservice/python/p230421\gugudan.txt
+        - 내장함수 join과 다른 함수
+      
+      ○ os.getcwd() - 현재 경로(파일이 속한 디렉토리의 상위 디렉토리 경로)
+      ex) os.getcwd()
+          D:\webservice\python
+
+      ○ os.chdir(경로) - 인식 경로 변경 = 상대 경로 변경
+
+      ○ os.listdir(경로) - 디렉토리 내 요소(기본 : 상대 경로)
+      ex) os.listdir()
+          ['.vscode', 'new.txt', 'note.md', 'number.txt', 'numberTwo.txt', 'p230411', 'p230412', 'p230413', 'p230414', 'p230417', 'p230418', 'p230419', 'p230420', 'p230421', 'Python.md', 'web.md']
+      
+      ○ os.path.exists(경로, 파일 경로) - 경로, 파일 존재 여부 확인
+      ex) os.path.exists(r'd:\test')
+          True
+
+      - 파일 존재 확인
+      ex) os.path.exists(r'd:\test\ex.txt')
+          True          
+      
+      ○ os.mkdir(경로+디렉토리명) - 디렉토리 생성
+        - 해당 경로에 디렉토리가 존재한다면 Error
+        - 계층 구조로 디렉토리를 생성하면 Error
+      
+      ○ os.makedirs(경로+디렉토리명) - 디렉토리 생성
+        - 계층 구조로 디렉토리 생성 가능
+        - 매개변수로 Error 관리 처리
+          exist_ok : default=False
+            - True로 설정하면 경로가 존재해도 에러 발생 X
+
+      ○ os.rmdir(경로) - 디렉토리 삭제
+        - 계층 구조인 디렉토리는 삭제 불가능
+        - 최하위 디렉토리만 삭제 가능
+
+      ○ os.remove(경로+파일명) - 파일 삭제
+
+      ○ os.removedirs(경로) - 디렉토리 삭제
+        - 디렉토리가 모두 비어 있어야 가능
+        - 최하위 디렉토리 경로를 넣어줘야 모두 삭제
+
+    ● [shutil]
+      ○ shutil.rmtree(경로) - 디렉토리 삭제
+        - 디렉토리가 비어 있지 않아도 삭제 가능
+        - 상위 디렉토리 경로를 넣어줘도 하위 디렉토리까지 삭제 가능
+
+  [crawling]
+    - 크롤링 : 사이트(HTML)의 기본적인 정보(title, description등)을 평상시에 수집하는 행위
+    - 스크래핑 : 웹 사이트의 특정한 정보(element)들을 수집하는 행위
+
+    - 실제 웹 페이지는 가볍게 만들기 위해 엔터를 제거한 후 올리기도 하기 때문에 사이트 분석이 중요
+  
+    ● [BeautifulSoup] : HTML의 계층 구조를 Python에서 표현하기 위한 라이브러리
+      - pip install beautifulsoup4
+      - pip : 라이브러리 설치를 위한 패키지
+      - 패키지를 읽을 때 __init__.py가 자동으로 실행
+
+      [함수]
+        ● 객체 생성
+          - BeautifulSoup(페이지, parser)
+        ex) soup = BeautifulSoup(html, 'html.parser')
+            - 페이지를 계층구조로 표현
+        - 웹 페이지는 xml, html 중 하나로 구현
+
+        ◈ parsing : 문자열을 token(어휘 분석 단위=태그)으로 분해하고 그것들로 이루어진 Parse tree(token으로 분해된 태그들로 만들어진 트리)를 만드는 과정
+        ◈ parser : parsing을 하는 프로그램
+
+        ● element 접근
+          1. 태그명
+            ○ 객체.태그명.태그명.태그명
+            ex) soup.html.body.h1
+            <h1>BeautifulSoup 연습합니다.</h1>
+
+          2. select 함수
+            ○ 객체.select(선택자를 통한 접근)
+            - 선택자를 통한 엘리먼트 접근
+            - 리턴 : bs4.element.ResultSet
+        
+        ● content 추출
+          - 엘리먼트에 직접 접근 가능하지만 가장 처음 만나는 엘리먼트만 접근 가능
+
+          1. text 변수
+            ○ 객체.태그명.태그명.text
+            ex) soup.html.body.h1.text
+            BeautifulSoup 연습합니다.
+            - 리턴 : str
+            - property(get_text) -> get_text의 리턴값
+            - content가 엘리먼트일 때 추출 가능
+
+          2. string 변수
+            ○ 객체.태그명.태그명.string
+            ex) soup.html.body.h1.string
+            BeautifulSoup 연습합니다.
+            - 리턴 : bs4.element.NavigableString
+            - content가 엘리먼트일 때 추출 불가
+
+          3. get_text() 함수
+            ○ 객체.태그명.태그명.get_text()
+            ex) soup.html.body.h1.get_text()
+            BeautifulSoup 연습합니다.
+            - 리턴 : str
+            - content가 엘리먼트일 때 추출 가능
+
+          4. getText 변수
+            ○ 객체.태그명.태그명.getText()
+            ex) soup.html.body.h1.getText()
+            BeautifulSoup 연습합니다.
+            - get_text메소드 주소를 담은 변수
+            - 리턴 : str
+            - content가 엘리먼트일 때 추출 가능
+          
+        ● 형제 추출
+          1. next_sibling 변수
+            ○ 엘리먼트.next_sibling
+            ex) p2 = p.next_sibling
+                \n
+            ex) p2 = p.next_sibling.next_sibling
+                p2 >> <p>연습 중2</p>
+            - 바로 다음 요소 추출
+
