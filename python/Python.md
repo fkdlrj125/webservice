@@ -890,6 +890,7 @@
     ● [모드]
         ○ w - 쓰기(이전에 있는 내용을 지우고 내용을 덮어 씌움)
         ○ a - 쓰기(이전에 있는 내용 뒤에 추가)
+        ○ x - 쓰기(해당 파일이 존재하지 않으면 작성)
         ○ r - 읽기(해당 파일의 내용을 읽어옴)
 
     ● [인코딩 / 디코딩]
@@ -941,6 +942,7 @@
     ● [파일 읽기]
       1. open 함수 : 모드 - r
          ex) open('D:\webservice\python\p230418\gugudan.txt', 'r')
+         - 인코딩마다 같은 표현도 값이 다르기 때문에 파일을 열 때 인코딩을 맞춰서 열어줘야 한다
 
       2. readline 함수, readlines 함수, read 함수
         ○ readline()
@@ -1156,6 +1158,8 @@
     - __init__.py : 패키지를 import할 때 자동으로 실행되는 파이썬 파일(클래스의 생성자와 같은 역할)
 
   [exception]
+    - Error : 예측 가능한 예외
+      - Error가 발생하면 자동으로 예외 클래스로 객체를 생성
     - 프로그램이 실행되다 비정상 종료되는 상황을 예방하기 위해 예외처리를 해줌
     - 예외 회피 : 예외가 발생했을 때 원하는 작업이 없는 상태
 
@@ -1234,9 +1238,9 @@
 
       ○ [자리]
         - . : 한 자리, 모든 문자(\n 제외)
-        - ^ : 문자열 시작
+        - ^ : 문자열 시작 - []안에선 부정
 
-    ○ [문자 표현식]
+    ● [문자 표현식]
       - \w : [a-zA-z0-9] - 모든 문자(한글도 가능)
       - \W : [^a-zA-z0-9] - 공백, 기호, 줄바꿈
       - \d : [0-9] 
@@ -1305,11 +1309,15 @@
     - 스크래핑 : 웹 사이트의 특정한 정보(element)들을 수집하는 행위
 
     - 실제 웹 페이지는 가볍게 만들기 위해 엔터를 제거한 후 올리기도 하기 때문에 사이트 분석이 중요
+
+    - 서버에 브라우저를 통한 요청이 아닌 파이썬 파일을 통한 요청을 하기 때문에 응답이 거부될 수 있다 
+      - 헤더 정보 추가
   
     ● [BeautifulSoup] : HTML의 계층 구조를 Python에서 표현하기 위한 라이브러리
       - pip install beautifulsoup4
       - pip : 라이브러리 설치를 위한 패키지
       - 패키지를 읽을 때 __init__.py가 자동으로 실행
+      - BeautifulSoup을 통해 parsing한 데이터는 실제 데이터와 차이가 있을 수도 있다
 
       [함수]
         ● 객체 생성
@@ -1328,10 +1336,37 @@
             <h1>BeautifulSoup 연습합니다.</h1>
 
           2. select 함수
-            ○ 객체.select(선택자를 통한 접근)
-            - 선택자를 통한 엘리먼트 접근
+            ○ 객체(태그 타입도 사용 가능).select(선택자를 통한 접근)
+            - 선택자를 통한 엘리먼트 접근(여러 개)
             - 리턴 : bs4.element.ResultSet
-        
+              - ResultSet이지만 리스트와 동일
+          
+          2-1. select_one 함수
+            ○ 객체.select_one(선택자를 통한 접근)
+            - 선택자를 통한 엘리먼트 접근(한 개)
+            - 리턴 : bs4.element.Tag
+            - 가상 클래스 사용 가능
+            ex) soup.select_one('div h2:nth-of-type(1)')
+
+          3. find_all 함수
+            ○ 객체.find_all(name, attrs, recursive, string, limit, 가변매개변수)
+            - 태그, 속성, content를 통한 접근
+            - 리턴 : bs4.element.ResultSet
+
+            [매개 변수]
+              - name : 태그
+              - attrs : 속성
+                - attrs의 타입 : dict 
+                - 딕셔너리로 묶어서 전달하는 게 아니라면 키는 변수로 취급
+                ex) a_all_02_02 = soup.find_all(id=True)
+              - recursive : true(default) - 모든 자손 탐색
+                            false         - 직계 자손 탐색
+              - string : content
+
+          3-1. find 함수
+            ○ 객체.find(name, attrs, recursive, string, 가변매개변수)
+            - 리턴 : bs4.element.Tag
+
         ● content 추출
           - 엘리먼트에 직접 접근 가능하지만 가장 처음 만나는 엘리먼트만 접근 가능
 
@@ -1374,3 +1409,29 @@
                 p2 >> <p>연습 중2</p>
             - 바로 다음 요소 추출
 
+    ● [requests]
+      - 브라우저가 아닌 코드에서 서버에 연결하기 위한 라이브러리
+      
+      ● 요청
+        ○ requests.get(주소)
+          - 서버에 request 요청을 보냄
+
+        ○ requests.get().content
+          - html파일을 읽어옴
+          - binary로 읽어옴
+          - type : bytes
+
+        ○ requests.get().text
+          - html파일을 읽어옴
+          - 문자로 읽어옴
+          - type : str
+
+    ● [urllib.request]
+      ● 요청
+        ○ urllib.request.urlopen(주소)
+          - type : http.client.HTTPResponse
+          - 응답을 객체로 저장
+
+        ○ urllib.request.urlopen(주소).read()
+          - binary로 읽어옴
+          - type : bytes

@@ -7,13 +7,16 @@
 import re
 
 # 0 ~ 9, - 을 1개 이상 포함한 문자열 탐색
-data = re.compile('[0-9-]+')
-
+# data = re.compile('[\d-]+')
+data = re.compile('\d{0,3}-?\d{3,4}-\d{4}')
 phoneNumber = []
-with open('D:\\webservice\\python\\p230421\\gangnam.txt', 'r') as file:
-    for line in data.findall(file.read()):
-        if len(line) > 8:
-            phoneNumber.append(line)
+
+# 파일의 크기가 클 때 open하는데 시간이 오래 걸릴 수 있다
+with open('D:\\webservice\\python\\p230421\\gangnam.txt', 'r') as gangnam:
+    phoneNumber = data.findall(gangnam.read())
+    # for line in data.findall(gangnam.read()):
+        # if len(line) > 8:
+        # phoneNumber.append(line)
 
 with open('D:\\webservice\\python\\p230421\\phoneNumber.txt', 'a') as file:
     for num, number in enumerate(phoneNumber, 1):

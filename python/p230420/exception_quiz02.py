@@ -19,6 +19,8 @@ try:
             file.write(f'{num}. {data}\n')
 except:
     print('파일이 이미 존재합니다.')
+
+print('** 프로그램 종료 **')    # 종료를 시각적으로 나타냄
     
 # 추가 문제 1.
 # with open('D:\\webservice\\python\\number.txt', 'r') as numbers:

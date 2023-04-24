@@ -27,19 +27,3 @@ soup = BeautifulSoup(html, 'html.parser')
 h2_all_01 = soup.select('html > body > div > h2')
 print('모든 h2 추출 1 :', h2_all_01)
 print('타입 :',type(h2_all_01))
-
-# 방법 2 - 자손을 통한 접근
-h2_all_02 = soup.select('body h2')
-print('모든 h2 추출 2 :', h2_all_01)
-print('타입 :',type(h2_all_01))
-
-# 방법 3 - 자손을 통한 접근
-h2_all_03 = soup.select('body h2')
-print('모든 h2 추출 2 :', h2_all_01)
-print('타입 :',type(h2_all_01))
-
-# 방법 4 - 자손을 통한 접근
-h2_all_04 = soup.select('body h2')
-print('모든 h2 추출 2 :', h2_all_01)
-print('타입 :',type(h2_all_01))
-
