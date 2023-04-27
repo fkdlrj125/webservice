@@ -28,6 +28,13 @@
 2. 순서(절차)
 3. 진행
 
+requests, urllib.request 요청 차이
+
+
+
+
+
+
 
 
 

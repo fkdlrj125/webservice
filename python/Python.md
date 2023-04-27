@@ -914,7 +914,7 @@
               - 경로에 의도치 않은 이스케이프문자가 발생할 수 있어 처리를 해줘야함
 
           - 리소스 할당
-          - 기본 모드 : r(읽기)
+          - 기본 모드 : r(읽기) + t(문자)
           - 기본 인코딩 : cp949
             - 가장 많이 쓰는 인코딩 : utf-8
             - 인코딩 변경
@@ -1288,6 +1288,7 @@
         - 매개변수로 Error 관리 처리
           exist_ok : default=False
             - True로 설정하면 경로가 존재해도 에러 발생 X
+      - 폴더 경로를 만들 때 폴더 마지막엔 \를 붙여주는 게 좋음
 
       ○ os.rmdir(경로) - 디렉토리 삭제
         - 계층 구조인 디렉토리는 삭제 불가능
@@ -1311,13 +1312,26 @@
     - 실제 웹 페이지는 가볍게 만들기 위해 엔터를 제거한 후 올리기도 하기 때문에 사이트 분석이 중요
 
     - 서버에 브라우저를 통한 요청이 아닌 파이썬 파일을 통한 요청을 하기 때문에 응답이 거부될 수 있다 
-      - 헤더 정보 추가
-  
+      - user-agent 정보 추가
+
+    - 프로그램을 통한 요청이 사람이 요청하는 것보다 훨씬 빠름 -> 프로그램이 무분별한 크롤링을 하게 되면 서버 입장에선 너무 많은 요청을 처리하게 돼 부담이 생김
+
+    - 루트 디렉토리내 robots.txt내 규칙을 준수하는 것이 좋음
+      - robots.txt가 없다면 모든 크롤링을 허용
+
+    - 시간에 따라 웹 사이트의 구조가 달라질 수도 있기 때문에 확인 해줘야 한다
+
     ● [BeautifulSoup] : HTML의 계층 구조를 Python에서 표현하기 위한 라이브러리
       - pip install beautifulsoup4
       - pip : 라이브러리 설치를 위한 패키지
       - 패키지를 읽을 때 __init__.py가 자동으로 실행
       - BeautifulSoup을 통해 parsing한 데이터는 실제 데이터와 차이가 있을 수도 있다
+      - ※태그의 속성은 딕셔너리 형태로 관리※
+      ex) a = {'href' : '주소'}
+      - 웹 페이지에서 JavaScript를 통해 처리되는 동적 데이터는 페이지를 통해 접근이 불가
+        [해결 방법]
+        - 동적 크롤링
+        - 데이터를 직접 요청
 
       [함수]
         ● 객체 생성
@@ -1330,7 +1344,7 @@
         ◈ parser : parsing을 하는 프로그램
 
         ● element 접근
-          1. 태그명
+          1. 태그명 - 태그를 변수로 취급
             ○ 객체.태그명.태그명.태그명
             ex) soup.html.body.h1
             <h1>BeautifulSoup 연습합니다.</h1>
@@ -1411,27 +1425,259 @@
 
     ● [requests]
       - 브라우저가 아닌 코드에서 서버에 연결하기 위한 라이브러리
-      
-      ● 요청
-        ○ requests.get(주소)
-          - 서버에 request 요청을 보냄
+      - 서버가 정상적인 응답을 하지 않아도 HttpCode 200이 나오기 때문에 확인이 필요
 
-        ○ requests.get().content
-          - html파일을 읽어옴
+      ● [요청]
+        ○ requests.get(주소)
+          - 데이터를 전송할 때 딕셔너리 형태로 전송
+          - 서버에 request 요청을 보냄
+          - 헤더 추가 가능
+          - user-agent의 정보가 없음
+          - 리턴 : requests.model.Response
+
+        ○ Response.get().content
           - binary로 읽어옴
           - type : bytes
 
-        ○ requests.get().text
-          - html파일을 읽어옴
+        ○ Response.get().text
           - 문자로 읽어옴
           - type : str
+        
+        ○ Response.json()
+          - 서버한테 받은 Response를 json으로 변환
 
     ● [urllib.request]
-      ● 요청
+      ● [요청]
         ○ urllib.request.urlopen(주소)
           - type : http.client.HTTPResponse
+          - 데이터를 전송할 때 바이너리 형태로 전송
+          - 서버 측에서 받은 응답 데이터를 메모리에 저장
           - 응답을 객체로 저장
+          - 헤더 추가 불가능
 
         ○ urllib.request.urlopen(주소).read()
-          - binary로 읽어옴
+          - 서버 측에서 보내주는 형태에 따라 달라짐 보통 binary
           - type : bytes
+        
+      ● [이미지 다운로드]
+        ○ urllib.request.urlopen(이미지 주소)
+          - 데이터를 메모리에 저장하기 때문에 데이터를 읽어온 후 저장
+          - 이미지 파일이 바이너리기 때문에 저장할 때 바이너리 파일로 저장
+          ex) open(경로, 'wb')
+
+        ○ urllib.request.urlretrive(이미지 주소, 저장 경로+파일명)
+          - 서버 측에서 받은 데이터를 바로 저장
+
+    ● [pandas]
+      - 테이블 구조를 쉽게 가져오는 라이브러리
+      - 분석할 때 사용
+      - DataFrame에 자동으로 인덱스 추가
+      - 정수가 들어오는 컬럼에 결측치(값을 알 수 없는 데이터)가 있다면 실수로 바뀜
+      
+      ● [함수]
+        ○ pandas.read_html(주소, 인코딩)
+          - 해당 주소에서 테이블 엘리먼트를 자동으로 추출
+          - 함수가 실행될 때 lxml라이브러리 import함
+          - 서버에서 보내주는 데이터의 인코딩을 맞춰줘야 함
+          리턴 : 리스트
+            - 요소 타입 : pandas.core.frame.DataFrame
+
+        ○ pandas.DataFrame({키:값})
+          - DataFrame 생성
+          - 키가 column 값이 row
+
+        ○ pandas.DataFrame([[요소1], [요소2]], columns=Iterable)
+          - DataFrame 생성
+          - 요소 1개가 로우 1개
+          - 컬럼명을 직접 지정(Iterable)
+
+        ○ pandas.json_normalize(json)
+          - json을 DataFrame으로 생성
+        
+        ○ DataFrame.to_csv(저장경로)
+          - DataFrame을 쓰기 작업
+          - csv파일로 생성(excel파일 아님)
+          - 기본 쓰기 모드 : w
+
+          ◎ 매개변수
+            - index(bool) : 인덱스 활성/비활성
+            - header(bool) : 컬럼명(가장 윗 줄) 활성/비활성
+            - mode(Filewritemode) : 파일 쓰기 모드 설정
+
+    ● [jupyter notebook]
+      - anaconda 플랫폼을 통해 사용
+        - 기본 환경(base)이 아닌 가상 환경을 사용하는 것이 좋음
+          - 가상 환경에서 커널을 생성해 다른 환경으로 사용
+        - 기본 환경(base)에 자동으로 라이브러리가 설치되기 때문에 라이브러리를 설치할 때 충돌 발생
+      
+      - 로컬보단 서버에 설치해서 사용하는 것이 메모리나 CPU 성능을 최대한 사용할 수 있기 때문에 서버에 설치하는 것이 효율적이다
+
+      - anaconda prompt의 시작 위치를 원하는 경로로 변경 가능
+        - anaconda prompt 실행파일 -> 속성 -> 시작위치
+      
+      - ※ 메모리에서 완전히 제거하려면 Running에 들어가 shutdown ※
+
+      - css와 json파일로 스타일 변경 가능
+
+      - 상대 경로 : 현재 디렉토리
+
+      ● [anaconda 명령어]
+        ○ conda info -e 
+          아나콘다 환경 확인
+
+        ○ conda list
+          현재 설치된 라이브러리
+
+        ○ conda create --name 이름 python=버전
+          가상 환경 생성
+          -n  : name
+          - 파이썬 버전 필수
+          - jupyter notebook 설치
+            ○ pip install jupyter notebook
+
+        ○ conda search python
+          설치할 수 있는 파이썬 확인
+
+        ○ conda activate 이름
+          가상 환경 활성화
+
+        ○ conda deactivate
+          가상 환경 비활성화
+
+        ○ conda remove -n 이름 --a
+          가상 환경 삭제
+          --a : all
+
+        ○ python -m ipykernel install --user --name 가상환경이름 --display-name 커널명
+          커널 생성
+
+        ○ jupyter notebook
+          jupyter notebook 실행
+          - 실행된 경로가 최상위 경로로 인식
+
+        - New -> Python3 클릭
+          - anaconda prompt로 서버에 백그라운드로 연결돼 있어야 가능
+          - notebook의 python파일은 확장자가 .ipynb
+          - auto save 가능
+          - 다른 쉘에서 만든 변수도 메모리에 올라와 있기 때문에 다른 쉘에서 사용 가능
+
+          ● command 모드 : 파랑
+              ○ 모드 전환 : enter
+              ○ 새 쉘 추가(아래) : b
+              ○ 새 쉘 추가(위) : a
+              ○ 쉘 삭제 : dd
+              ○ 쉘 병합 : shift + m
+              ○ 쉘 나누기 : ctrl + shift + '-'
+                - 커서 위치
+              ○ 쉘 복사 : c
+              ○ 쉘 붙여넣기 : v
+
+          ●  edit 모드 : 초록
+              - 쉘 단위로 실행하기 때문에 위에서부터 실행하지 않아도 됨 
+                - 요청이 있는 코드에서 실행할 때마다 매 번 요청을 하지 않아도 된다
+
+              - 쉘에서 실행하기 때문에 변수명만 적어도 출력 가능
+                - 하나만 출력 가능
+                - DataFrame타입을 그냥 출력할 때 자동으로 표를 만들어 출력
+                - print 사이에서 출력하면 잘 안 나옴
+
+              - 모든 작업이 끝나고 나면 정리 필수
+
+              ○ 모든 전환 : esc
+              ○ 실행 : ctrl + enter 
+                - 현재 쉘
+              ○ 실행 : shift + enter 
+                - 현재 쉘 실행 후 아래 쉘로 이동(없다면 추가)
+              ○ 실행 : alt + enter
+                - 현재 쉘 실행 후 아래 쉘 추가
+              ○ 자동 완성 : tab
+              ○ 함수 정보 : shift + tab
+              ○ 라이브러리 설치 : !pip install 라이브러리
+                - jupyter notebook이 업데이트 되면서 !가 없어도 실행 가능
+
+  [JSON] - JavaScript Object Notation
+    - 경량의 데이터 교환 형식
+    - JSON은 완벽하게 언어로 부터 독립
+    - 데이터의 형태가 key : value 쌍으로 이뤄짐
+    - 사람이 읽고 쓰기에 쉽고, 컴퓨터가 분석하고 생성하기도 용이
+    - HTML 파일 전체를 받는 것보다 실제 필요한 데이터만 받아서 처리하는 것이 효율적
+    - 서버측에서 처음에 필요한 데이터만 모두 처리한 후 클라이언트에게 전송하고 클라이언트가 특정 행동을 했을 때 필요한 데이터만 JSON파일로 보내서 처리
+    - Fetch/XHR : 데이터
+
+    ● [함수]
+      ○ json.dumps(dict)
+      ex) with open(경로+파일명, 쓰기모드) as 변수명:
+              변수명.write(json.dumps(dict))
+      - dict을 str로 변경
+      - 문자열을 ""로 묶음
+      
+      ○ json.dump(dict, 경로)
+      ex) with open(경로+파일명, 쓰기모드) as 변수명:
+              json.dump(dict, 변수명)
+      - dict을 json로 변경
+      - 파일 저장경로와 파일명이 필수
+
+      ○ json.loads(문자열)
+      - str을 dict으로 변경
+
+      ○ json.load(경로+json파일)
+      - json을 dict으로 변경
+      - 웹에서 가져온 json파일은 경로가 없기 때문에 사용 불가
+
+  [dynamic crawling] - 동적 크롤링
+    - 웹 브라우저를 실시간으로 제어하며 크롤링
+
+    - 브라우저를 제어하기 위한 드라이버 설치 필요
+      - 브라우저와 버전이 맞는 드라이버 설치
+      - 상대경로 위치에 있다면 자동 인식 없다면 경로 지정
+
+    - time의 sleep함수를 이용해 딜레이 생성
+      - 자바 스크립트가 실행될 시간을 기다림
+      - 프로그램 처리 속도가 빠르기 때문에 작업을 확인하기 위해 사용
+
+    - 한 작업을 한 쉘에서 실행
+
+    ● [selenium]
+      ○ from selenium import webdriver
+        webdriver.Chrome(경로)
+        - 브라우저 실행
+        - 리턴 : selenium.webdriver.chrome.webdriver.WebDriver (세션)
+      
+      ○ webDriver.get(주소)
+        - 해당 주소로 브라우저 실행
+      
+      ○ webDriver.close()
+        - 브라우저 닫기
+
+      ○ webDriver.page_source
+        - 해당 페이지의 html파일 요청
+        
+      ○ from selenium.webdriver.common.by import By
+        webDriver.find_element(By.접근방식, 접근)
+        ex) webDriver.find_element(By.XPATH, '//*[@id="daumHead"]/div[2]/div/div[1]/ul/li[3]/a')
+          - 해당 엘리먼트 접근
+          - 리턴 : selenium.webdriver.remote.webelement.WebElement
+          - XPATH : 
+
+        webDriver.find_elements(By.접근방식, 접근)
+          - 해당 엘리먼트들 접근
+          - 리턴 : 리스트
+            요소 : selenium.webdriver.remote.webelement.WebElement
+
+      ○ webElement.click()
+        - 해당 엘리먼트를 클릭
+
+      ○ from selenium.webdriver.common.keys import Keys
+        webElement.send_keys(값)
+          - 해당 값을 해당 엘리먼트에 입력
+        Keys.키보드 버튼
+          - 해당 키보드 버튼
+          - Return == Enter
+
+      ○ ○ webElement.text
+        - 해당 엘리먼트의 content 추출
+
+    ● [동적 데이터]
+      - 자바스크립트를 통해 계속해서 변화하는 값
+      - 동적 데이터는 XPath를 통해서 접근
+

@@ -2,8 +2,19 @@ eclipse/
 lombok.jar
 compartir.pem
 file/workspace/sns-project/src/main/resources/application.properties
+file/workspace/sns-project-two
 
 spring-fourth-aws.pem
 python/*.txt
 python/*/*.txt
 python/p230421/chemical
+python/*.png
+python/*.jpg
+python/*.csv
+python/*/*.png
+python/*/*.jpg
+python/*/*.csv
+python/*.json
+python/*/*.json
+python/*/*.exe
+python/*.exe
