@@ -17,4 +17,6 @@ python/*/*.csv
 python/*.json
 python/*/*.json
 python/*/*.exe
+python/*/*/*.png
 python/*.exe
+file/workspace/sns-project/src/main/resources/application.properties
