@@ -24,7 +24,7 @@ public class AdminController {
 	
 	public AdminController(UserService userService, AdminService adminService) {
 		this.userService = userService;
-		this.adminService = adminService;
+		this.adminService = adminService; 
 	}
 	
 	@GetMapping

@@ -1309,7 +1309,7 @@
     - 크롤링 : 사이트(HTML)의 기본적인 정보(title, description등)을 평상시에 수집하는 행위
     - 스크래핑 : 웹 사이트의 특정한 정보(element)들을 수집하는 행위
 
-    - 실제 웹 페이지는 가볍게 만들기 위해 엔터를 제거한 후 올리기도 하기 때문에 사이트 분석이 중요
+    - ※사이트의 구조를 파악해 원하는 정보를 정확하게 추출하는 것이 가장 중요※
 
     - 서버에 브라우저를 통한 요청이 아닌 파이썬 파일을 통한 요청을 하기 때문에 응답이 거부될 수 있다 
       - user-agent 정보 추가
@@ -1468,42 +1468,6 @@
         ○ urllib.request.urlretrive(이미지 주소, 저장 경로+파일명)
           - 서버 측에서 받은 데이터를 바로 저장
 
-    ● [pandas]
-      - 테이블 구조를 쉽게 가져오는 라이브러리
-      - 분석할 때 사용
-      - DataFrame에 자동으로 인덱스 추가
-      - 정수가 들어오는 컬럼에 결측치(값을 알 수 없는 데이터)가 있다면 실수로 바뀜
-      
-      ● [함수]
-        ○ pandas.read_html(주소, 인코딩)
-          - 해당 주소에서 테이블 엘리먼트를 자동으로 추출
-          - 함수가 실행될 때 lxml라이브러리 import함
-          - 서버에서 보내주는 데이터의 인코딩을 맞춰줘야 함
-          리턴 : 리스트
-            - 요소 타입 : pandas.core.frame.DataFrame
-
-        ○ pandas.DataFrame({키:값})
-          - DataFrame 생성
-          - 키가 column 값이 row
-
-          pandas.DataFrame([[요소1], [요소2]], columns=Iterable)
-          - DataFrame 생성
-          - 요소 1개가 로우 1개
-          - 컬럼명을 직접 지정(Iterable) | 딕셔너리의 키를 통해 지정
-
-        ○ pandas.json_normalize(json)
-          - json을 DataFrame으로 생성
-        
-        ○ DataFrame.to_csv(저장경로)
-          - DataFrame을 쓰기 작업
-          - csv파일로 생성(excel파일 아님)
-          - 기본 쓰기 모드 : w
-
-          ◎ 매개변수
-            - index(bool) : 인덱스 활성/비활성
-            - header(bool) : 컬럼명(가장 윗 줄) 활성/비활성
-            - mode(Filewritemode) : 파일 쓰기 모드 설정
-
     ● [jupyter notebook]
       - anaconda 플랫폼을 통해 사용
         - 기본 환경(base)이 아닌 가상 환경을 사용하는 것이 좋음
@@ -1631,6 +1595,7 @@
 
   [dynamic crawling] - 동적 크롤링
     - 웹 브라우저를 실시간으로 제어하며 크롤링
+      - 서버 입장에선 정상적인 요청으로 인식
 
     - 브라우저를 제어하기 위한 드라이버 설치 필요
       - 브라우저와 버전이 맞는 드라이버 설치
@@ -1642,6 +1607,11 @@
 
     - 한 작업을 한 쉘에서 실행
 
+    - 사용자가 모든 이미지를 필요로 하는 것이 아니기 때문에 필요한 이미지만 렌더링한 후 이미지가 필요하게 되면 추가로 렌더링
+      - 렌더링된 이미지는 src가 이미지 주소를 담고 있지만 렌더링되지 않은 이미지는 src가 없거나 이미지 주소를 담고 있지 않음
+
+    - 페이지를 하단으로 이동시켜 해당 페이지의 모든 동적 처리(JS)를 실행
+
     ● [selenium]
       ○ from selenium import webdriver
         webdriver.Chrome(경로)
@@ -1652,22 +1622,61 @@
         - 해당 주소로 브라우저 실행
       
       ○ webDriver.close()
-        - 브라우저 닫기
+        - 현재 webDriver 종료
+
+      ○ webDriver.quit()
+        - 브라우저 종료
 
       ○ webDriver.page_source
         - 해당 페이지의 html파일 요청
         
+      ○ webDriver.window_handles
+        - 브라우저의 탭 정보 - 자동 부여라 순서 보장 X
+
+      ○ webDriver.switch_to.window(탭)
+        - webDriver를 입력한 탭으로 변경
+        - 탭을 닫으면 현재 webDriver 정보가 없어지기 때문에 다른 webDriver로 변경해줘야 함
+
       ○ from selenium.webdriver.common.by import By
         webDriver.find_element(By.접근방식, 접근)
         ex) webDriver.find_element(By.XPATH, '//*[@id="daumHead"]/div[2]/div/div[1]/ul/li[3]/a')
           - 해당 엘리먼트 접근
           - 리턴 : selenium.webdriver.remote.webelement.WebElement
-          - XPATH : 
+          - XPATH(XML Path Language) :  W3C의 표준으로 확장 생성 언어 문서(XML)의 구조를 통해 경로 위에 지정한 구문을 사용하여 항목을 배치하고 처리하는 방법을 기술하는 언어
 
         webDriver.find_elements(By.접근방식, 접근)
           - 해당 엘리먼트들 접근
           - 리턴 : 리스트
             요소 : selenium.webdriver.remote.webelement.WebElement
+
+      ● [스크린 샷]
+        ○ driver.save_screenshot(경로+파일명)
+          - 페이지 스크린샷
+
+        ○  webElement.screenshot_as_png
+          - webElement타입을 byte타입으로 변환
+
+        ○  webElement.screenshot(경로+파일명)
+          - webElement타입을 스크린샷
+          - 안 될 수도 있음
+
+      ● [화면 이동]
+        [ActionChains]
+        ○ from selenium.webdriver import ActionChains
+          ActionChains(webDriver).move_to_element(webElement).perform()
+            - 특정 위치로 이동 : 포커스 이동
+            - 해당 엘리먼트의 하단이 브라우저 하단에 위치하게 이동
+        
+        [자바 스크립트]
+        ○ webDriver.execute_script(자바스크립트 문법) 
+          ○ webDriver.execute_script('return document.body.scrollHeight') 
+            - 페이지 전체 높이 리턴
+            
+          ○ webDriver.execute_script('window.scrollTo(가로, 세로)')
+            - 페이지에서 화면 이동
+
+        [send_keys] - 페이지 마지막으로 이동
+        ○ webElement(body).send_keys(Keys.End)
 
       ○ webElement.click()
         - 해당 엘리먼트를 클릭
@@ -1677,12 +1686,271 @@
           - 해당 값을 해당 엘리먼트에 입력
         Keys.키보드 버튼
           - 해당 키보드 버튼
-          - Return == Enter
+          - Return == Enter == 클릭
+          - 값 여러 개 사용 가능
+          - 함수를 다시 실행해도 이전에 입력한 값이 사라지지 않음
 
-      ○ ○ webElement.text
+        webElement.send_keys(값 + 값)
+          - 조합키 형태
+        
+        webElement.clear()
+          - 해당 엘리먼트에 입력된 값을 비움
+
+      ○ webElement.text
         - 해당 엘리먼트의 content 추출
+
+      ○ webElement.get_attribute('속성')
+        - 해당 엘리먼트의 속성 추출
+        - 정적, 동적 둘 다 처리 가능 
+
+      ○ webElement.get_property('속성')
+        - 해당 엘리먼트의 속성 추출
+        - 정적만 처리 가능
+
+      ● [크롬 설정] 
+        - 웹 브라우저 실행될 때 매개변수 options에 객체를 인수로 전달
+        - 브라우저 정보가 없기 때문에 서버에서 정상적인 요청으로 인식하지 않음
+
+        ○ webdriver.ChromeOptions()
+          - 크롬 옵션 클래스
+
+        ○ ChromeOptions().add_argument('headless')
+          - headless 브라우저로 실행
+            - headless 브라우저 : 그래픽 사용자 인터페이스가 없는 웹 브라우저
+          - 모든 작업이 정상적으로 처리될 때 사용
+
+        ○ ChromeOptions().add_argument('user-agent=브라우저 정보')
+          - 서버에서 요청을 거부할 때 user-agent 정보 추가
+
+        ○ ChromeOptions().add_argument('lang=언어 정보')
+          - user-agent 정보를 넣어줘도 요청이 거부될 때 언어 정보 추가
+
+        ○ ChromeOptions().add_argument('--window-size=가로,세로') 
+          - 가로와 세로는 띄워쓰기 X
+
+        ○ ChromeOptions().add_argument('--window-size=x,y') 
+          - 브라우저 위치 
+          - 픽셀 단위
+
+        ○ ChromeOptions().add_argument('--start-maximized')
+          - 브라우저 화면 최대화
+          - 반응형 웹에서 크롤링 작업할 때 엘리먼트가 변하지 않게 최대화로 작업
+          - 브라우저 창이 존재해야 가능
+
+        ○ ChromeOptions().add_argument('--start-fullscreen')
+          - 풀 스크린
+          - 브라우저 창이 존재해야 가능
+
+        ○ ChromeOptions().add_argument('--disable-gpu')
+          - 셀레니움 gpu 비활성화
 
     ● [동적 데이터]
       - 자바스크립트를 통해 계속해서 변화하는 값
       - 동적 데이터는 XPath를 통해서 접근
 
+  [XPATH]
+    - /   : 절대주소(자식)
+    - //  : 상대주소(자손)
+    - []  : 엘리먼트의 위치
+    - [@] : 속성
+    -  *  : 모든 엘리먼트
+
+  [분석]
+    - 회사 내 데이터
+    - 크롤링을 통한 데이터
+    - API를 통한 데이터
+
+    ● [pandas]
+      - 테이블 구조를 쉽게 가져오는 라이브러리
+      - 분석할 때 사용
+
+      ● [함수]
+        ○ pandas.read_html(주소, 인코딩)
+          - 해당 주소에서 테이블 엘리먼트를 자동으로 추출
+          - 함수가 실행될 때 lxml라이브러리 import함
+          - 서버에서 보내주는 데이터의 인코딩을 맞춰줘야 함
+          리턴 : 리스트
+            - 요소 타입 : pandas.core.frame.DataFrame
+
+        ○ pandas.DataFrame({키:값})
+          - DataFrame 생성
+          - 키가 column 값이 row
+
+          pandas.DataFrame([[요소1], [요소2]], columns=Iterable)
+          - DataFrame 생성
+          - 요소 1개가 로우 1개
+          - 컬럼명을 직접 지정(Iterable) | 딕셔너리의 키를 통해 지정
+
+          ◎ 매개변수
+            - data(Iterable)  : 저장할 값 설정  - 컬럼에 데이터 수가 다르면 Error
+            - index(Iterable) : 인덱스(행) 설정 - 행 개수와 다르면 Error
+            - columns(Iterable) : 컬럼(열) 설정 - 열 개수와 다르면 Error
+
+        ○ pandas.json_normalize(json)
+          - json을 DataFrame으로 생성
+        
+      ● [DataFrame]
+        - 컬럼(열) : 변수 - 한글로 설정하는 게 편함
+          로우(행) : 관측치
+          인덱스   : 행, 열의 타입
+          매개변수 인덱스 : 행
+        - 행과 열의 인덱스를 자동으로 관리
+        - 행과 열의 데이터를 딕셔너리형태로 저장 -> 인덱스 : [값1, 값2] 
+        - 데이터 프레임 내 데이터 크기를 나눠서 관리
+
+        - Series가 1개 이상인 것
+        - Series : 행의 데이터, 열의 데이터의 단위
+
+        - 리스트 내포를 사용해 여러 데이터 추출 가능
+        - ※정수가 들어오는 컬럼에 결측치(값을 알 수 없는 데이터)가 있다면 실수로 바뀜※
+          - 결측치의 type이 실수이기 때문에 실수로 바뀜
+          - 컬럼에 결측치가 존재한다면 해당 컬럼의 데이터를 정수로 바꿀 수 없음
+        - 마스크 : 데이터프레임의 조건 비교
+
+        ○ DataFrame.shape
+          - 테이블의 행, 열
+          - Type : 튜플
+        
+        ○ DataFrame.columns
+          - 테이블의 열 정보
+          - Type : pandas.core.indexes.base.Index
+            요소 : 리스트
+
+          DataFrame.columns.get_loc(열이름)
+          - 해당 열의 위치
+        
+        ○ DataFrame.index
+          - 테이블의 행 정보
+          - Type : pandas.core.indexes.base.Index
+            요소 : 리스트
+
+          DataFrame.index.get_loc(행이름)
+          - 해당 행의 위치
+        
+        ○ DataFrame.rename(index, columns, axis, inplace)
+          - 행, 열의 이름 변경
+          - 기존 이름과 변경할 이름을 딕셔너리로 전달
+
+        ○ DataFrame.dtypes
+          - 컬럼 내 데이터의 타입
+          - Type : pandas.core.series.Series
+
+          Series.apply(파이썬기본자료형)
+          - 기본 자료형으로 dtype변경
+          - 타입 변환에 제한적임
+          
+          Series.apply(pd.to_numeric, errors='coerce') 
+          - 타입 변환이 안되는 데이터는 결측치로 처리
+          - 불규칙한 데이터를 지우고 작업할 때 사용
+
+        ○ DataFrame.info()
+          - 데이터 프레임 정보 
+          - 인덱스, 컬럼명, 결측치 여부, 컬럼 타입 확인 가능
+
+        ○ DataFrame[컬럼명 or [컬럼명,컬럼명]], DataFrame.컬럼명(via)
+          - 해당 컬럼의 데이터 정보
+          - Type : pandas.core.series.Series, DataFrame
+          - 라벨 형태(지정한 컬럼)로만 추출 가능
+          - 추출한 열에서 행의 데이터 추출 가능
+
+          DataFrame[컬럼명] = 데이터
+          - 해당 컬럼명으로 마지막 열에 데이터 추가
+          - 추가할 데이터가 모두 같으면 하나로 추가 가능
+          ex) DataFrame[컬럼명] = 5
+
+        ○ DataFrame[인덱스 : 인덱스]
+          - 해당 범위에 있는 행 추출
+          - Type : DataFrame - 슬라이싱을 통한 추출이라 무조건 DataFrame
+          - 라벨 형태(지정한 인덱스)는 끝 값 포함한 슬라이싱
+          - 기본 인덱스 형태(정수)는 기존 슬라이싱과 동일
+          - 추출한 행에서 열의 데이터 추출 가능
+
+        ○ DataFrame.loc[행이름, 열이름], [행이름 or [행이름, 행이름]]
+          - 데이터프레임의 행이나 열에 label로 접근 가능
+          - Type : pandas.core.series.Series, DataFrame
+
+          DataFrame.loc[추가할 라벨] = 데이터
+          - 해당 라벨로 마지막 행에 데이터 추가
+          - 추가할 데이터가 모두 같으면 하나로 추가 가능
+          ex) DataFrame.loc[라벨] = 5
+
+          DataFrame.loc[라벨] = pandas.Series()
+          - 빈 행 추가
+          - 데이터가 결측치로 들어옴 : NaN(Not a Number) -> 알 수 없는 값
+
+        ○ DataFrame.iloc[행index, 열index], [행이름 or [행index, 행index]]
+          - 데이터프레임의 행이나 열에 index로 접근 가능
+          - Type : pandas.core.series.Series, DataFrame
+          - 현재 존재하는 index만 접근 가능
+
+        ○ DataFrame.head()
+          - 상위 행 추출
+
+        ○ DataFrame.tail()
+          - 하위 행 추출
+
+        ○ DataFrame.drop(labels, axis, index, columns, inplace)
+          - 복사본으로 작업
+          - labels : 행의 라벨, 열의 라벨 
+          - axis : 적용축 
+              - 0 : index(default)
+              - 1 : columns
+          - index, columns : 라벨로 지정
+          - inplace : 원본에 적용
+
+        ○ DataFrame.insert(loc, column, value)
+          - 특정 위치에 데이터 추가
+          - loc    : 열을 추가할 위치
+          - column : 컬럼명
+          - value  : 데이터
+
+        ○ DataFrame.sort_values(by, axis, ascending, inplace)
+          - 값 정렬
+          - by   : 정렬 기준이 될 행, 열
+          - axis : 정렬이 될 축(default=0) -> 0 : 열정렬, 1 : 행정렬
+          - ascending : 오름차순, 내림차순(default=True)
+          - inplace : 원본 적용
+
+        ○ DataFrame.sort_index(axis, ascending, key)
+          - 인덱스 정렬
+
+        ○ DataFrame.reset_index(drop, inplace)
+          - 인덱스 재설정
+          - drop : 기존 인덱스 삭제 여부
+
+        ○ DataFrame.to_csv(저장경로)
+          - DataFrame을 쓰기 작업
+          - csv파일로 생성(excel파일 아님)
+          - 기본 쓰기 모드 : w
+
+          ◎ 매개변수
+            - index(bool) : 인덱스 활성/비활성
+            - header(bool) : 컬럼명(가장 윗 줄) 활성/비활성
+            - mode(Filewritemode) : 파일 쓰기 모드 설정
+
+      ● [자료구조]
+      ● [Series]
+
+
+  [전처리]
+    - 외부 데이터에서 불필요한 정보를 걸러내는 과정
+  [MarkDown]
+    - 기호와 문자 사이에 띄어쓰기가 있어야 인식
+
+    ● [제목]
+      ○ #  : 제목
+        ## : 제목
+
+    ● [리스트]
+      ○ -  : 순서 없는 리스트 - 들여쓰기로 하위항목 추가
+      ○ 1. : 순서 있는 리스트 - 들여쓰기로 하위항목 추가
+
+    ● [글자]
+      ○ **글자** : bold체
+      ○ 공백 2개 : 줄바꿈
+      ○ ---      : 수평선
+      ○ >        : 인용구
+      ○ ```코드타입 ```  : 코드 - 코드타입 입력 시 해당 코드로 인식
+      ○ 컬럼명 | 컬럼명 | 컬럼명 : 테이블
+        - | - | - 
+        데이터 | 데이터 | 데이터 
