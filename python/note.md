@@ -28,7 +28,12 @@
 2. 순서(절차)
 3. 진행
 
+1. 기본
+2. 문제해결 능력
+3. 라이브러리의 문서와 예제를 통해 공부
 
+
+엘라스틱 서치
 <!-- requests, urllib.request 요청 차이 -->
 
 작업은 끊을 수 있으면 최대한 끊어서
@@ -52,3 +57,12 @@
 
 
 포트폴리오에 해결능력을 강조할 문제와 해결방법을 추가
+
+# OpenSearch
+## OpenSearch란
+- AWS에서 제공하는 데이터 검색 및 분석 제품
+
+# ELK
+## ELK란
+- Elasticsearch, Logstash, Kibana 세 가지 프로젝트로 구성된 스택
+    - Elasticsearch : 

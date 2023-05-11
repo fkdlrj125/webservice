@@ -1926,6 +1926,16 @@
           - 인덱스 재설정
           - drop : 기존 인덱스 삭제 여부
 
+        ○ (DataFrame, Series).sum(axis, numeric_only)
+          - 각 컬럼의 변수 합
+          - 논리값이나 문자열의 합도 가능
+            - 논리값 -> True=1, False=0
+            - 문자열 -> + 연산과 같은 기능
+          - axis : 데이터가 저장된 형태
+          - numeric_only(default=False) : float, int, bool 컬럼만 추출
+          - skipna(default=True) : 결측치 제외여부
+            - 결측치가 포함된 연산의 결과는 결측치
+
         ○ DataFrame.to_csv(저장경로)
           - DataFrame을 쓰기 작업
           - csv파일로 생성(excel파일 아님)
@@ -1936,24 +1946,172 @@
             - header(bool) : 컬럼명(가장 윗 줄) 활성/비활성
             - mode(Filewritemode) : 파일 쓰기 모드 설정
 
+                  
+          ○ DataFrame.stack()
+            - 컬럼을 인덱스로 
+            - 기존 인덱스와 인덱스로 보내진 컬럼이 합쳐져 멀티인덱스가 됨
+
+          ○ 멀티인덱스.unstack()
+            - 인덱스를 컬럼으로
+            - 기존 인덱스와 인덱스로 보내진 컬럼이 합쳐져 멀티인덱스가 됨
+
+          ○ Series(멀티인덱스).swaplevel()
+            - 인덱스 순서 변경
+            - 인수로 변경할 인덱스를 지정할 수 있음
+
+          ○ DataFrame.transpose()
+            - 행과 열을 바꿈
+
+            DataFrame.T
+            - transpose메소드를 저장한 참조변수
+
       ● [자료구조]
+        - pandas는 DataFrame과 Series의 2가지 데이터 형태를 가짐
+          - DataFrame : 2차원 형태(테이블(행, 열)) -> 1개 이상의 Series가 합쳐진 형태
+          - Series    : 1차원 형태
+        - dtype
+          - 컬럼의 포괄적인 data type 
+          - DataFrame.dtypes, Series.dtype
+          - Dtype이 int인 컬럼에 실수가 들어가면 Dtype이 float으로 변경
+          - float은 파이썬의 float이 아닌 numpy의 float으로 변환
+          - numpy의 타입이 파이썬의 타입보다 세분화돼 numpy 사용
+        ---
+            dtype | python
+            - | -
+            int(64...8) | int
+            float(64...8) | float
+            bool | bool
+            object(복합적인 타입) | str
+            datetime(64...8) | datetime
+            category(DBMS의 도메인) | x
+          ---
+
+        ● [numpy]
+          -  결측치(NaN)는 numpy라이브러리 있음
+          ○ numpy.arange(start, end, step)
+          - 범위 내 숫자 생성
+          - 실수도 생성가능
+          - 리턴 : numpy.ndarray
+          - 내부적으로 내장함수 array보다 처리하는 방식이 좋음
+
+          ○ numpy.sin()
+          - sin값 생성
+
+          ○ numpy.cos()
+          - cos값 생성
+
+          ○ numpy.tan()
+          - tan값 생성
+
+          ○ numpy.random.randn(개수)
+          - 랜덤한 수 생성(지수)
+
+        ● [연속형 데이터와 범주형 데이터]
+          - 연속형 데이터(continuous values) : 계속 이어지는 데이터(나이, 시간, 날짜...)
+          - 범주형 데이터(categrical values) : 카테고리 - 범위가 정해져 있는 데이터
+
+          ○ pandas.cut(데이터(변수), bins, labels)
+            - 레이블링 함수
+            - 레이블링 : 연속형 데이터 -> 범주형 데이터
+            -  (] - ( : 제외(해당하는 값만)
+                  - [ : 포함
+            - 리턴 : category(범주형 타입)
+
+            - [매개변수]
+              - bins : 구간
+              ex) bins=[3,5] -> (3,5] -> 4 ~ 5구간
+              - labels : 해당 구간의 레이블
 
       ● [분석]
-        ○ DataFrame.describe()
+        ● [통계]
+          - 데이터를 수치화한 값 -> 숫자 데이터만 취급
+          - 대표적인 통계량 : 평균(mean), 분산(variance), 표준 편차(standard deviation) 등
+              - 평균 : 총합 / 개수
+              - 표준편차(산포도) : 분산의 제곱근
+              - 분산 : 편차의 제곱의 평균
+                  - 자료(데이터)가 평균 기준으로 어떻게 흩어져 있는지를 나타내는 지표
+                  - 분산이 작다 : 자료(데이터)가 평균값 근처에 모여 있음
+                  - 분산이 크다 : 자료(데이터)가 평균값에서 멀리 떨어져 있음
+              - 편차 : 평균 - 자료
+                  - 평균에서 얼마나 떨어졌는지를 나타냄
+                  - 편차의 합은 0
+              - 중앙값
+                  - 자료(데이터)를 오름차순 정렬하여 가운데 위치한 값
+              - 사분위수(Quartile)
+                  - 자료(데이터)를 오름차순 정렬하여 4등분
+                  - 자료(데이터)에서의 절대적인 위치
+                  - Q1, Q2, Q3, Q4
+              - 백분위수
+                  - 자료(데이터)를 오름차순 정렬하여 4등분한 3개의 수 
+                  - Q1, Q2, Q3
+                  - Q1 : 25%(제 1사분위, 하위 백분위)
+                      - pandas에선 중앙값에 min을 더한 후 2로 나눔
+                  - Q2 : 50%(제 2사분위)
+                  - Q3 : 75%(제 3사분위, 상위 백분위)
+                      - pandas에선 중앙값에 max을 더한 후 2로 나눔
+
+          ○ DataFrame.describe(include)
+            - 기초 통계량
+            - include : 포함할 dtype 지정(object 포함시 문자 데이터 통계)
+            - [행의 정보]
+                - [숫자 데이터]
+                - count : 결측치가 아닌 데이터 개수
+                - mean : 평균
+                - std : 표준편차(산포도)
+                - % : 4분위수(데이터를 오름차순으로 정렬 후 해당 %에 위치한 데이터)
+                - [문자 데이터]
+                - unique : 중복되지 않은 데이터
+                - top : 빈도 수가 높은 데이터(모두 같으면 첫 번째 데이터, 여러 개 있다면 아무거나)
+                - freq : 빈도 수
+          
+          ○ (DataFrame, Series).count()
+            - 결측치가 아닌 데이터 개수
+
+          ○ Series.value_count()
+            - 중복된 변수의 개수
+          
+          ○ (DataFrame, Series).mean(numeric_only)
+            - 평균
+
+          ○ (DataFrame, Series).std()
+            - 표준편차  
+            - 데이터가 1개라면 결측치
+
+          ○ (DataFrame, Series).var()
+            - 분포
+            - 데이터가 1개라면 결측치
+
+          ○ (DataFrame, Series).var()
+            - 중앙값
+
+          ○ (DataFrame, Series).agg([함수명, 함수명],
+                                    {컬럼명:함수명, 컬럼명:함수명})
+            - 집계함수, 통계합수의 결과를 합쳐줌
+            - 함수명은 문자열로
+            - 컬럼별로 적용할 함수 지정 가능
+
+          ○ math.sqrt()
+            - 제곱근
 
         ● [그룹화]
           - 특정한 데이터를 기준으로 데이터를 묶는 것
 
-          ○ DataFrame.groupby(컬럼)
+          ○ DataFrame.groupby(컬럼 or [컬럼,컬럼])
             - 해당 컬럼의 데이터를 기준으로 데이터들을 데이터프레임으로 묶음
+            - 컬럼을 리스트로 넣으면 먼저 넣은 컬럼으로 그룹 후 다음 컬럼으로 그룹화
+              - 그룹화 기준을 멀티인덱스로 저장 -> 튜플
+              - 그룹화 기준을 키로 사용하기 때문에 변하지 않는 값을 사용
+              - 멀티인덱스 : 하나의 행이나 열의 인덱스가 두 개 이상인 인덱스
             - 리턴 : DataFrameGroupBy
             - 요소 : Tuple
               - 그룹화 기준, 그룹화한 데이터 프레임
             - 그룹화 기준으로 데이터 프레임 추출 가능
+            - 그룹화 기준으로 오름차순정렬
           
           ○ DataFrameGroupBy.get_group(그룹화 기준)
             - 그룹화한 데이터에서 그룹화 기준으로 묶인 데이터 프레임 추출
             - 그룹화 기준을 key처럼 사용
+            - 이중으로 그룹화된 데이터는 그룹화 기준이 튜플이기 때문에 튜플로 추출
 
           ○ DataFrameGroupBy.count()
             - 그룹화된 각 데이터의 데이터프레임 개수
@@ -1962,6 +2120,166 @@
           ○ DataFrameGroupBy.size()
             - 그룹화된 각 데이터의 데이터프레임 개수
             - 데이터에 저장된 데이터프레임 개수만 추출
+
+          ○ DataFrameGroupBy.first()
+            - 결측치가 아닌 각 데이터프레임의 첫 번째 데이터
+
+          ○ DataFrameGroupBy.indices()
+            - 인덱스 정보
+            - 타입 : dict
+            - []안에 있는 값은 행의 인덱스
+
+        ● [시각화]
+          ● [matplotlib]
+            - 초기 시각화 라이브러리
+            - 그룹화한 데이터를 시각화
+            - 차트는 객체
+            - 한 차트 내에 여러 그래프가 존재할 수 있다
+            - 같은 그래프유형를 여러 개 생성하면 한 차트 내에 출력
+              - 먼저 그려진 그래프가 더 작으면 다음에 그려지는 그래프에 가려짐
+            - 범례 : 
+
+            ● [차트]
+              ○ matplotlib.pyplot.figure(차트 이름)
+                - 차트 객체 생성
+                - [매개변수]
+                  - figsize : 차트 크기(float, 인치)
+                  - facecolor : 차트 백그라운드 색
+
+              ○ matplotlib.pyplot.show()
+                - 실행파일에서 차트 출력
+                - 차트를 닫기 전까지 show함수 실행 중
+
+              ○ matplotlib.pyplot.legend(loc)
+                - 차트에 범례 출력
+                - [매개변수]
+                  - loc : 범례 위치(default=0)
+                    2  |  9  | 1
+                    -------------
+                    6  | 10  | 5,7
+                    -------------
+                    3  |  8  | 4
+
+              ○ matplotlib.pyplot.title()
+                - 차트의 타이틀 설정
+                - matplotlib에서 지원하는 폰트사용
+                - 한글이 지원 안되는 경우가 많아 한글사용할 땐 한글폰트로 변경
+                  ○ matplotlib.pyplot.rc('font', family=pc에 저장된 폰트)
+                  ○ matplotlib.pyplot.rc('axes', unicode_minus=False)
+                  - 마이너스 깨짐 방지
+                  - 축의 유니코드 마이너스 기호를 사용하지 않음
+
+                  - 설정을 딕셔너리로 저장하고 있어 딕셔너리 키 값을 통해 설정 가능
+                  ○ plt.rcParams['font.family'] = 'Malgun Gothic'
+                  ○ plt.rcParams['axes.unicode_minus'] = False
+
+              ○ matplotlib.pyplot.grid()
+                - 격자선(행과 열을 구분하기 위한 선) 설정
+
+              ○ matplotlib.pyplot.figure().add_subplot(행, 열, 위치)
+                - 차트 안에 구역 나누기
+                - 나눌 구역 수를 행과 열로 지정
+                - 위치는 왼쪽 위부터 시계방향으로 지정
+
+                matplotlib.pyplot.subplots(행, 열)
+                - 차트 안에 구역 나누기
+                - 리턴 : 튜플
+                - 요소 : 차트정보(크기, 축 개수), 위치(왼쪽 위부터 시계방향)
+
+              ○ matplotlib.pyplot.tight_layout(pad)
+                - subplot 사이의 padding 조절
+                - pad : padding
+
+              ○ matplotlib.pyplot.subplots_adjust(hspace)
+                - subplot 사이 수평선 조절
+                - hspace : 수평선 위치
+
+              ○ matplotlib.pyplot.savefig(파일명)
+                - 차트 저장
+                - [매개변수]
+                  - dpi(dot per inche) : 인치 당 점의 수를 늘려 해상도를 높임
+
+            ● [그래프]
+              - 시선의 움직임을 따라 강조하고 싶은 데이터를 왼쪽, 위로 위치
+
+              ○ matplotlib.pyplot.plot(data,label)
+                - 차트 내 선형 그래프 생성
+                - 데이터가 1개일 경우 y축의 기준으로 사용(x축은 인덱스로 생성)
+                - x와 y의 데이터 길이가 같아야 함
+                - 매개변수 지정해서 x와 y 지정 못 함
+
+                - [매개변수]
+                  - label : 범례 설정
+                  - color : 선의 색
+                    - 배이직컬러로 설정할 때 선의 스타일도 같이 설정가능 : 'b--'
+                  - linestyle : 선의 스타일
+                    - '--' : dashed
+                    - ':' : dotted
+                    - '.' : 산점도
+                    - '^' : 위로 화살표
+                
+                (DataFrame or Series).plot()
+                - [매개변수]
+                  - kind : 그래프 종류 
+                  - 그래프의 매개변수 모두 사용 가능
+
+              ○ matplotlib.pyplot.bar(x, height, width, label)
+                - 차트 내 세로 막대 그래프 생성
+
+                - [매개변수]
+                  - x : x축
+                  - height : y축
+                  - width : 너비
+                  - label : 범례 설정
+
+              ○ matplotlib.pyplot.barh(y, width, height, label)
+                - 차트 내 가로 막대 그래프 생성
+
+                - [매개변수]
+                  - y : y축
+                  - width : x축
+                  - height : 너비
+                  - label : 범례 설정
+
+                matplotlib.pyplot.bar_label(막대그래프)
+                - 레이블 출력(그래프의 높이(너비) 출력)
+
+              ○ matplotlib.pyplot.pie(data, labels, ...)
+                - 차트 내 원형 그래프 생성
+                - 3시 방향에서 반시계방향으로 생성
+
+                - [매개변수]
+                  - labels : 조각에 이름 설정
+                  - autopct : 데이터의 비율
+                    - 문자열 포매팅으로 사용
+                    ○ autopct='%.1f%%'
+                  - startangle : 시작 위치의 각도
+                  - counterclock : 조각 생성 방향 
+                  - explode : 원의 중심에서 조각 분리
+                    - 모든 조각을 설정해줘야 함
+                  - shadow : 그림자
+                  - color : 색 지정
+                  - wedgeprops : 조각 설정(딕셔너리)
+                    - width : 반지름 비율
+                    - edgecolor : 테두리 색
+                    - linewidth : 테두리 두께
+
+              ○ matplotlib.pyplot.hist(data, bins, label)
+                - 히스토그램 그래프 생성 -> 데이터의 빈도
+                - y축은 해당 구간의 데이터 개수
+                - 막대 하나가 데이터의 범위
+
+                - [매개변수]
+                  - bins : 데이터 범위 구간의 개수
+                  - label : 범례 설정
+                  - histtype : 히스토그램 그래프 타입
+                    - bar : 세로 바 형태
+                    - barstacked : 데이터 위에 다른 중복된 데이터를 누적한 형태
+                    - step : 데이터를 모두 연결한 형태
+                    - stepfilled : step의 공간을 체움
+
+          ● [seaborn]
+            - matplotlib를 기반으로 만들어진 라이브러리
 
       ● [전처리]
         - 외부 데이터에서 불필요한 정보를 걸러내거나 필요한 정보를 추가하는 과정
