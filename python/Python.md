@@ -1790,6 +1790,9 @@
         ○ pandas.json_normalize(json)
           - json을 DataFrame으로 생성
 
+        ○ pandas.to_numeric(데이터)
+          - 데이터를 정수 또는 실수로 변경
+
       ● [Series]
         - Series : 행의 데이터, 열의 데이터의 단위
 
@@ -1964,6 +1967,16 @@
 
             DataFrame.T
             - transpose메소드를 저장한 참조변수
+          
+          ○ (DataFrame, Series).isna()
+            (DataFrame, Series).isnull()
+            - 결측치가 존재하는지 검사
+
+          ○ (DataFrame, Series).isin(Iterable)
+            - 해당 값들이 데이터에 존재하는지 검사(정확히 일치, or연산)
+
+          ○ (DataFrame, Series).notna()
+            - 결측치가 아닌 데이터 검사
 
       ● [자료구조]
         - pandas는 DataFrame과 Series의 2가지 데이터 형태를 가짐
@@ -2087,8 +2100,11 @@
           ○ (DataFrame, Series).agg([함수명, 함수명],
                                     {컬럼명:함수명, 컬럼명:함수명})
             - 집계함수, 통계합수의 결과를 합쳐줌
-            - 함수명은 문자열로
+            - 함수명은 문자열로(내장 함수는 문자열로 안 써도 가능)
             - 컬럼별로 적용할 함수 지정 가능
+
+            Series.agg(**{컬럼명:함수명})
+            - 원하는 컬럼명으로 설정
 
           ○ math.sqrt()
             - 제곱근
@@ -2194,6 +2210,54 @@
                 - subplot 사이 수평선 조절
                 - hspace : 수평선 위치
 
+              ○ matplotlib.pyplot.title(label)
+                - 차트 타이틀 설정
+
+                - [매개변수]
+                  - pad : padding(여백)
+                  - loc : location(위치)
+                  - fontsize : 폰트 크기
+                  - fontdict : 폰트 스타일 설정
+
+              ○ matplotlib.pyplot.xlabel(label)
+                - x축 이름 설정
+
+                matplotlib.pyplot.ylabel(label)
+                - y축 이름 설정
+
+                - [매개변수]
+                  - labelpad : padding(여백)
+                  - loc : location(위치)
+                  - fontsize : 폰트 크기
+                  - fontdict : 폰트 스타일 지정
+
+              ○ matplotlib.pyplot.grid()
+                - 격자 설정
+
+                - [매개변수]
+                  - axis : 축
+                  - color : 색
+                  - alpha : 투명도
+                  - linestyle : 선 스타일
+              
+              ○ matplotlib.pyplot.xlabel([최소, 최대])
+                matplotlib.pyplot.ylabel([최소, 최대])
+                - 축 범위
+                - 음수가 없이 없는 상태에서 범위를 음수도 포함시키면 그래프가 살짝 뜸
+
+              ○ matplotlib.pyplot.xticks([시작, 끝, 증감폭])
+                matplotlib.pyplot.yticks([시작, 끝, 증감폭])
+                - 눈금 설정
+
+              ○ matplotlib.pyplot.legend()
+                - 범례 설정
+
+                - [매개변수]
+                  - loc : 범례 위치
+                    - 튜플을 통해 범례의 위치를 세밀하게 지정가능
+                    loc=(0.5, 0) -> 그래프의 x축 50% 위치에서 범례 생성
+                  - ncols : 컬럼의 개수 지정
+
               ○ matplotlib.pyplot.savefig(파일명)
                 - 차트 저장
                 - [매개변수]
@@ -2201,6 +2265,8 @@
 
             ● [그래프]
               - 시선의 움직임을 따라 강조하고 싶은 데이터를 왼쪽, 위로 위치
+              - 정렬된 형태의 그래프를 원하면 데이터를 정렬 후 그래프 그림
+              - 정렬이 내림차순 오름차순이 아니라면 필요한 순서대로 추출 후 그래프 그림
 
               ○ matplotlib.pyplot.plot(data,label)
                 - 차트 내 선형 그래프 생성
@@ -2222,6 +2288,7 @@
                 - [매개변수]
                   - kind : 그래프 종류 
                   - 그래프의 매개변수 모두 사용 가능
+                  - bar 그래프의 rot 기본값은 90이라 x 눈금의 텍스트가 서있음
 
               ○ matplotlib.pyplot.bar(x, height, width, label)
                 - 차트 내 세로 막대 그래프 생성
@@ -2259,6 +2326,7 @@
                     - 모든 조각을 설정해줘야 함
                   - shadow : 그림자
                   - color : 색 지정
+                  - colormaps : 컬러맵으로 색 설정
                   - wedgeprops : 조각 설정(딕셔너리)
                     - width : 반지름 비율
                     - edgecolor : 테두리 색
@@ -2280,6 +2348,16 @@
 
           ● [seaborn]
             - matplotlib를 기반으로 만들어진 라이브러리
+            - 기본적으로 그래프 그리는 방식은 평균으로 그리고 값의 범위를 나타내는 밴드도 같이 그림
+
+            ○ seaborn.lineplot(데이터, x, y, hue)
+              - 선형 그래프
+              
+              - [매개변수]
+                - 데이터 : 데이터프레임, 시리즈
+                - x : x축으로 설정할 기준
+                - y : y축으로 설정할 기준
+                - hue : 그룹화 기준
 
       ● [전처리]
         - 외부 데이터에서 불필요한 정보를 걸러내거나 필요한 정보를 추가하는 과정

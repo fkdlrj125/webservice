@@ -65,4 +65,6 @@
 # ELK
 ## ELK란
 - Elasticsearch, Logstash, Kibana 세 가지 프로젝트로 구성된 스택
-    - Elasticsearch : 
+    - Elasticsearch : 검색 및 분석 엔진
+    - Logstatsh : 데이터를 수집, 전환하고 원하는 대상에게 전송할 수 있도록 하는 데이터 수집 도구
+    - Kibana : 로그 및 이벤트 도구에 사용하는 시각화 및 탐색 도구
