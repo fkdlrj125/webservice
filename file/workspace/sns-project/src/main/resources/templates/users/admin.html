@@ -95,7 +95,7 @@
                   <tr th:each="user : ${userList.userContent}">
                     <td
                       scope="row"
-                      th:text="${userStat.count}"
+                      th:text="${user.userId}"
                       th:onclick="|location.href='@{/profile/{userId}(userId=${user.userId})}'|"
                       class="text-center"
                     >

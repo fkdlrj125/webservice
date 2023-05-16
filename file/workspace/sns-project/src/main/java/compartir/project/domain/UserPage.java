@@ -1,5 +1,6 @@
 package compartir.project.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 import lombok.Getter;
@@ -18,12 +19,15 @@ public class UserPage {
 	public UserPage(int total, int currentPage, int size, int pagingCount,
 			List<User> userContent) {
 		this.total = total;
-		this.currentPage = currentPage+1;
+		this.currentPage = currentPage;
 		this.pagingCount = pagingCount;
-		if(total < size) {
-			this.userContent = userContent;
+		this.userContent = userContent;
+		Collections.reverse(this.userContent);
+		
+		if(total - ((currentPage-1)*size) > size) {
+			this.userContent = userContent.subList((currentPage-1)*size, currentPage*size);
 		} else {
-			this.userContent = userContent.subList((currentPage-1)*size, size);
+			this.userContent = userContent.subList((currentPage-1)*size, total);
 		}
 		
 		if(total == 0) {

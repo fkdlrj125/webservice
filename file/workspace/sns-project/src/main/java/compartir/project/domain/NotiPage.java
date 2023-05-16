@@ -24,12 +24,10 @@ public class NotiPage {
 		this.notiContent = notiContent;
 		Collections.reverse(this.notiContent);
 		
-		if(total > size) {
-			if(total - ((currentPage-1)*size) > size)
-				this.notiContent = notiContent.subList((currentPage-1)*size, currentPage*size);
-			else
-				this.notiContent = notiContent.subList((currentPage-1)*size, total);
-		} 
+		if(total - ((currentPage-1)*size) > size)
+			this.notiContent = notiContent.subList((currentPage-1)*size, currentPage*size);
+		else
+			this.notiContent = notiContent.subList((currentPage-1)*size, total);
 		
 		if(total == 0) {
 			totalPages = 0;
