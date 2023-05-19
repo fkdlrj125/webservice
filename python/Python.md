@@ -1589,9 +1589,13 @@
       ○ json.loads(문자열)
       - str을 dict으로 변경
 
-      ○ json.load(경로+json파일)
+      ○ json.load(open한 json파일)
       - json을 dict으로 변경
       - 웹에서 가져온 json파일은 경로가 없기 때문에 사용 불가
+
+      ○ xmltodict.parse(문자화한 xml파일)
+        - xml을 dict로 변경
+        - xmltodict 라이브러리
 
   [dynamic crawling] - 동적 크롤링
     - 웹 브라우저를 실시간으로 제어하며 크롤링
@@ -1773,6 +1777,13 @@
           리턴 : 리스트
             - 요소 타입 : pandas.core.frame.DataFrame
 
+        ○ pandas.read_csv(csv파일)
+          - csv파일을 데이터 프레임으로 생성
+
+          - 매개변수
+            - sep : seperator(구분자)
+            - names : 컬럼명
+
         ○ pandas.DataFrame({키:값})
           - DataFrame 생성
           - 키가 column 값이 row
@@ -1791,7 +1802,30 @@
           - json을 DataFrame으로 생성
 
         ○ pandas.to_numeric(데이터)
-          - 데이터를 정수 또는 실수로 변경
+          - 데이터를 정수 또는 실수 타입으로 변경
+          - 한 번에 하나의 데이터만 가능
+
+        ○ pandas.to_datetime(데이터)
+          - 데이터를 날짜타입으로 변경
+          - 한 번에 하나의 데이터만 가능
+          - 날짜타입은 numpy의 'datatime64[ns]' 로 고정
+          - 저장할 때 object타입으로 바뀜
+
+          Series(datetime).dt
+          - DatetimeProperties
+          - Datetime인 시리즈의 정보를 추출하기 위한 클래스
+
+            ○ dt.year
+              - 년도 정보 추출
+
+            ○ dt.month
+              - 월 정보 추출
+
+            ○ dt.day
+              - 일 정보 추출
+
+            ○ dt.strftime()
+              - Datetime 정보를 원하는 형태로 포맷팅해 문자열로 추출
 
       ● [Series]
         - Series : 행의 데이터, 열의 데이터의 단위
@@ -1862,6 +1896,11 @@
           Series.apply(pd.to_numeric, errors='coerce') 
           - 타입 변환이 안되는 데이터는 결측치로 처리
           - 불규칙한 데이터를 지우고 작업할 때 사용
+
+          (DataFrame, Series).astype()
+          - numpy의 타입, 파이썬의 기본타입으로 타입 변경
+          - numpy의 타입은 문자열로 넣어줌
+          - 딕셔너리형태로 컬럼을 지정해 타입변경 가능
 
         ○ DataFrame.info()
           - 데이터 프레임 정보 
@@ -1958,33 +1997,43 @@
             - header(bool) : 컬럼명(가장 윗 줄) 활성/비활성
             - mode(Filewritemode) : 파일 쓰기 모드 설정
 
-          ○ DataFrame.stack()
-            - 컬럼을 인덱스로 
-            - 기존 인덱스와 인덱스로 보내진 컬럼이 합쳐져 멀티인덱스가 됨
+        ○ DataFrame.stack()
+          - 컬럼을 인덱스로 
+          - 기존 인덱스와 인덱스로 보내진 컬럼이 합쳐져 멀티인덱스가 됨
 
-          ○ 멀티인덱스.unstack()
-            - 인덱스를 컬럼으로
-            - 기존 인덱스와 인덱스로 보내진 컬럼이 합쳐져 멀티인덱스가 됨
+        ○ 멀티인덱스.unstack()
+          - 인덱스를 컬럼으로
+          - 기존 인덱스와 인덱스로 보내진 컬럼이 합쳐져 멀티인덱스가 됨
 
-          ○ Series(멀티인덱스).swaplevel()
-            - 인덱스 순서 변경
-            - 인수로 변경할 인덱스를 지정할 수 있음
+        ○ Series(멀티인덱스).swaplevel()
+          - 인덱스 순서 변경
+          - 인수로 변경할 인덱스를 지정할 수 있음
 
-          ○ DataFrame.transpose()
-            - 행과 열을 바꿈
+        ○ DataFrame.transpose()
+          - 행과 열을 바꿈
 
-            DataFrame.T
-            - transpose메소드를 저장한 참조변수
+          DataFrame.T
+          - transpose메소드를 저장한 참조변수
 
-          ○ (DataFrame, Series).isna()
-            (DataFrame, Series).isnull()
-            - 결측치가 존재하는지 검사
+        ○ (DataFrame, Series).isna()
+          (DataFrame, Series).isnull()
+          - 결측치가 존재하는지 검사
 
-          ○ (DataFrame, Series).isin(Iterable)
-            - 해당 값들이 데이터에 존재하는지 검사(정확히 일치, or연산)
+        ○ (DataFrame, Series).isin(Iterable)
+          - 해당 값들이 데이터에 존재하는지 검사(정확히 일치, or연산)
 
-          ○ (DataFrame, Series).notna()
-            - 결측치가 아닌 데이터 검사
+        ○ (DataFrame, Series).notna()
+          - 결측치가 아닌 데이터 검사
+
+        ○ (DataFrame, Series).shift()
+          - 데이터를 한 행씩 내림
+ 
+        ○ pandas.merge()
+          - 해보기 
+
+          - 매개변수
+            - periods : 내릴 행 개수
+            - fill_value : 행을 내리고 빈 데이터를 체울 값
 
       ● [자료구조]
         - pandas는 DataFrame과 Series의 2가지 데이터 형태를 가짐
@@ -2003,29 +2052,161 @@
             float(64...8) | float
             bool | bool
             object(복합적인 타입) | str
-            datetime(64...8) | datetime
+            datetime(64) | datetime
             category(DBMS의 도메인) | x
           ---
 
         ● [numpy]
+          - Numerical Python
+          - 파이썬의 고성능 과학 계산용 라이브러리
+          - Matrix와 Vector와 같은 Array 연산 가능
+          - list에 비해 연산 속도가 빠르고, 메모리를 효율적으로 사용
+          - 반복문 없이 배열 연산 가능
+          - 선형대수와 관련된 다양한 기능 제공
+          - C, C++, 포트란 등의 언어 통합 가능
           -  결측치(NaN)는 numpy라이브러리 있음
-          ○ numpy.arange(start, end, step)
-          - 범위 내 숫자 생성
-          - 실수도 생성가능
-          - 리턴 : numpy.ndarray
-          - 내부적으로 내장함수 array보다 처리하는 방식이 좋음
 
-          ○ numpy.sin()
-          - sin값 생성
+          ● [type]
+            - 배열(array)
+              - ndarray타입 : n-dimentinal array(n차원 배열)
+              - axis(축)
+                - 1차원 배열 : 선
+                    - 축이 1개 : 행 또는 열
+                - 2차원 배열 : 면
+                    - 축이 2개 : 행, 열
+                    - 1차원 배열이 여러 개 존재하는 배열
+                - 3차원 배열 : 입체
+                    - 축이 3개 : (깊이, 차원, 높이, 층), 행, 열
+                    - 2차원 배열이 여러 개 존재하는 배열
+                - 축이 증가할 때마다 앞에 추가
 
-          ○ numpy.cos()
-          - cos값 생성
+              - 차원에 따른 이름
+                차원 | 이름 | 예제
+                - | - | -
+                0차원 | scalar(스칼라) | 7
+                1차원 | vector(벡터 | [10, 20, 30]
+                2차원 | matrix(매트릭스) | [[10, 20], [30, 40]]
+                3차원 | tensor(텐서) | [[[10, 20], [7, 9 11]], [[2, 4, 6], [8, 10, 11]]]
+                n차원 | n-tensor | ...
 
-          ○ numpy.tan()
-          - tan값 생성
+                - scalar
+                  - 상수
+                  - 벡터나 매트릭스나 텐서의 가장 작은 요소 하나의 값
+                
+                - vector
+                  - 수학적 의미 : 크기와 방향을 갖는 물리량
+                  - numpy : 스칼라가 모여 만들어진 배열(1차원 배열) -> 선
+                  - 공간에서의 한 점
+                  - axis0(행 또는 열)
 
-          ○ numpy.random.randn(개수)
-          - 랜덤한 수 생성(지수)
+                - matrix
+                  - 행과 열 : 행렬
+                  - 2차원 배열 : 1차원 배열 여러 개 -> 면
+                  - 여러 개의 벡터(벡터를 원소로 가진다)
+                  - axis0(행), axis1(열)
+
+                - tensor
+                  - 행, 열, 깊이/차원/높이
+                  - 3차원 배열 : 2차원 배열 여러 개 -> 입체
+                  - axis0(깊이/차원), axis1(행), axis2(열)
+
+              ○ np.array()
+                - 배열 생성
+                - 배열의 요소는 같은 타입만 가능
+                - 여러 자료형이 요소로 주어지면 가장 큰 자료형으로 변환
+                  ex) [1, 2, 'a', 'b'] -> ['1', '2', 'a', 'b']
+                    - U# : U는 유니코드 #은 받을 수 있는 요소 수
+                  ex) [1, 2, 1.5, 2.5] -> [1., 2., 1.5, 2.5]
+                - 다차원 배열을 생성할 때 요소의 길이가 모두 같아야 함
+                  ex) [[1], [2, 3], [4, 5, 6]] -> Error
+
+              ● 배열 연산
+                - 배열끼리의 연산은 길이가 같아야 가능
+                  ex) [1, 3, 5] + [2, 4, 6, 8] -> Error
+                - 배열에 숫자형 데이터 연산을 하면 모든 요소에 적용
+                  ex) [1, 3, 5] * 2 -> [2, 6, 10]
+
+              ● 인덱싱, 슬라이싱
+                - 리스트의 인덱싱, 슬라이싱과 기본적으로 같지만 ndarray는 행과 열을 지정해 인덱싱, 슬라이싱할 수 있음
+                ex) ar[0, 0] -> 0행 0열 추출
+                    ar[:2, :2] -> 0행부터 1행, 0열부터 1열 추출
+                    ar[:2, 0] -> 0행부터 1행의 0열 추출
+
+                ● 팬시 인덱싱(fancy indexing)
+                  - 배열을 인덱스로 설정
+                  - 배열의 요소 : 정수(인덱스), 불린(해당 인덱스를 추출할 지 논리값)
+                  - 정수는 배열의 크기와 상관없지만 불린은 배열의 크기와 같아야 함
+                  - 정수는 같은 값을 여러 번 쓸 수 있음
+
+                  - 불린은 pandas의 마스크처럼 사용 가능
+                  ex) ar[(ar % 2)==1] -> 홀수인 행 추출
+                  
+                  - 다차원배열의 행과 열을 지정해 인덱싱, 슬라이싱 가능
+                  ex) ar[[0, 2], 1:] -> 0행부터 1행의 1열부터 마지막열까지 데이터 추출
+
+              ● [함수, 변수]
+                ○ numpy.ndarray.shape
+                  - 배열의 행과 열
+                  - 리턴 : 튜플
+                
+                ○ numpy.ndarray.ndim
+                  - 배열의 차원
+
+                ○ numpy.arange(start, end, step)
+                  - 범위 내 숫자 생성
+                  - 실수도 생성가능
+                  - 리턴 : numpy.ndarray
+                  - 내부적으로 내장함수 array보다 처리하는 방식이 좋음
+
+                ○ numpy.zeros(dimention)
+                  - 입력한 차원만큼 모든 요소가 0인 배열 생성
+
+                ○ numpy.ones(dimention)
+                  - 입력한 차원만큼 모든 요소가 1인 배열 생성
+
+                ○ numpy.ndarray.reshape(dimention)
+                  - 해당 배열의 차원 재설정
+                  - 차원을 재설정할 땐 배열의 길이와 맞게 설정
+                  - '-1'을 통해 자동으로 행 또는 열 설정
+                    - 자동으로 행 또는 열을 설정할 수 없으면 에러
+                
+                ○ numpy.ndarray.size
+                  - 배열의 모든 요소의 수
+                
+                ○ numpy.ndarray.nbytes
+                  - 배열의 메모리 크기(byte)
+                
+                ○ numpy.ndarray.transpose()
+                  numpy.ndarray.T
+                  - 전치 행렬
+                
+                ○ numpy.ndarray.reshape(-1,)
+                  numpy.ndarray.flatten()
+                  numpy.ndarray.ravel()
+                  - 다차원 배열을 1차원 배열로 크기 변경(변형)
+
+            ● int : 정수 - 8, 16, 32(default), 64
+            ● uint(unsigned int) : 0, 양의 정수
+            ● float : 실수 - 16, 32, 64(default)
+            ● complex : 복소수 - 실수, 허수
+            ● bool : 논리
+            ● U# : 문자열
+              - U : 유니코드
+              - '#' : 스칼라의 최대 길이
+            ● _ : 기본 타입
+
+          ● [함수]
+            ○ numpy.sin()
+              - sin값 생성
+
+            ○ numpy.cos()
+              - cos값 생성
+
+            ○ numpy.tan()
+              - tan값 생성
+
+            ○ numpy.random.randn(개수)
+              - 랜덤한 수 생성(지수)
 
         ● [연속형 데이터와 범주형 데이터]
           - 연속형 데이터(continuous values) : 계속 이어지는 데이터(나이, 시간, 날짜...)
@@ -2124,6 +2305,7 @@
 
         ● [그룹화]
           - 특정한 데이터를 기준으로 데이터를 묶는 것
+          - Datetime컬럼으로 그룹화할 때 년, 월, 일, 시, 분, 초 단위로 그룹화 가능
 
           ○ DataFrame.groupby(컬럼 or [컬럼,컬럼])
             - 해당 컬럼의 데이터를 기준으로 데이터들을 데이터프레임으로 묶음
@@ -2166,7 +2348,7 @@
             - 한 차트 내에 여러 그래프가 존재할 수 있다
             - 같은 그래프유형를 여러 개 생성하면 한 차트 내에 출력
               - 먼저 그려진 그래프가 더 작으면 다음에 그려지는 그래프에 가려짐
-            - 범례 : 
+            - 축에 사용되는 컬럼의 Dtype이 object면 레이블이 겹칠 수 있음
 
             ● [차트]
               ○ matplotlib.pyplot.figure(차트 이름)
@@ -2262,6 +2444,9 @@
                 matplotlib.pyplot.yticks([시작, 끝, 증감폭])
                 - 눈금 설정
 
+                - 매개변수
+                  - ha : 눈금 레이블의 위치 설정
+
               ○ matplotlib.pyplot.legend()
                 - 범례 설정
 
@@ -2325,6 +2510,8 @@
                   - kind : 그래프 종류 
                   - 그래프의 매개변수 모두 사용 가능
                   - bar 그래프의 rot 기본값은 90이라 x 눈금의 텍스트가 서있음
+                  - colormaps : 컬러맵으로 색 설정
+                  - secondary_y : 오른쪽에 2번째 y축 생성
 
               ○ matplotlib.pyplot.bar(x, height, width, label)
                 - 차트 내 세로 막대 그래프 생성
@@ -2361,8 +2548,7 @@
                   - explode : 원의 중심에서 조각 분리
                     - 모든 조각을 설정해줘야 함
                   - shadow : 그림자
-                  - color : 색 지정
-                  - colormaps : 컬러맵으로 색 설정
+                  - colors : 색 지정
                   - wedgeprops : 조각 설정(딕셔너리)
                     - width : 반지름 비율
                     - edgecolor : 테두리 색
@@ -2456,13 +2642,20 @@
             - 값 변경
             - 평균으로 변경
           - 이상치를 처리하기 전에 왜 이상치가 생겼는 지 파악 후 처리
-
           - 편향된 데이터와 이상치로 정보가 왜곡되면, 전형적인 값 파악을 위해 중앙값 등 사용
 
         - 중앙값과 평균의 차이가 크다면 데이터에 이상치가 있다 판단 가능
-        
-        - 
 
+    ● [오픈API]
+      - 서버에 저장된 데이터를 클라이언트가 요청을 해 서버에서 데이터를 받을 수 있는 프로그램
+      - 인코딩 인증키나 디코딩 인증키로 인증가능
+      - API 개요를 확인 후 데이터 요청
+        - 인터페이스 표준이 REST인지 확인
+        - 데이터 표준이 뭔지 확인
+        - 요청 메세지 확인
+        - 응답 메세지 확인(중요)
+          - 해당 데이터에 의미를 파악
+        
   [MarkDown]
     - 기호와 문자 사이에 띄어쓰기가 있어야 인식
 
@@ -2483,3 +2676,45 @@
       ○ 컬럼명 | 컬럼명 | 컬럼명 : 테이블
         - | - | - 
         데이터 | 데이터 | 데이터 
+
+  [AI]
+    - AI(Artificial Intelligence) : 사람의 뉴런을 본 따 기계에 신경망을 구축하는 이론
+      - 강한 인공지능 : 사람처럼 사고를 통해 문제 해결
+      - 약한 인공지능 : 사람이 시킨 일만 해결
+
+    - ML(Machine Learning) : 기계를 학습시킬 방법
+      - 지도학습 : 답이 정해져 있는 문제를 학습
+      - 비지도학습 : 답이 정해져 있지 않는 문제를 학습
+
+      - 학습에 필요한 데이터만 정제(전처리)한 후 학습
+      - 정형 데이터로 학습(숫자, 문자, 이미지)
+      
+      - 예측, 분리(군집) 작업을 주로 함
+      - 모델 : 원하는 기능을 하도록 학습시키는 코드
+        - 모델을 통해 작업을 하고나면 정확도를 통해 작업이 잘 이루어 지는지 확인
+
+    - 강화학습 : 학습 후 문제의 답을 맞추면 보상(값)을 받고 다시 학습
+
+    - DL(Deep Learning)
+      - 학습에 필요한 데이터만 정제하지 않아도 됨
+      - 비정형 데이터로 학습(음성)
+      - 컴퓨터가 계속 스스로 학습하기 때문에 학습에 대한 과정을 알아내기 어려움
+
+    - 사용자의 정보가 없을 때 많은 사람들이 사용한, 이용한 것을 추천
+      - 많은 사람들이 사용, 이용한 것이 정보가 없는 사람에게 추천했을 때 만족도가 높을 확률이 높기 때문에 
+
+    - 훈련용(train) 데이터와 결과를 확인할 테스트 데이터가 나눠져 있어야 한다
+
+    - 데이터의 크기가 크면 학습시키데 시간이 오래걸리기 때문에 불필요하게 큰 데이터 타입은 작은 데이터 타입으로 바꿔주는 게 좋다
+
+    - 데이터 셋 분리
+      - Train data
+          - 모델을 학습하기 위한 데이터 셋
+          - 학습은 최적의 파라미터를 찾는 것
+          - 학습을 위한 데이터
+          <br><br>
+      - Test data
+          - 모델의 '최종 성능'을 평가하기 위한 데이터 셋
+          - 모델 학습에 관여하지 않음
+          <br><br>
+      - Train data로 학습을 하고, Test data로 최종 성능 평가

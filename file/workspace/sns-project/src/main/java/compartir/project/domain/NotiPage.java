@@ -41,7 +41,7 @@ public class NotiPage {
 			startPage = currentPage / pagingCount * pagingCount + 1;
 			
 			if(currentPage % pagingCount == 0) {
-				currentPage -= pagingCount;
+				startPage -= pagingCount;
 			}
 			
 			endPage = startPage + pagingCount - 1;
