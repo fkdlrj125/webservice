@@ -143,6 +143,9 @@
       ○ dir() - 파일의 정보를 리턴
         ex) dir(pack.module)
             ['Increment', '__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'show', 'value']
+      
+      ○ zip(데이터1, 데이터2)
+        - 두 값을 묶어서 튜플로 리턴
 
     [외장 함수]
       [random]
@@ -2865,12 +2868,19 @@
           - 튜닝 : 하이퍼 파라미터의 값을 수정하는 과정
 
           - [파라미터]
-            - min_samples_split : 노드를 분할하기 위한 최소 데이터 수(설정한 값 초과일 때 분할)
+            - min_samples_split : 노드를 분할하기 위한 최소 데이터(samples) 수
+              - default : 2
+
             - min_samples_leaf : 리프노드가 되기 위해 필요한 최소한의 샘플 데이터 수
+              - 분류를 할 때 분류된 리프노드의 데이터 수가 설정 값보다 낮다면 분류하지 않음
               - 불균형 데이터의 경우 데이터가 극도로 작을 수 있으므로 작게 설정
+              - default : 1
+
             - max_features : 분할에 고려할 최대 feature 수
+
             - max_depth : 최대 깊이(조건의 수)
               - 깊이가 너무 깊어지면 overfitting(과적합)이 되어 성능이 저하될 수 있다
+              
             - max_leaf_nodes : 최대 리프노드
 
         ○ DecisionTreeClassifier.fit(학습용 feature, 학습용 target)
@@ -2919,3 +2929,20 @@
 
               ○ GridSearchCV.best_estimator_
                 - 최적 모델
+      
+      ● [전처리]
+      
+      ● [캐글]
+        - 예측모델 및 분석 대회 플랫폼
+
+      ● [Graphviz]
+        - ML모델 시각화
+
+        [설치]
+        1. exe파일 다운로드
+        2. 환경변수 path에 Graphviz에 bin폴더에 dot.exe 추가
+          - 시각화에 필요한 실행파일
+        3. 라이브러리 설치
+        4. PC 재부팅
+
+
