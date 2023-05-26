@@ -7,6 +7,9 @@ file/workspace/sns-project-two
 spring-fourth-aws.pem
 python/*.txt
 python/*/*.txt
+python/*/*/*.txt
+python/*/*/*/*.txt
+python/*/*/*/*/*.txt
 python/p230421/chemical
 python/*.png
 python/*.jpg
@@ -20,4 +23,5 @@ python/*/*.exe
 python/*/*/*.png
 python/*/*/*.jpg
 python/*.exe
+python/*/*/*/*.jpg
 file/workspace/sns-project/src/main/resources/application.properties
