@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>객체 축약 표현</title>
+</head>
+<body>
+  <h1>객체 축약 표현</h1>
+  <script>
+    // 0. 객체 형태
+    const obj = {
+      name : 'value', // property
+    };
+
+    // 1. name과 value가 같을 때
+    const name = '홍길동';
+    const age = 25;
+
+    // 1-1. 키와 값을 모두 설정
+    // const info = {
+    //   name : name,
+    //   age : age,
+    // };
+    
+    // 1-2. 축약 표현
+    // : name과 value가 같다면, value 생략 가능
+    const info = {name, age,};
+    
+    console.log(info);
+    console.log('상수 name >>', name);
+    console.log('객체 info property name >>', info.name);
+
+    // 2. value가 익명 함수일 때
+    // 메소드 : 객체의 property(값)으로 선언된 함수
+
+    // 2-1. 
+    // const say = {
+    //   hi : function () {
+    //     console.log('안녕, 반가워~');
+    //   }
+    // };
+
+    // 2-2. function 키워드 생략
+    // 함수 표현식처럼 사용하기 때문에 name과 value를 결합
+    const say = {
+      hi() {
+        console.log('안녕, 반가워~');
+      }
+    };
+
+    console.log(say);
+    say.hi();
+  </script>
+</body>
+</html>

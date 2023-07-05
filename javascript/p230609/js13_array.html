@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배열 함수</title>
+</head>
+<body>
+  <h1>배열 함수</h1>
+  <script>
+    const even = [2, 4, 6];
+    console.log(even);
+
+    // [property 추가]
+    // 1) 맨 뒤에 추가
+    even.push(8); // 원본 적용
+    even.push(10, 12);
+    console.log(even);
+    
+    // 2) 맨 앞에 추가
+    even.unshift(-2); // 원본 적용
+    even.unshift(-6, -4);
+    console.log(even);
+    
+    // [property 삭제]
+    // 1) 마지막 프로퍼티 삭제
+    // 마지막 프로퍼티를 리턴
+    last = even.pop(); // 원본 적용
+    console.log(last);
+    console.log(even);
+    
+    // 2) 첫 번째 프로퍼티 삭제
+    // 첫 번째 프로퍼티를 리턴
+    last = even.shift();
+    console.log(last);
+    console.log(even);
+
+    // [foreach]
+    // 배열을 순회하면서 반복적인 작업을 할 때 유용
+    // 반복문을 사용하지 않아도, 사용한 효과
+    // 리턴 X
+    
+    // 배열.foreach(callback함수(value[, index[, array]]))
+    // 설명에 있는 [] 생략가능하단 의미
+    
+    // 배열
+    const std = ['홍길동', '박보검', '이미자'];
+
+    // 함수 표현식 
+    // 1) 익명 함수
+    const info = function (value, index) {
+      console.log(`value : ${value}, index : ${index}`);
+    };
+
+    // 2) 화살표 함수
+    const arrow_info = (value, index) => console.log(`value : ${value}, index : ${index}`);
+
+    // 일반 for문
+    console.log('<< for 문 >>');
+    for(let i=0; i<std.length; i++) {
+      info(std[i], i);
+    };
+
+    // foreach
+    console.log('<< foreach 함수 >>');
+    const result = std.forEach(info);
+    
+    console.log('<< foreach 함수 : 화살표 함수 >>');
+    std.forEach(arrow_info);
+
+    // foreach는 리턴x
+    console.log('forEach() 함수 리턴 >>' + result);
+
+    // [문제]
+    // foreach()함수를 사용하여, 배열 even의 속성을 1 증가
+    even.forEach(function (value) {
+      value += 1;
+      console.log(value);
+    });
+
+    even.forEach((value) => {
+      value += 1;
+      console.log(value);
+    });
+
+    even.forEach(value => console.log(value+1));
+
+    // [map]
+    // foreach와 유사
+    // 리턴 o
+    // 콜백함수의 리턴 결과를 배열로 리턴
+    console.log('<< map() 함수 >>'); 
+    std.map(info);
+
+    let arr_return = std.forEach(v => v + 1);
+    console.log(arr_return);
+    
+    arr_return = std.map(v => v + 1);
+    console.log(arr_return);
+  </script>
+</body>
+</html>

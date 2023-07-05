@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>변수 종류</title>
+</head>
+<body>
+  <h1>변수 종류</h1>
+  <script>
+    // [global scope] =========================
+    console.log('변수 선언 전 출력');
+    console.log('a_var >>', a_var)
+    // console.log('a_let >>', a_let)
+    // console.log('a_const >>', a_const)
+    
+    var a_var = 1;
+    let a_let = 5;
+    const a_const = 10;
+    // 상수(constant) : 변수를 상수화
+    // cf) 리터럴(literal) : 5 'hi' 
+
+    console.log('변수 선언 후 출력');
+    console.log('a_var >>', a_var);
+    console.log('a_let >>', a_let);
+    console.log('a_const >>', a_const);
+
+    for(var i=0; i<5; i++){
+      console.log(i);
+    }
+
+    console.log('실행 완료!!')
+  </script>
+</body>
+</html>

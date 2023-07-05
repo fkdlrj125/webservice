@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>함수 인수로 함수명 가능</title>
+</head>
+<body>
+  <h1>함수 인수로 함수명 가능</h1>
+  <script>
+    // [함수 정의]
+    // <<함수 선언식>>
+    function hello() {
+      console.log('hello~~~~!!');
+    }
+
+    function hi() {
+      console.log('hi~~~~!!');
+    }
+
+    function execute(args) {
+      console.log('execute 함수 실행 시작');
+      args();
+      console.log('execute 함수 실행 종료');
+    }
+
+    // [함수 호출]
+    execute(hello);
+    execute(hi);
+    execute(function () {
+      console.log('나는 익명함수야!');
+    })
+    execute(() => console.log('나는 화살표 함수야!'));
+
+  </script>
+</body>
+</html>

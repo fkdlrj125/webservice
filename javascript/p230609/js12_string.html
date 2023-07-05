@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>문자열 함수</title>
+</head>
+<body>
+  <h1>문자열 함수</h1>
+  <script>
+    const today = 'Good!';
+    
+    // 문자열 길이
+    console.log(today.length);
+
+    // 특정 문자 변경
+    console.log(today.replace('o', 'ap-'));
+
+    // 일치하는 문자 모두 변경
+    console.log(today.replaceAll('o', 'ap-'));
+
+    // 특정 위치의 문자 추출
+    // substring
+    console.log(today.substring(1, 4));
+
+    // slice
+    console.log(today.slice(-3));
+
+    // 특정 문자 기준으로 분리(쪼개기)
+    console.log(today.split('d'));
+
+    // 특정 문자 추가
+    console.log(today.padStart(10, '*'));
+    console.log(today.padEnd(10, '*'));
+
+    // 특정 문자 찾기
+    console.log(today.includes('G'));
+    console.log(today.includes('Go'));
+    console.log(today.includes('Gd'));
+
+    // 특정 문자의 위치 리턴
+    // - 있음 : 왼쪽부터 시작하여 특정 문자열을 탐색해 가장 먼저 만나는 인덱스 리턴
+    console.log(today.indexOf('o'));
+
+    // 반복
+    console.log(today.repeat(3));
+
+    // 대소문자
+    console.log(today.toUpperCase());
+    console.log(today.toLowerCase());
+
+    // 공백 제거
+    const say = '  Hi~  ';
+    console.log('|' + say + '|');
+    console.log('|' + say.trimStart() + '|');
+    console.log('|' + say.trimEnd() + '|');
+    console.log('|' + say.trim() + '|');
+    console.log('|' + say.trimRight() + '|');
+    console.log('|' + say.trimLeft() + '|');
+  </script>
+</body>
+</html>

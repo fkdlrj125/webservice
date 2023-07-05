@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[함수 선언식, 함수 표현식] 호출 위치</title>
+</head>
+<body>
+  <h1>[함수 선언식, 함수 표현식] 호출 위치</h1>
+  <script>
+    // hi('박보검');
+    // re_hi('박보검');
+
+    // [함수 선언식]
+    function hi(args){
+      console.log(args + '님, 안녕하세요!');
+    }
+
+    // [함수 표현식]익명 함수
+    var re_hi = function (args) {
+      console.log(args + ' 님, 또 만나서 반가워!');
+    }
+
+    // [화살표 함수]
+    const arrow_func = (args) => {
+      console.log(args + ' 님, 저는 화살표 함수입니다.');
+    }
+
+    // hi('홍길동')
+    re_hi('홍길동');
+    arrow_func('홍길동')
+    console.log('re_hi 실행 완료');
+    console.log('script 실행 완료');
+  </script>
+</body>
+</html>

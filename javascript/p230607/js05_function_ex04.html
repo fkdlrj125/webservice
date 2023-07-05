@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>사용자 정의 함수</title>
+  </head>
+  <body>
+    <h1>사용자 정의 함수</h1>
+    <script>
+      // 2. 함수 호출
+      info("홍길동", 27);
+
+      info();
+      info("박보검");
+
+      info("이미자", 55, "좋은 날에유");
+
+      // 1. 함수 정의
+      // : 매개변수 o, 리턴 x
+      // << 특징 >>
+      // - 매개변수와 인수의 자료형(타입)이 일치하는지 검사 X
+      function info(name, age) {
+        console.log("name >>", name);
+        console.log("age >>", age);
+        console.log("arguments >>", arguments);
+        console.log("=========================");
+      }
+    </script>
+  </body>
+</html>

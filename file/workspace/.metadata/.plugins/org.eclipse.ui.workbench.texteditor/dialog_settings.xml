@@ -6,8 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="writer"/>
+		<item key="selection" value="nutriRepository"/>
 		<list key="findhistory">
+			<item value="nutriRepository"/>
+			<item value="nav-link"/>
 			<item value="writer"/>
 			<item value="login"/>
 			<item value="|"/>
@@ -21,8 +23,6 @@
 			<item value="AssertThat"/>
 			<item value="Assert"/>
 			<item value="assertThat"/>
-			<item value="assert"/>
-			<item value="find"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

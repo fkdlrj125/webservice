@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>호이스팅 (hoisting)</title>
+</head>
+<body>
+  <h1>호이스팅 (hoisting)</h1>
+  <script>
+    document.write('a_var 변수 선언 전 : ', a_var);
+    document.write('<br>');
+    document.write('a_hi 변수 선언 전 : ', a_hi);
+    document.write('<br>');
+    
+    var a_var;
+    document.write('a_var 변수 선언 후 : ', a_var);
+    document.write('<br>');
+    
+    var a_hi = '안녕';
+    document.write('a_hi 변수 선언 후 : ', a_hi);
+    document.write('<br>');
+    
+    document.write('실행 종료!!!');
+  </script>
+</body>
+</html>

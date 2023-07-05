@@ -84,7 +84,9 @@
 <BR><BR>
 - token 발급
     - Settings -> Developer settings -> Personal access tokens -> Tokens
-    - token : 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
+    - token : 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
+- token 사용
+    - https://이름:토큰@repository주소
 
 # SourceTree
 - git을 사용하기 위한 GUI 프로그램
@@ -94,3 +96,9 @@
 
 ## Fork
 - 다른 사람의 repository를 내 repository로 복사
+
+### Contribute pull request
+- Fork한 repository를 작업 후 원본 repository에 병합 요청
+
+## Collaboration
+- repository를 같이 사용할 사용자 추가
